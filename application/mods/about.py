@@ -59,4 +59,3 @@ def about_page(student):
     # Case for not found url
     else:
         return "Student not found"
-

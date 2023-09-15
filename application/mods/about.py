@@ -4,60 +4,59 @@
 from app import app
 from flask import render_template
 
+
 # Dictionary to store information about 6 students
 students_info = {
-    "student1": {
-        "name": "Ankita",
-        "bio": "This is the bio of Student 1.",
+    "Ankita": {
+        "name": "Ankita Mukherjee",
+        "bio": "Hi, I'm Ankita, our Backend Lead. I like traveling, hiking, and listening to music. This is my 3rd semester in graduate Electrical and Computer Engineering.",
         "email": "amukherjee1@sfsu.edu",
-        "photo": "style22.jpg",
+        "photo": "ankita.png",
     },
-    "student2": {
-        "name": "Student 2",
-        "bio": "This is the bio of Student 2.",
-        "email": "student2@example.com",
-        "photo": "student2.jpg",
+    "Jeremy": {
+        "name": "Jeremy Woodling",
+        "bio": "Hi, I'm Jeremy our project lead. I like cyber security and programming. I have been working with the Bay Cyber League for 5 years.",
+        "email": "jwoodling@sfsu.edu",
+        "photo": "jeremy.jpg",
     },
-    "student3": {
-        "name": "Student 3",
-        "bio": "This is the bio of Student 3.",
-        "email": "student3@example.com",
-        "photo": "student3.jpg",
+    "Lars": {
+        "name": "Lars Severson",
+        "bio": "Hi, I'm Lars and I'm a frontend developer for this project. I like programming and binge-watching true crime. Having spent four years as a student, I'm now excited to start my career and apply my skills where they see fit.",
+        "email": "lseverson@mail.sfsu.edu",
+        "photo": "lars.png",
     },
-    "student4": {
-        "name": "Student 4",
-        "bio": "This is the bio of Student 4.",
-        "email": "student4@example.com",
-        "photo": "student4.jpg",
+    "Abel": {
+        "name": "Abel Seyoum",
+        "bio": "Hi, I'm Abel, the github manager of the team. Outside of the classroom, I like to play video games, go disc golfing, or watch some anime.",
+        "email": "aseyoum@sfsu.edu",
+        "photo": "abel.jpg",
     },
-    "student5": {
-        "name": "Student 5",
-        "bio": "This is the bio of Student 5.",
-        "email": "student5@example.com",
-        "photo": "student5.jpg",
+    "Guillermo": {
+        "name": "Guillermo Villar",
+        "bio": "I'm Guillermo, a developer in the project. I like hiking in nature and watching sunsets!",
+        "email": "gvillarsanchez@sfsu.edu",
+        "photo": "guillermo.jpg",
     },
-    "student6": {
-        "name": "Student 6",
-        "bio": "This is the bio of Student 6.",
-        "email": "student6@example.com",
-        "photo": "student6.jpg",
+    "Brandon": {
+        "name": "Brandon Watanabe",
+        "bio": "Hi, I'm Brandon our Front End lead. I like to program, hike, play disc golf and play video games. It is my last semester at SFSU before I finish my Computer Science BS.",
+        "email": "bwatanabe@sfsu.edu",
+        "photo": "brandon.jpg",
     },
 }
 # About me index (list of students)
 @app.route("/about")
 def about_list():
-    return render_template("about_list.html")  # Render the list of students template
+    return render_template("about_list.html", students=list(students_info.keys()))  # Render the list of students template
 
 
 # Load template for individual about me pages
 @app.route("/about/<string:student>")
 def about_page(student):
+    # Render individual student page based on link
     if student in students_info:
         return render_template("about_template.html", student=students_info[student])
+    # Case for not found url
     else:
         return "Student not found"
 
-def get_about_text():
-    # Replace this with your actual about text or logic to retrieve it
-    about_text = "Welcome to Team 02's Tutorio! We provide educational content to help you learn and grow."
-    return about_text

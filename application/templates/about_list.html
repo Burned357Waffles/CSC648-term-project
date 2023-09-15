@@ -8,14 +8,17 @@
 </head>
 
 <body>
-    <h1>About Page - Team 02's Tutorio</h1>
+    <center>
+        <h1>Software Engineering class SFSU</h1>
+        <h2>Fall, 2023</h2>
+        <h2>Section 03</h2>
+        <h2>Team 2</h2>
+    </center>
+
     <ul>
-        <li><a href="/about/student1">Student 1</a></li>
-        <li><a href="/about/student2">Student 2</a></li>
-        <li><a href="/about/student3">Student 3</a></li>
-        <li><a href="/about/student4">Student 4</a></li>
-        <li><a href="/about/student5">Student 5</a></li>
-        <li><a href="/about/student6">Student 6</a></li>
+        {% for student in students %}
+            <li><a href="/about/{{ student }}"><h3>{{ student }}</h3></a></li>
+        {% endfor %}
     </ul>
 </body>
 

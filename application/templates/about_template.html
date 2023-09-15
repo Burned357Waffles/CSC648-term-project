@@ -69,7 +69,7 @@
 <body>
     <div class="container">
         <h1>About {{ student.name }}</h1>
-        <img src="{{ url_for('static', 'image/style22.jpg') }}" alt="{{ student.name }}'s Photo" width="200">
+        <img src="{{ url_for('static', filename='image/style22.jpg') }}" alt="{{ student.name }}'s Photo" width="200">
         <p><strong>Name:</strong> {{ student.name }}</p>
         <p><strong>Email:</strong> {{ student.email }}</p>
         <p><strong>Bio:</strong> {{ student.bio }}</p>

@@ -2,35 +2,49 @@ from flask import Flask, redirect, url_for, render_template
 
 app = Flask(__name__)
 
+
 # CONFIG
 app.config["NAME"] = "Team 02's Tutorio"
 app.config["VERSION"] = "a0.0.1"
+app.debug = True
 
-# Dictionary to store information about 6 people
-people_info = {
-    "person1": {
-        "name": "Person 1",
-        "bio": "This is the bio of Person 1.",
+# Dictionary to store information about 6 students
+students_info = {
+    "student1": {
+        "name": "Ankita",
+        "bio": "This is the bio of Student 1.",
+        "email": "amukherjee1@sfsu.edu",
+        "photo": "style22.jpg",
     },
-    "person2": {
-        "name": "Person 2",
-        "bio": "This is the bio of Person 2.",
+    "student2": {
+        "name": "Student 2",
+        "bio": "This is the bio of Student 2.",
+        "email": "student2@example.com",
+        "photo": "student2.jpg",
     },
-    "person3": {
-        "name": "Person 3",
-        "bio": "This is the bio of Person 3.",
+    "student3": {
+        "name": "Student 3",
+        "bio": "This is the bio of Student 3.",
+        "email": "student3@example.com",
+        "photo": "student3.jpg",
     },
-    "person4": {
-        "name": "Person 4",
-        "bio": "This is the bio of Person 4.",
+    "student4": {
+        "name": "Student 4",
+        "bio": "This is the bio of Student 4.",
+        "email": "student4@example.com",
+        "photo": "student4.jpg",
     },
-    "person5": {
-        "name": "Person 5",
-        "bio": "This is the bio of Person 5.",
+    "student5": {
+        "name": "Student 5",
+        "bio": "This is the bio of Student 5.",
+        "email": "student5@example.com",
+        "photo": "student5.jpg",
     },
-    "person6": {
-        "name": "Person 6",
-        "bio": "This is the bio of Person 6.",
+    "student6": {
+        "name": "Student 6",
+        "bio": "This is the bio of Student 6.",
+        "email": "student6@example.com",
+        "photo": "student6.jpg",
     },
 }
 
@@ -38,22 +52,22 @@ people_info = {
 # Index
 @app.route("/")
 def hello_world():
-    return redirect(url_for("about_list"))  # Redirect to the list of people
+    return redirect(url_for("about_list"))  # Redirect to the list of students
 
 
-# About me index (list of people)
+# About me index (list of students)
 @app.route("/about")
 def about_list():
-    return render_template("about_list.html")  # Render the list of people template
+    return render_template("about_list.html")  # Render the list of students template
 
 
 # Load template for individual about me pages
-@app.route("/about/<string:person>")
-def about_page(person):
-    if person in people_info:
-        return render_template("about_template.html", person=people_info[person])
+@app.route("/about/<string:student>")
+def about_page(student):
+    if student in students_info:
+        return render_template("about_template.html", student=students_info[student])
     else:
-        return "Person not found"
+        return "Student not found"
 
 
 # Run App

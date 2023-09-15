@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About {{ person.name }}</title>
+</head>
+
+<body>
+    <h1>About {{ person.name }}</h1>
+    <img src="/static/{{ person.photo }}" alt="{{ person.name }}'s Photo" width="200">
+    <p>{{ person.bio }}</p>
+    <a href="/about">Back to List</a>
+</body>
+
+</html>

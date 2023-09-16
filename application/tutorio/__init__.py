@@ -1,5 +1,4 @@
-from flask import Flask, redirect, url_for, render_template
-
+from flask import Flask, redirect, url_for
 app = Flask(__name__)
 
 
@@ -9,7 +8,8 @@ app.config["VERSION"] = "a0.0.1"
 app.debug = True
 
 # # Sub modules
-import mods.about
+# About Page
+import tutorio.mods.about
 
 # Index
 @app.route("/")

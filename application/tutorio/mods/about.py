@@ -1,7 +1,7 @@
 # # # About Me Module
 # Handles all pages relative to the about me section
 # # #
-from app import app
+from tutorio import app
 from flask import render_template
 
 
@@ -44,6 +44,7 @@ students_info = {
         "photo": "brandon.jpg",
     },
 }
+
 # About me index (list of students)
 @app.route("/about")
 def about_list():
@@ -59,3 +60,5 @@ def about_page(student):
     # Case for not found url
     else:
         return "Student not found"
+
+

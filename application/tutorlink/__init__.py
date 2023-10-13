@@ -1,15 +1,15 @@
 from flask import Flask, redirect, url_for
+from tutorlink.db.db import db
+
 app = Flask(__name__)
-
-
 # CONFIG
-app.config["NAME"] = "Team 02's Tutorio"
+app.config["NAME"] = "Team 02's TutorLink"
 app.config["VERSION"] = "a0.0.1"
 app.debug = True
 
 # # Sub modules
 # About Page
-import tutorio.mods.about
+import tutorlink.mods.about
 
 # Index
 @app.route("/")

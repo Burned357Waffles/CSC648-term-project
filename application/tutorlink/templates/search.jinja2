@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - Tutorlink</title>
+</head>
+
+<body>
+    <h1>CSC-648-03 Fall 2023</h1>
+    <h2>Team 02</h2>
+
+    <form method="POST">
+        {{ form.csrf_token }}
+
+        {% for field in form.data.keys() %}
+        {% if field != "csrf_token" and field != "submit" %}
+        <fieldset class="{{ field }}">
+            {{ form[field]['label'] }} {{ form[field] }}
+            {% if form[field]['errors'] %}
+            <ul class="errors">
+                {% for error in form[field]['errors'] %}
+                <li>{{ error }}</li>{% endfor %}
+            </ul>
+            {% endif %}
+        </fieldset>
+        {%endif%}
+        {% endfor %}
+
+        <div class="submit-button">
+            {{ form.submit }}
+        </div>
+
+        {% if res != None%}
+            <p> === Results === </p>
+            {% for i in res %}
+                <table>
+                    <img src="{{ url_for('static', filename=(i.tutor_photo) ) }}" alt="{{i.tutor_name}}'s Photo">
+                    <tr>
+                        <th>Name</th>
+                        <th>{{i.tutor_name}}</th>
+                    </tr>
+                    <tr>
+                        <th>Subject</th>
+                        <th>{{i.tutor_subj}}</th>
+                    </tr>
+                    <tr>
+                        <th>Class #</th>
+                        <th>{{i.tutor_subj_num}}</th>
+                    </tr>
+                    <tr>
+                        <th>Bio</th>
+                        <th>{{i.tutor_bio}}</th>
+                    </tr>
+                    <tr>
+                        <th>CV/Flyer</th>
+                        <th><a href="{{ url_for('static', filename=(i.tutor_cv)) }}" target="_blank">link</a></th>
+                    </tr>
+                    <tr>
+                        <th>Video</th>
+                        <th><a href="{{ i.tutor_vid }}" target="_blank">link</a></th>
+                    </tr>
+                </table>
+            <br>
+            {% endfor %}
+            <p> === End Of Results ===</p>
+        {% endif %}
+    </form>
+</body>

@@ -1,10 +1,11 @@
 """Database models."""
-from scoring_engine.db.db import db
-from flask_login import UserMixin
+from tutorlink.db.db import db
+# from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
 # User model for database
-class User(UserMixin, db.model):
+# UserMixin, 
+class User(db.Model): 
     __tablename__ = "user"
     # # #  Columns
     user_id = db.Column(
@@ -41,10 +42,8 @@ class User(UserMixin, db.model):
     def __repr__(self):
         return "<User {}>".format(self.user_name)
 
-
-
 # Subject model to hold different subject names
-class Subject(db.model):
+class Subject(db.Model):
     __tablename__ = "subject"
     # # # Columns
     subj_id = db.Column(
@@ -68,7 +67,7 @@ class Subject(db.model):
         return "<Subject {}>".format(self.subj_long)
 
 # Tutor model to hold different tutor listings
-class Tutor(db.model):
+class Tutor(db.Model):
     __tablename__ = "tutor"
     # # # Columns
     tutor_id = db.Column(
@@ -117,27 +116,12 @@ class Tutor(db.model):
         primary_key=False,
         nullable=True
     )
-    tutor_rating = db.Column(
-        db.Integer(),
-        primary_key=False,
-        nullable=False
-    )
-    tutor_rating_count = db.Column(
-        db.Integer(),
-        primary_key=False,
-        nullable=False
-    )
-
-    def add_rating(self, new_rating):
-        rating_weight = (self.tutor_rating_count-1) / self.tutor_rating_count
-        new_weight = 1 / self.tutor_rating_count
-        self.rating = (self.rating * rating_weight) + (new_rating * new_weight)
 
     def __repr__(self):
         return "<Tutor {}>".format(self.tutor_name)
 
 # Message model to hold different messages sent to tutors
-class Message(db.model):
+class Message(db.Model):
     __tablename__ = "message"
     # # # Columns
     msg_id = db.Column(
@@ -172,7 +156,7 @@ class Message(db.model):
         return "<Tutor {}>".format(self.msg_text)
 
 # Model to hold requests to be a tutor for later approval
-class Tutor_Request(db.model):
+class Tutor_Request(db.Model):
     __tablename__ = "tutor_request"
     # # # Columns
     tutor_id = db.Column(
@@ -221,21 +205,6 @@ class Tutor_Request(db.model):
         primary_key=False,
         nullable=True
     )
-    tutor_rating = db.Column(
-        db.Integer(),
-        primary_key=False,
-        nullable=False
-    )
-    tutor_rating_count = db.Column(
-        db.Integer(),
-        primary_key=False,
-        nullable=False
-    )
-
-    def add_rating(self, new_rating):
-        rating_weight = (self.tutor_rating_count-1) / self.tutor_rating_count
-        new_weight = 1 / self.tutor_rating_count
-        self.rating = (self.rating * rating_weight) + (new_rating * new_weight)
 
     def __repr__(self):
         return "<Tutor Request {}>".format(self.tutor_name)

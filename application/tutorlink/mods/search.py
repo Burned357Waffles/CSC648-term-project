@@ -1,9 +1,8 @@
 # # Handles searching/browsing related pages
-
 # app
 from tutorlink import app
 from tutorlink.db.models import Subject, Tutor
-from tutorlink.db.db import db
+# from tutorlink.db.db import db
 
 # libs
 from flask import render_template
@@ -61,7 +60,7 @@ def search_page():
 
         res = res.all()
 
-        # TODO Optimize
+        # TODO Optimize?
         for i in range(0, len(res)):
             res[i].tutor_subj =  Subject.query.filter_by(subj_id=res[i].tutor_subj).first().subj_short
 

@@ -17,7 +17,7 @@ if app.debug:
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Connect to ProdDB
 else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://user:L244VJw6xGoE19UR@localhost/prod'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://user:L244VJw6xGoE19UR@localhost/prod'
 
 # # Sub modules
 # About Page

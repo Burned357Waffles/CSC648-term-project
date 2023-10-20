@@ -4,13 +4,15 @@ from sys import argv
 
 app = Flask(__name__)
 
-# CONFIG
+
+
+# # # ==== Flask Config ==== # # #
 app.config["NAME"] = "Team 02's TutorLink"
 app.config["VERSION"] = "a0.0.1"
 app.secret_key = 'wF8gDjUWUf$&&^K'
 
 
-# DB Config
+# # # ==== DB Config ==== # # #
 # Setup Local SQLite session in mem for testing
 if app.debug:
     app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:///'
@@ -19,30 +21,40 @@ if app.debug:
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://user:L244VJw6xGoE19UR@localhost/prod'
 
-# # Sub modules
+
+
+# # # ==== Sub modules === # # #
+# Imports modules with additional routes
 # About Page
 import tutorlink.mods.about
+# Search Page
 import tutorlink.mods.search
 
 
-# DB init
+# # DB init
 with app.app_context():
     db.init_app(app)
     db.create_all()
 
 
-# Index
+# # # ==== Index ==== # # #
+# Should be only route in __init__.py
+# Should only ever be a redirect
 @app.route("/")
 def hello_world():
     return redirect(url_for("search_page"))  # Redirect to the list of students
-
 
 
 # Run App
 if __name__ == "__main__":
     app.run()
 
+
+
+
 # # # DEBUG - DB POPULATION
+# Only runs for for SQLite debug session for local testing
+# NOTE : Might create bugs between deployment env and local testing
 if app.debug:
     with app.app_context():
         from tutorlink.db.models import Subject, Tutor

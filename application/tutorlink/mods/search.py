@@ -2,7 +2,6 @@
 # app
 from tutorlink import app
 from tutorlink.db.models import Subject, Tutor
-# from tutorlink.db.db import db
 
 # libs
 from flask import render_template
@@ -41,7 +40,7 @@ def search_page():
         # Get list of tutor
         # TODO optimize?
         # Filter By Subject if needed
-        res = Tutor.query
+        res = Tutor.query.join(Subject)
 
         # Add subject to query if applicable
         if form.search_subject.data != "Subject":
@@ -55,13 +54,18 @@ def search_page():
             res = res.filter(
                 Tutor.tutor_name.like("%" + form.search_term.data + "%") |
                 Tutor.tutor_bio.like("%" + form.search_term.data + "%") |
-                Tutor.tutor_subj_num.like("%" + form.search_term.data + "%")
+                Tutor.tutor_subj_num.like("%" + form.search_term.data + "%") |
+                Subject.subj_short.like("%" + form.search_term.data + "%") |
+                Subject.subj_long.like("%" + form.search_term.data + "%")
             )
 
+        # Preform Query
         res = res.all()
 
+        # Render search page with result
         return render_template("search.jinja2", form=form, res=res, subj_db=Subject)
 
+    # Render just search page
     return render_template("search.jinja2", form=form, res=None, subj_db=Subject)
 
 

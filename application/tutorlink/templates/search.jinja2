@@ -43,7 +43,7 @@
                     </tr>
                     <tr>
                         <th>Subject</th>
-                        <th>{{i.tutor_subj}}</th>
+                        <th>{{subj_db.query.filter_by(subj_id=i.tutor_subj).first().subj_short}}</th>
                     </tr>
                     <tr>
                         <th>Class #</th>
@@ -69,5 +69,5 @@
     </form>
 
     <hr>
-    <h1><a href="/about" target="_blank">About Us</a></h1>
+    <!-- <h1><a href="/about" target="_blank">About Us</a></h1> -->
 </body>

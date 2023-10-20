@@ -60,13 +60,9 @@ def search_page():
 
         res = res.all()
 
-        # TODO Optimize?
-        for i in range(0, len(res)):
-            res[i].tutor_subj =  Subject.query.filter_by(subj_id=res[i].tutor_subj).first().subj_short
+        return render_template("search.jinja2", form=form, res=res, subj_db=Subject)
 
-        return render_template("search.jinja2", form=form, res=res)
-
-    return render_template("search.jinja2", form=form, res=None)
+    return render_template("search.jinja2", form=form, res=None, subj_db=Subject)
 
 
 

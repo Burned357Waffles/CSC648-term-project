@@ -45,9 +45,9 @@ def search_page():
         # Add subject to query if applicable
         if form.search_subject.data != "Subject":
             # Get the subject id
-            subj = Subject.query.filter_by(subj_short=form.search_subject.data).first()
+            # subj = Subject.query.filter_by(subj_short=form.search_subject.data).first()
             # append subject restriction to query
-            res = res.filter_by( tutor_subj=subj.subj_id)
+            res = res.filter( Subject.subj_short==form.search_subject.data)
 
         # Like search based off of search term if it exists
         if form.search_term.data != "":

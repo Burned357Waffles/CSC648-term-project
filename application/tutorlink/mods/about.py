@@ -1,7 +1,7 @@
 # # # About Me Module
 # Handles all pages relative to the about me section
 # # #
-from tutorio import app
+from tutorlink import app
 from flask import render_template
 
 

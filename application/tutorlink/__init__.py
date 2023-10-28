@@ -29,6 +29,7 @@ else:
 import tutorlink.mods.about
 # Search Page
 import tutorlink.mods.search
+import tutorlink.mods.test
 
 
 # # DB init

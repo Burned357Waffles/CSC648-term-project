@@ -1,21 +1,19 @@
 <nav id="nav-bar">
-    <hr class="line-break">
-
     <div id="nav-left">
-        <a href="/about" class="nav-link">About</a>
-        <a href="/recents" class="nav-link">Recent Posts</a>
-        <a href="/postimage" class="nav-link">Create Post</a>
+        <a id="tutorlink-logo" href="/test"><img src="/static/image/test/logo.jpg" alt="TutorLink Logo Location"></a>
+        <a id="about-us" class="nav-link" href="/about">About Us</a>
     </div>
 
+    <span id="warning-label">SFSU Software Engineering Project CSC 648-848, Fall 2023. For Demonstration Only.</span>
 
     {% set form = search_form() %}
     <form id="search-bar" method="POST">
         {{ form.csrf_token }}
 
+        <div id="search-bar-bg">
         {% for field in form.data.keys() %}
         {% if field != "csrf_token" and field != "submit" %}
-        <fieldset class="{{ field }}">
-            {{ form[field]['label'] }} {{ form[field] }}
+            {{ form[field] }}
             {% if form[field]['errors'] %}
             <ul class="errors">
                 {% for error in form[field]['errors'] %}
@@ -23,26 +21,32 @@
                 {% endfor %}
             </ul>
             {% endif %}
-        </fieldset>
         {% endif %}
         {% endfor %}
-
-        <div class="submit-button">
-            {{ form.submit }}
         </div>
     </form>
 
+    <a id="tutor-signup" class="nav-link" href="/tutorsignup">Register as a Tutor</a>
 
     <div id="nav-right">
     {% if isLoggedIn %}
-        <a id="username-plate" href="/profile/{{ username }}">{{ username }}</a>
-        <a id="logout-button" class="nav-link">Logout</a>
+    {% if username %}
+        <span id="username-plate" class="nav-link">Welcome, {{ username }} ▼</span>
     {% else %}
-        <a id="login" href="/login" class="nav-link">Login</a>
-        <a id="register" href="/register" class="nav-link">Register</a>
+        <span id="username-plate" class="nav-link">Welcome, &lt;user&gt; ▼</span>
+    {% endif %}
+        <br>
+        <div id="user-dropdown" class="not-visible">
+            <a class="nav-link drop-link" href="/dashboard">Dashboard</a>
+            <br>
+            <a class="nav-link drop-link" href="/settings">Settings</a>
+            <br>
+            <a class="nav-link drop-link" href="/logout">Log out</a>
+        </div>
+    {% else %}
+        <a id="login" class="nav-link" href="/login">Login</a>
+        <br>
+        <a id="register" class="nav-link" href="/register">Sign up</a>
     {% endif %}
     </div>
-
-    <br>
-    <hr class="line-break">
 </nav>

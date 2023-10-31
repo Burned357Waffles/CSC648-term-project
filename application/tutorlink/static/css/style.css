@@ -4,7 +4,8 @@ body
   position: relative;
   margin: 0;
   padding: 0;
-  background-color: #ffffff;
+  background-color: white;
+  font: 15px monospace;
 }
 #page-content
 {
@@ -22,30 +23,21 @@ main
   margin-left: 50px;
   margin-right: 50px;
 }
-
 #nav-bar, #page-footer
 {
   font-family: "Arial", "Comic Sans MS", "monospace";
 }
-body
-{
-  font: 15px monospace;
-}
 
-h1, h2
-{
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-br
-{
-  clear: both;
-}
 .line-break
 {
-   border: 2px solid black;
+  margin: 0 0;
+  border: 2px solid black;
 }
 
+a:link, a:visited
+{
+  color: inherit;
+}
 a
 {
   text-decoration:none;
@@ -53,4 +45,9 @@ a
 a:hover
 {
   text-decoration:underline;
+}
+
+br
+{
+  clear: both;
 }

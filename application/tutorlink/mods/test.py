@@ -10,10 +10,10 @@ from wtforms import StringField, SelectField, SubmitField
 
 # # # Form layouts
 class search_form(FlaskForm):
+    search_subject = SelectField("Subject")
     search_term = StringField(
         "Search Term"
     )
-    search_subject = SelectField("Subject")
     search_submit = SubmitField(
         "Search"
     )
@@ -23,7 +23,7 @@ def new_form():
 
     # Populate subjects to DB
     # Possible TODO, optimize this
-    subj = ["Subject"]
+    subj = ["All Subjects"]
     for i in Subject.query.all():
         subj.append(i.subj_short)
     form.search_subject.choices = subj
@@ -37,7 +37,7 @@ app.jinja_env.globals.update(search_form=new_form)
 # Sample home page
 @app.route("/test", methods=['GET'])
 def home_page():
-    return render_template("test.jinja2")
+    return render_template("test.jinja2", res=None)
 
 # Main search page
 # POST -> View results
@@ -54,7 +54,7 @@ def search_test():
         res = Tutor.query.join(Subject)
 
         # Add subject to query if applicable
-        if form.search_subject.data != "Subject":
+        if form.search_subject.data != "All Subjects":
             res = res.filter(Subject.subj_short == form.search_subject.data)
 
         # Like search based off of search term if it exists

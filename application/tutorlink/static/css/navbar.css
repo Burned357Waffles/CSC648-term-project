@@ -1,0 +1,191 @@
+#nav-bar
+{
+  background-color: #404040;
+  height: 144px;
+}
+.nav-link
+{
+  pointer-events: all;
+  display: inline-block;
+  width: auto;
+  height: 50px;
+  line-height: 50px;
+  vertical-align: center;
+  padding: 0 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 8px;
+  font-size: 18px;
+  background-color: #bfbfbf;
+}
+#warning-label
+{
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  top: 15px;
+  font-size: 18px;
+  color: white;
+}
+
+
+#nav-left
+{
+  float: left;
+  margin-left: 10px;
+  margin-top: 10px;
+  width: 25%;
+  height: 120px;
+}
+#tutorlink-logo
+{
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+  font-size: 20px;
+  color: black;
+  background-color: white;
+  align-self: center;
+}
+#about-us
+{
+  display: block;
+  margin-top: -50px;
+  margin-left: 135px;
+  text-align: center;
+  width: 90px;
+}
+
+
+#search-bar
+{
+  pointer-events: none;
+  position: absolute;
+  top: 60px;
+  width: 100%;
+  text-align: center;
+}
+#search-bar-bg
+{
+  display: inline-block;
+  width: 645px;
+  height: 60px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border-radius: 7px;
+  background-color: #bfbfbf;
+}
+
+#search_subject
+{
+  pointer-events: all;
+  width: 130px;
+  height: 60px;
+  padding: 0 0;
+  padding-left: 10px;
+  border-radius: 8px;
+  font-size: 18px;
+  border-color: white;
+  background-color: white;
+}
+#search_term
+{
+  pointer-events: all;
+  width: 420px;
+  height: 56px;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding: 0 0;
+  padding-left: 10px;
+  border-radius: 10px;
+  font-size: 18px;
+  border-color: white;
+  background-color: white;
+}
+#search_submit
+{
+  pointer-events: all;
+  width: 60px;
+  height: 60px;
+  padding: 0 0;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 16px;
+  border-color: white;
+  background-color: white;
+}
+#search_submit:hover
+{
+  background-color: #bfbfbf;
+}
+
+
+#tutor-signup
+{
+  display: block;
+  position: absolute;
+  top: 75px;
+  right: 21%;
+  width: 158px;
+  padding-left: 10px;
+}
+
+
+#nav-right
+{
+  pointer-events: none;
+  display: inline-block;
+  position:absolute;
+  top: 12px;
+  right: 12px;
+  text-align: right;
+  width: 25%;
+}
+#login, #register
+{
+  text-align: center;
+  width: 66px;
+}
+#username-plate
+{
+  pointer-events: all;
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow: hidden;
+  /*height: auto;*/
+}
+#username-plate:hover
+{
+  text-decoration:underline;
+}
+{
+  display: block;
+  word-wrap: normal;
+  word-break: normal;
+  overflow: visible;
+}
+
+#user-dropdown
+{
+  float: right;
+  pointer-events: all;
+  margin-top: -5px;
+  width: 108px;
+}
+.drop-link
+{
+  margin: 2px 0px;
+  width: 88px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: left;
+}
+.is-visible
+{
+  display: block;
+}
+.not-visible
+{
+  display: none;
+}

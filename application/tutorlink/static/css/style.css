@@ -1,119 +1,31 @@
 body
 {
-  background-color: #f3f3d5;
   min-height: 100vh;
   position: relative;
   margin: 0;
   padding: 0;
+  background-color: #ffffff;
 }
 #page-content
 {
-  padding-bottom: 2.5rem;
+  padding-bottom: 57px;
 }
 #page-footer
 {
-  background-color: burlywood;
-  height: 2.5rem;
-  width: 100%;
+  height: 57px;
   position: absolute;
   bottom: 0;
 }
-#page-footer span, #page-footer a
-{
-  display: block;
-  margin-top: -5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: inherit;
-}
 
-.line-break
-{
-  border: 2px solid saddlebrown;
-}
-#page-banner
-{
-  display: inline-block;
-  padding: 0px 15px;
-  margin-top: 3px;
-  margin-bottom: -2px;
-}
-#page-banner a
-{
-  color: inherit;
-  text-decoration: none;
-}
-#nav-bar
-{
-  background-color: burlywood;
-}
-#nav-left
-{
-  float: left;
-  margin-left: 43px;
-  width: 25%;
-  overflow: visible;
-}
-#search-bar
-{
-  position: absolute;
-  left: 0;
-  width: 100%;
-  text-align: center;
-}
-#searchTextbox
-{
-  pointer-events: all;
-  font-size: 18px;
-  width: 25%;
-  border-radius: 13px;
-  border-color: saddlebrown;
-  box-shadow: 1px 2px gray;
-}
-#search-button
-{
-  pointer-events: all;
-  border: 2px solid saddlebrown;
-  border-radius: 7px;
-  font: 13px "Comic Sans MS";
-  text-align: center;
-  height: 24px;
-  width: 60px;
-  margin: 0 3px;
-}
-#search-button:hover
-{
-  background-color: darkgray;
-}
-#nav-right
-{
-  float: right;
-  margin-right: 50px;
-  text-align: right;
-  width: 25%;
-  overflow: visible;
-}
-.nav-link
-{
-  font-size: 18px;
-  padding-left: 7px;
-  padding-right: 7px;
-}
-#username-plate
-{
-  padding-right: 10px;
-  font-family: Impact;
-  color: saddlebrown;
-}
 main
 {
   margin-left: 50px;
   margin-right: 50px;
 }
 
-#page-banner, #nav-bar, #page-header, #page-footer
+#nav-bar, #page-footer
 {
-  font-family: "Comic Sans MS";
+  font-family: "Arial", "Comic Sans MS", "monospace";
 }
 body
 {
@@ -128,6 +40,10 @@ h1, h2
 br
 {
   clear: both;
+}
+.line-break
+{
+   border: 2px solid black;
 }
 
 a

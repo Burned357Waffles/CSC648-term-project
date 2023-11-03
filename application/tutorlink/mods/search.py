@@ -8,32 +8,46 @@ from flask import render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, SubmitField
 
+
 # # # Form layouts
 class search_form(FlaskForm):
+    search_subject = SelectField("Subject")
     search_term = StringField(
         "Search Term"
     )
-    search_subject = SelectField("Subject")
     search_submit = SubmitField(
         "Search"
     )
 
-# # # Routes
-
-# Main search page
-# GET -> Search form
-# POST -> View results
-@app.route("/search", methods=['POST','GET'])
-def search_page():
-    # Create form
+# Creates form with dropdown options pre-filled
+def new_form():
     form = search_form()
 
     # Populate subjects to DB
     # Possible TODO, optimize this
-    subj = ["Subject"]
+    subj = ["All Subjects"]
     for i in Subject.query.all():
         subj.append(i.subj_short)
     form.search_subject.choices = subj
+    return form
+
+# Makes form available for navbar to generate
+app.jinja_env.globals.update(search_form=new_form)
+
+
+# # # Routes
+
+# Main search page
+# GET -> Empty results page
+@app.route("/search", methods=['GET'])
+def no_results():
+    return render_template("search.jinja2", res=None)
+
+# POST -> View results
+@app.route("/search", methods=['POST'])
+def search_page():
+    # Create form
+    form = new_form()
 
     # Form submit | Returns search results
     if form.validate_on_submit():
@@ -43,7 +57,7 @@ def search_page():
         res = Tutor.query.join(Subject)
 
         # Add subject to query if applicable
-        if form.search_subject.data != "Subject":
+        if form.search_subject.data != "All Subjects":
             # Get the subject id
             # subj = Subject.query.filter_by(subj_short=form.search_subject.data).first()
             # append subject restriction to query
@@ -63,10 +77,4 @@ def search_page():
         res = res.all()
 
         # Render search page with result
-        return render_template("search.jinja2", form=form, res=res, subj_db=Subject)
-
-    # Render just search page
-    return render_template("search.jinja2", form=form, res=None, subj_db=Subject)
-
-
-
+        return render_template("search.jinja2", res=res, subj_db=Subject)

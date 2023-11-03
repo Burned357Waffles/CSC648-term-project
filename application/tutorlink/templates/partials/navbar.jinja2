@@ -1,13 +1,13 @@
 <nav id="nav-bar">
     <div id="nav-left">
-        <a id="tutorlink-logo" href="/test"><img src="/static/image/test/logo.jpg" alt="TutorLink Logo Location"></a>
+        <a id="tutorlink-logo" href="/"><img src="/static/image/test/logo.jpg" alt="TutorLink Logo Location"></a>
         <a id="about-us" class="nav-link" href="/about">About Us</a>
     </div>
 
     <span id="warning-label">SFSU Software Engineering Project CSC 648-848, Fall 2023. For Demonstration Only.</span>
 
     {% set form = search_form() %}
-    <form id="search-bar" method="POST">
+    <form id="search-bar" method="POST" action="/search">
         {{ form.csrf_token }}
 
         <div id="search-bar-bg">

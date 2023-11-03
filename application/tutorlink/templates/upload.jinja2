@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - Tutorlink</title>
+</head>
+
+<body>
+    <h1>CSC-648 Fall 2023</h1>
+    <h2>Team 02</h2>
+
+    <!-- Add a file upload form -->
+   <form method="POST" action="/fileupload" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+
+    <fieldset class="file-upload">
+        <label for="file">Upload File:</label>
+        {{ form.file }}
+    </fieldset>
+
+    <div class="submit-button">
+        {{ form.submit }}
+    </div>
+</form>
+
+
+
+
+
+
+    <hr>
+    <!-- <h1><a href="/about" target="_blank">About Us</a></h1> -->
+</body>

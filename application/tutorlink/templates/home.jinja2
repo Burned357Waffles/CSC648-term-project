@@ -1,0 +1,32 @@
+{% set title = "Search - Tutorlink" %}
+{#{% set css = [""] %}#}
+{#{% set js = [""] %}#}
+{% extends "base.jinja2" %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block body %}
+    <div id="page-title">
+        <h1>Find Tutors For Your SFSU Courses</h1>
+    </div>
+    <div class="rectangles-clip-container">
+        <div class="rectangles-container">
+            <div class="rectangle" id="prev-rectangle">
+                {{ rectangles[prev_index].text }}
+            </div>
+
+            <div class="rectangle" id="current-rectangle">
+                {{ rectangles[centered_index].text }}
+            </div>
+
+            <div class="rectangle" id="next-rectangle">
+                {{ rectangles[next_index].text }}
+            </div>
+        </div>
+    </div>
+
+    <script src="../static/js/home.js"></script>
+
+{% endblock %}

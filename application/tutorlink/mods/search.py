@@ -39,9 +39,33 @@ app.jinja_env.globals.update(search_form=new_form)
 
 # Main search page
 # GET -> Empty results page
-@app.route("/search", methods=['GET'])
+@app.route("/home", methods=['GET'])
+def index():
+    rectangles = [
+        {
+            "text": "CSC"
+        },
+        {
+            "text": "PHYS"
+        },
+        {
+            "text": "MATH"
+        },
+        {
+            "text": "BIO"
+        },
+        {
+            "text": "HH"
+        }
+    ]
+    centered_index = 0
+    prev_index = (centered_index - 1 + len(rectangles)) % len(rectangles)
+    next_index = (centered_index + 1) % len(rectangles)
+
+    return render_template('home.jinja2', rectangles=rectangles, centered_index=centered_index, prev_index=prev_index, next_index=next_index)
+
 def no_results():
-    return render_template("search.jinja2", res=None)
+    return render_template("home.jinja2", res=None)
 
 # POST -> View results
 @app.route("/search", methods=['POST'])

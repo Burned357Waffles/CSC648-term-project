@@ -1,0 +1,42 @@
+#page-title {
+    text-align: center;
+}
+
+.rectangles-clip-container {
+    overflow: hidden; /* Add overflow: hidden to clip the rectangles */
+    width: 600px; /* Set the width to match the total width of the visible rectangles */
+    margin: 0 auto; /* Center the container */
+}
+
+.rectangles-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rectangle {
+    display: inline-block;
+    width: 200px;
+    height: 100px;
+    background-color: #404040;
+    text-align: center;
+    line-height: 100px;
+    color: #fff;
+    cursor: pointer;
+    margin: 15px;
+    transform: scale(1);
+    opacity: 1;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Add transitions for transform and opacity properties */
+    z-index: 1;
+}
+
+#prev-rectangle, #next-rectangle {
+    transform: scale(0.9); /* Start with a smaller size for previous and next rectangles */
+    opacity: 0.75;
+    z-index: 0;
+}
+
+#current-rectangle {
+    transform: scale(1.2);
+    z-index: 2;
+}

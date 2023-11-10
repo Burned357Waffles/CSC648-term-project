@@ -4,7 +4,7 @@ from tutorlink import app
 from tutorlink.db.models import Subject, Tutor
 
 # libs
-from flask import render_template
+from flask import render_template, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, SubmitField
 
@@ -41,31 +41,22 @@ app.jinja_env.globals.update(search_form=new_form)
 # GET -> Empty results page
 @app.route("/home", methods=['GET'])
 def index():
-    rectangles = [
-        {
-            "text": "CSC"
-        },
-        {
-            "text": "PHYS"
-        },
-        {
-            "text": "MATH"
-        },
-        {
-            "text": "BIO"
-        },
-        {
-            "text": "HH"
-        }
-    ]
+    rectangles = [{"text": "HH"}]
+
+    # TODO: Create "Top 5 Subjects" algorithm for carousel
+    for i in Subject.query.all():
+        rectangles.append({"text": i.subj_short})
+
     centered_index = 0
     prev_index = (centered_index - 1 + len(rectangles)) % len(rectangles)
     next_index = (centered_index + 1) % len(rectangles)
 
     return render_template('home.jinja2', rectangles=rectangles, centered_index=centered_index, prev_index=prev_index, next_index=next_index)
 
+
+@app.route("/search", methods=['GET'])
 def no_results():
-    return render_template("home.jinja2", res=None)
+    return redirect(url_for("index"))
 
 # POST -> View results
 @app.route("/search", methods=['POST'])

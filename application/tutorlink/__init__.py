@@ -42,7 +42,7 @@ with app.app_context():
 # Should only ever be a redirect
 @app.route("/")
 def hello_world():
-    return redirect(url_for("search_page"))  # Redirect to the list of students
+    return redirect(url_for("index"))  # Redirect to the list of students
 
 
 # Run App

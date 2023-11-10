@@ -28,7 +28,8 @@ function updateRectangles()
     nextRectangle.textContent = subject_list[next_index].text;
 }
 
-function moveToNext() {
+function moveToNext()
+{
     /*
     console.log("next detected")
     Array.from(rectArray).forEach(rectangle =>
@@ -53,7 +54,8 @@ function moveToNext() {
     }, 300); */
 }
 
-function moveToPrev() {
+function moveToPrev()
+{
     /*
     console.log("prev detected")
     Array.from(allRectangles).forEach(rectangle =>
@@ -75,5 +77,11 @@ function moveToPrev() {
     }, 300); */
 }
 
+function searchCategory()
+{
+    window.location.href = `/search/${currentRectangle.innerText}`;
+}
+
 prevRectangle.addEventListener('click', moveToPrev);
+currentRectangle.addEventListener('click', searchCategory);
 nextRectangle.addEventListener('click', moveToNext);

@@ -1,21 +1,27 @@
-#page-title {
+#page-title,
+#carousel-title,
+#new-tutor-title
+{
     text-align: center;
 }
 
-.rectangles-clip-container {
-    overflow: hidden; /* Add overflow: hidden to clip the rectangles */
-    width: 600px; /* Set the width to match the total width of the visible rectangles */
-    margin: 0 auto; /* Center the container */
+.carousel-clip-container
+{
+    overflow: hidden;
+    width: 35%;
+    margin: 0 auto;
 }
 
-.rectangles-container {
+.carousel-container
+{
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
-.rectangle {
-    display: inline-block;
+.rectangle
+{
     width: 200px;
     height: 100px;
     background-color: #404040;
@@ -26,17 +32,38 @@
     margin: 15px;
     transform: scale(1);
     opacity: 1;
-    transition: transform 0.3s ease, opacity 0.3s ease; /* Add transitions for transform and opacity properties */
+    transition: transform 0.3s ease, opacity 0.3s ease;
     z-index: 1;
+    display: none;
 }
 
-#prev-rectangle, #next-rectangle {
-    transform: scale(0.9); /* Start with a smaller size for previous and next rectangles */
+ /* side rects */
+.rectangle:first-child,
+.rectangle:nth-child(3)
+{
     opacity: 0.75;
-    z-index: 0;
+    display: inline-block;
+    transform: scale(0.9);
 }
 
-#current-rectangle {
+/* center rect */
+.rectangle:nth-child(2)
+{
+    display: inline-block;
     transform: scale(1.2);
-    z-index: 2;
+}
+
+.new-tutors-clip-container
+{
+    overflow: hidden;
+    width: 75%;
+    margin: 5% auto 0;
+}
+
+.new-tutors-container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }

@@ -8,22 +8,26 @@
 {% endblock %}
 
 {% block body %}
-    <div id="page-title">
-        <h1>Find Tutors For Your SFSU Courses</h1>
-    </div>
-    <div class="rectangles-clip-container">
-        <div class="rectangles-container">
-            <div class="rectangle" id="prev-rectangle">
-                {{ rectangles[prev_index].text }}
-            </div>
+    <h1 id="page-title">Find Tutors For Your SFSU Courses</h1>
 
-            <div class="rectangle" id="current-rectangle">
-                {{ rectangles[centered_index].text }}
-            </div>
-
-            <div class="rectangle" id="next-rectangle">
-                {{ rectangles[next_index].text }}
-            </div>
+    <script>
+        var subject_list = {{ subject_list  | tojson | safe }};
+    </script>
+    <div class="carousel-clip-container">
+        <h2 id="carousel-title">Browse our Top 5 Subjects</h2>
+        <div class="carousel-container">
+            {% for subject in subject_list %}
+                <div class="rectangle">
+                    {{ subject.text }}
+                </div>
+            {% endfor %}
         </div>
     </div>
+
+    <div class="new-tutors-clip-container">
+        <div class="new-tutors-container">
+            <h2 id="new-tutor-title"> Browse Newly Added Tutors</h2>
+        </div>
+    </div>
+
 {% endblock %}

@@ -41,17 +41,15 @@ app.jinja_env.globals.update(search_form=new_form)
 # GET -> Empty results page
 @app.route("/home", methods=['GET'])
 def index():
-    rectangles = [{"text": "HH"}]
-
+    subject_list = []
+    tutor_list = []
     # TODO: Create "Top 5 Subjects" algorithm for carousel
     for i in Subject.query.all():
-        rectangles.append({"text": i.subj_short})
+        subject_list.append({"text": i.subj_short})
+    for i in Tutor.query.all():
+        tutor_list.append({"text": i})
 
-    centered_index = 0
-    prev_index = (centered_index - 1 + len(rectangles)) % len(rectangles)
-    next_index = (centered_index + 1) % len(rectangles)
-
-    return render_template('home.jinja2', rectangles=rectangles, centered_index=centered_index, prev_index=prev_index, next_index=next_index)
+    return render_template('home.jinja2', subject_list=subject_list, tutor_list=tutor_list)
 
 
 @app.route("/search", methods=['GET'])

@@ -71,6 +71,18 @@ if app.debug:
             Subject(
                 subj_short="ENGR",
                 subj_long="Engineering"
+            ),
+            Subject(
+                subj_short="ASTR",
+                subj_long="Astronomy"
+            ),
+            Subject(
+                subj_short="BIO",
+                subj_long="Biology"
+            ),
+            Subject(
+                subj_short="MATH",
+                subj_long="Mathematics"
             )
         ]
         for i in subjs:

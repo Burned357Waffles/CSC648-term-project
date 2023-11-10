@@ -2,9 +2,6 @@ let current_index = 1;
 let prev_index = (current_index - 1 + subject_list.length) % subject_list.length;
 let next_index = (current_index + 1) % subject_list.length;
 
-console.log(prev_index)
-console.log(next_index)
-
 const allRectangles = document.getElementsByClassName('rectangle');
 const rectArray = []
 
@@ -16,10 +13,6 @@ for (i = 0; i < allRectangles.length; i++)
 const prevRectangle = rectArray[prev_index];
 const currentRectangle = rectArray[current_index];
 const nextRectangle = rectArray[next_index];
-
-console.log(prevRectangle.textContent)
-console.log(currentRectangle.textContent)
-console.log(nextRectangle.textContent)
 
 function updateRectangles()
 {

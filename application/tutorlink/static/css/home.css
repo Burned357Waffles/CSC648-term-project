@@ -67,3 +67,17 @@
     align-items: center;
     position: relative;
 }
+
+.tutor-post
+{
+    width: 200px;
+    height: 200px;
+    background-color: #404040;
+    text-align: center;
+    line-height: 100px;
+    color: #fff;
+    cursor: pointer;
+    margin: 15px;
+    transform: scale(1);
+    display: none;
+}

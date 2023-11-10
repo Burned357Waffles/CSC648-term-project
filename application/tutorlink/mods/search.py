@@ -4,7 +4,7 @@ from tutorlink import app
 from tutorlink.db.models import Subject, Tutor
 
 # libs
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, request
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, SubmitField
 
@@ -57,6 +57,24 @@ def index():
 @app.route("/search", methods=['GET'])
 def no_results():
     return redirect(url_for("index"))
+
+
+@app.route("/search/<string:subject>", methods=['GET'])
+def subject_search(subject):
+    # Get list of tutor
+    # TODO optimize?
+    # Filter By Subject if needed
+    res = Tutor.query.join(Subject)
+
+    # Add subject to query from URL
+    res = res.filter(Subject.subj_short == subject)
+
+    # Preform Query
+    res = res.all()
+
+    # Render search page with result
+    return render_template("search.jinja2", res=res, subj_db=Subject)
+
 
 # POST -> View results
 @app.route("/search", methods=['POST'])

@@ -55,7 +55,6 @@
 
 .new-tutors-clip-container
 {
-    overflow: hidden;
     width: 75%;
     margin: 5% auto 0;
 }
@@ -70,14 +69,13 @@
 
 .tutor-post
 {
-    width: 200px;
-    height: 200px;
+    width: 400px;
+    height: 400px;
     background-color: #404040;
     text-align: center;
-    line-height: 100px;
+    line-height: 400px;
     color: #fff;
     cursor: pointer;
     margin: 15px;
     transform: scale(1);
-    display: none;
 }

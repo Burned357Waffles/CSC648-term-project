@@ -25,12 +25,18 @@
     </div>
 
     <div class="new-tutors-clip-container">
-        <div class="new-tutors-container">
-            <h2 id="new-tutor-title"> Browse Newly Added Tutors</h2>
+    <h2 id="new-tutor-title">Browse Newly Added Tutors</h2>
+    <div class="new-tutors-container">
+        {% for tutor in tutor_list %}
             <div class="tutor-post">
-                
+                {{ tutor.tutor_name }}
             </div>
-        </div>
+            {% if loop.index % 4 == 0 %}
+                <div style="clear: both;"></div> <!-- Clear the row after every 4 tutor posts -->
+            {% endif %}
+        {% endfor %}
     </div>
+</div>
+
 
 {% endblock %}

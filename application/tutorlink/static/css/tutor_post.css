@@ -61,4 +61,25 @@
     color: black;
     cursor: pointer;
     margin: 15px;
+    position: relative;
+}
+
+.send-message-button {
+    background-color: #ffdc70;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-weight: bold;
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+}
+
+.send-message-button:hover {
+    background-color: #fc3;
+    color: #303;
 }

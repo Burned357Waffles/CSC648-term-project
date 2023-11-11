@@ -1,7 +1,11 @@
-#page-title,
+#page-title
+{
+    text-align: center;
+}
 #carousel-title,
 #new-tutor-title
 {
+    color: #231161;
     text-align: center;
 }
 
@@ -24,10 +28,10 @@
 {
     width: 200px;
     height: 100px;
-    background-color: #404040;
+    background-color: #ffdc70;
     text-align: center;
     line-height: 100px;
-    color: #fff;
+    color: black;
     cursor: pointer;
     margin: 15px;
     transform: scale(1);

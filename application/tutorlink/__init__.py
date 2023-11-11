@@ -1,9 +1,10 @@
 from flask import Flask, redirect, url_for
 from tutorlink.db.db import db
 from sys import argv
+from flask_login import LoginManager, login_required
 
 app = Flask(__name__)
-
+login_mgr = LoginManager()
 
 
 # # # ==== Flask Config ==== # # #
@@ -29,6 +30,8 @@ else:
 import tutorlink.mods.about
 # Search Page
 import tutorlink.mods.search
+# User Account Pages
+import tutorlink.mods.account
 
 
 # # DB init
@@ -41,7 +44,7 @@ with app.app_context():
 # Should be only route in __init__.py
 # Should only ever be a redirect
 @app.route("/")
-def hello_world():
+def index():
     return redirect(url_for("search_page"))  # Redirect to the list of students
 
 

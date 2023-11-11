@@ -27,14 +27,15 @@
     <div class="new-tutors-clip-container">
     <h2 id="new-tutor-title">Browse Newly Added Tutors</h2>
     <div class="new-tutors-container">
-        {% for tutor in tutor_list %}
-            <div class="tutor-post">
-                {{ tutor.tutor_name }}
-            </div>
-            {% if loop.index % 4 == 0 %}
-                <div style="clear: both;"></div> <!-- Clear the row after every 4 tutor posts -->
-            {% endif %}
-        {% endfor %}
+        <div class="tutor-row">
+            {% for tutor in tutor_list %}
+                {% set tutor=tutor %}
+                {% include '/partials/tutor_post.jinja2' %}
+                {% if loop.index % 4 == 0 %}
+                    <div style="clear: both;"></div>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
 </div>
 

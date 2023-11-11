@@ -1,0 +1,10 @@
+{% set title = "Search - Tutorlink" %}
+<link rel="stylesheet" href="{{ url_for("static", filename=('css/tutor_post.css')) }}" />
+<script defer src="{{ url_for("static", filename=('js/tutor_post.js')) }}"></script>
+
+{% block body %}
+    <div class="tutor-post">
+        {{ tutor.tutor_name }}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+.new-tutors-clip-container {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.new-tutors-container
+{
+    width: 100%;
+    display: inline-block;
+}
+
+.tutor-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.tutor-post
+{
+     width: calc(24% - 30px);
+    height: 400px;
+    background-color: #404040;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 400px;
+    color: #fff;
+    cursor: pointer;
+    margin: 15px;
+}

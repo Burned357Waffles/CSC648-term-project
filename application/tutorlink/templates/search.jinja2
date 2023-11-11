@@ -1,59 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
+{% set title = "Search - Tutorlink" %}
+{# {% set css = [""] %} #}  {# These work, they're just commented out because script tries to load the css/js #}
+{# {% set js = [""] %} #}  {# files despite being empty strings, which causes 404 in background (unnoticeable) #}
+{% extends "base.jinja2" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search - Tutorlink</title>
-</head>
+{% block head %}
+    {{ super() }}
+{% endblock %}
 
-<body>
+{% block body %}
     <h1>CSC-648-03 Fall 2023</h1>
     <h2>Team 02</h2>
 
-    <form method="POST">
-        {{ form.csrf_token }}
-
-        {% for field in form.data.keys() %}
-        {% if field != "csrf_token" and field != "submit" %}
-        <fieldset class="{{ field }}">
-            {{ form[field]['label'] }} {{ form[field] }}
-            {% if form[field]['errors'] %}
-            <ul class="errors">
-                {% for error in form[field]['errors'] %}
-                <li>{{ error }}</li>{% endfor %}
-            </ul>
-            {% endif %}
-        </fieldset>
-        {%endif%}
-        {% endfor %}
-
-        <div class="submit-button">
-            {{ form.submit }}
-        </div>
-
-    </form>
-
-    {% if res != None%}
+    {% if res != None %}
         <p> === Results === </p>
         {% for i in res %}
             <table>
-                <img src="{{ url_for('static', filename=(i.tutor_photo) ) }}" alt="{{i.tutor_name}}'s Photo">
+                <img src="{{ url_for('static', filename=(i.tutor_photo)) }}" alt="{{ i.tutor_name }}'s Photo">
                 <tr>
                     <th>Name</th>
                     <th>{{i.tutor_name}}</th>
                 </tr>
                 <tr>
                     <th>Subject</th>
-                    <th>{{subj_db.query.filter_by(subj_id=i.tutor_subj).first().subj_short}}</th>
+                    <th>{{ subj_db.query.filter_by(subj_id=i.tutor_subj).first().subj_short }}</th>
                 </tr>
                 <tr>
                     <th>Class #</th>
-                    <th>{{i.tutor_subj_num}}</th>
+                    <th>{{ i.tutor_subj_num }}</th>
                 </tr>
                 <tr>
                     <th>Bio</th>
-                    <th>{{i.tutor_bio}}</th>
+                    <th>{{ i.tutor_bio }}</th>
                 </tr>
                 <tr>
                     <th>CV/Flyer</th>
@@ -67,8 +44,7 @@
         <br>
         {% endfor %}
         <p> === End Of Results ===</p>
+    {% else %}
+        <p> === No Search Term Entered ===</p>
     {% endif %}
-
-    <hr>
-    <!-- <h1><a href="/about" target="_blank">About Us</a></h1> -->
-</body>
+{% endblock %}

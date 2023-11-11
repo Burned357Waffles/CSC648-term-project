@@ -30,6 +30,7 @@
         <div class="tutor-row">
             {% for tutor in tutor_list %}
                 {% set tutor=tutor %}
+                {% set subj_db=subj_db %}
                 {% include '/partials/tutor_post.jinja2' %}
                 {% if loop.index % 4 == 0 %}
                     <div style="clear: both;"></div>

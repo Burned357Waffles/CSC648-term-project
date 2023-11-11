@@ -43,11 +43,11 @@ app.jinja_env.globals.update(search_form=new_form)
 @app.route("/home", methods=['GET'])
 def index():
     subject_list = []
-    # TODO: Create "Top 5 Subjects" algorithm for carousel
+    # TODO: Create "Top 5 Subjects" algorithm for carousel and optimise
     for subject in Subject.query.all():
         subject_list.append({"text": subject.subj_short})
 
-    return render_template('home.jinja2', subject_list=subject_list, tutor_list=Tutor.query.join(Subject).all())
+    return render_template('home.jinja2', subj_db=Subject, subject_list=subject_list, tutor_list=Tutor.query.join(Subject).all())
 
 
 @app.route("/search", methods=['GET'])

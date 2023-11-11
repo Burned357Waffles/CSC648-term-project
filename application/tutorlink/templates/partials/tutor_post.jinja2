@@ -6,10 +6,12 @@
     <div class="tutor-post">
         <div class="tutor-post-header">
             <img src="{{ url_for('static', filename=(tutor.tutor_photo)) }}" alt="{{ tutor.tutor_name }}'s Photo">
-            {{ tutor.tutor_name }}
+            <div class="tutor-post-header-text">
+                <div class="tutor-name">{{ tutor.tutor_name }}</div>
+                <div class="subj">{{ subj_db.query.filter_by(subj_id=tutor.tutor_subj).first().subj_short }}</div>
+            </div>
         </div>
-
-        {{ tutor.tutor_subj }}
     </div>
+
 
 {% endblock %}

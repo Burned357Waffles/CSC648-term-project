@@ -17,6 +17,21 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
+.tutor-name {
+    font-weight: bold; /* Example: Make the tutor's name bold */
+    /* Add any other styling for the tutor's name here */
+}
+
+.subj {
+    /* Add any styling for the subject here */
+    font-style: italic; /* Example: Make the subject italic */
+}
+
+.tutor-post-header-text
+{
+    display: flex;
+    flex-direction: column;
+}
 
 .tutor-post-header {
     height: 20%;
@@ -26,11 +41,12 @@
     display: flex;
     align-items: center;
     transition: background-color 0.3s;
+}
 
-    &:hover {
+.tutor-post-header:hover
+{
         background-color: #fc3;
         color: #303;
-    }
 }
 
 .tutor-post-header img {

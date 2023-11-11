@@ -1,4 +1,5 @@
-.new-tutors-clip-container {
+.new-tutors-clip-container
+{
     width: 90%;
     margin: 0 auto;
     text-align: center;
@@ -10,21 +11,44 @@
     display: inline-block;
 }
 
-.tutor-row {
+.tutor-row
+{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
-.tutor-post
-{
-     width: calc(24% - 30px);
-    height: 400px;
+.tutor-post-header {
+    height: 20%;
     background-color: #3B3934;
+    color: white;
+    text-align: justify;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: #fc3;
+        color: #303;
+    }
+}
+
+.tutor-post-header img {
+    max-width: 100%;
+    max-height: 75%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.tutor-post {
+    width: calc(24% - 30px);
+    height: 400px;
+    background-color: #f5f5f5;
     box-sizing: border-box;
     text-align: center;
-    line-height: 400px;
-    color: #fff;
+    color: black;
     cursor: pointer;
     margin: 15px;
 }

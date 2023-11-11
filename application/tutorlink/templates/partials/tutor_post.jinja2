@@ -4,7 +4,12 @@
 
 {% block body %}
     <div class="tutor-post">
-        {{ tutor.tutor_name }}
+        <div class="tutor-post-header">
+            <img src="{{ url_for('static', filename=(tutor.tutor_photo)) }}" alt="{{ tutor.tutor_name }}'s Photo">
+            {{ tutor.tutor_name }}
+        </div>
+
+        {{ tutor.tutor_subj }}
     </div>
 
 {% endblock %}

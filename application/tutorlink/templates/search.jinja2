@@ -13,36 +13,20 @@
 
     {% if res != None %}
         <p> === Results === </p>
-        {% for i in res %}
-            <table>
-                <img src="{{ url_for('static', filename=(i.tutor_photo)) }}" alt="{{ i.tutor_name }}'s Photo">
-                <tr>
-                    <th>Name</th>
-                    <th>{{i.tutor_name}}</th>
-                </tr>
-                <tr>
-                    <th>Subject</th>
-                    <th>{{ subj_db.query.filter_by(subj_id=i.tutor_subj).first().subj_short }}</th>
-                </tr>
-                <tr>
-                    <th>Class #</th>
-                    <th>{{ i.tutor_subj_num }}</th>
-                </tr>
-                <tr>
-                    <th>Bio</th>
-                    <th>{{ i.tutor_bio }}</th>
-                </tr>
-                <tr>
-                    <th>CV/Flyer</th>
-                    <th><a href="{{ url_for('static', filename=(i.tutor_cv)) }}" target="_blank">link</a></th>
-                </tr>
-                <tr>
-                    <th>Video</th>
-                    <th><a href="{{ i.tutor_vid }}" target="_blank">link</a></th>
-                </tr>
-            </table>
-        <br>
-        {% endfor %}
+        <div class="new-tutors-clip-container">
+            <div class="new-tutors-container">
+                <div class="tutor-row">
+                    {% for tutor in res %}
+                        {% set tutor=tutor %}
+                        {% set subj_db=subj_db %}
+                        {% include '/partials/tutor_post.jinja2' %}
+                        {% if loop.index % 4 == 0 %}
+                            <div style="clear: both;"></div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
         <p> === End Of Results ===</p>
     {% else %}
         <p> === No Search Term Entered ===</p>

@@ -9,5 +9,27 @@
 {% endblock %}
 
 {% block body %}
-
+    <div id="tutor-profile">
+        <img src="{{ url_for('static', filename=(tutor.tutor_photo)) }}" alt="{{ tutor.tutor_name }}'s Photo">
+        <span>{{tutor.tutor_name}}</span>
+    </div>
+    <br>
+    <div id="tutor-media">
+        <span>CV/Flyer:</span>
+        <a href="{{ url_for('static', filename=(tutor.tutor_cv)) }}" target="_blank">link</a>
+        <br>
+        <span>Video:</span>
+        <a href="{{ tutor.tutor_vid }}" target="_blank">link</a>
+    </div>
+    <br>
+    <div id="tutor-info">
+        <span>Subject:</span>
+        <span>{{ subj_db.query.filter_by(subj_id=tutor.tutor_subj).first().subj_short }}</span>
+        <br>
+        <span>Class:</span>
+        <span>{{ tutor.tutor_subj_num }}</span>
+        <br>
+        <span>Description:</span>
+        <span>{{ tutor.tutor_bio }}</span>
+    </div>
 {% endblock %}

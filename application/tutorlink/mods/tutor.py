@@ -6,17 +6,11 @@ from tutorlink.db.models import Subject, Tutor
 # libs
 from flask import render_template
 
+
+# TODO: add a url parameter for specific tutors
 @app.route("/tutor", methods=['GET'])
 def tutor_profile():
+    # TODO: better DB query so we get specific tutor + have their subject already joined with them
     tutor = Tutor.query.first()
-    
-    print(tutor)
-    print(tutor.tutor_name)
-    print(tutor.tutor_bio)
-    print(tutor.tutor_cv)
-    print(tutor.tutor_photo)
-    print(tutor.tutor_vid)
-    print(tutor.tutor_subj)
-    print(tutor.tutor_subj_num)
 
-    return render_template("tutor.jinja2", res=None)
+    return render_template("tutor.jinja2", tutor=tutor, subj_db=Subject)

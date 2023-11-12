@@ -1,24 +1,71 @@
+.bg
+{
+    background-color: #d9d9d9;
+}
+
 #tutor-profile
 {
-    display: block;
+    display: flex;
+    margin-top: 63px;
+    height: 207px;
+    line-height: 207px;
+    width: 100%;
+    font-size: 40px;
+}
+#tutor-name
+{
+    padding-left: 50px;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
 }
 
 #tutor-media
 {
     display: block;
+    width: 30%;
+    font-size: 20px;
+    padding: 20px;
 }
-
-#message-button
+.file
 {
-    display: block;
+    float: right;
 }
 
 #tutor-info
 {
     display: block;
+    float: right;
+    width: 67.8%;
+    margin-top: -127px;
+}
+table
+{
+    margin-top: -10px;
+    border-spacing: 0px 10px;
+    font-size: 20px;
+    padding-left: 30px;
+}
+th, td
+{
+    padding: 10px 5px;
+}
+th
+{
+    text-align: right;
+    vertical-align: top;
+}
+td
+{
+    padding-left: 10px;
 }
 
-.bg
+#message-button
 {
-    background-color: #d9d9d9;
+    display: block;
+    text-align: center;
+    width: 30%;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 30px;
 }

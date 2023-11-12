@@ -20,6 +20,6 @@ app.jinja_env.globals.update(cv_filename=file_name_from_cv)
 @app.route("/tutor", methods=['GET'])
 def tutor_profile():
     # TODO: better DB query so we get specific tutor + have their subject already joined with them
-    tutor = (Tutor.query.all())[2]
+    tutor = (Tutor.query.all())[1]
 
     return render_template("tutor.jinja2", tutor=tutor, subj_db=Subject)

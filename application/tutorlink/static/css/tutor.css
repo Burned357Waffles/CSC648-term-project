@@ -3,6 +3,19 @@
     background-color: #d9d9d9;
 }
 
+.row
+{
+  display: flex;
+}
+.left
+{
+  width: 30%;
+}
+.right
+{
+  width: 70%;
+}
+
 #tutor-profile
 {
     display: flex;
@@ -23,12 +36,13 @@
 #tutor-media
 {
     display: block;
-    width: 30%;
+    width: 100%;
     font-size: 20px;
     padding: 20px;
 }
 .file
 {
+    pointer-events: all;
     float: right;
 }
 
@@ -36,15 +50,13 @@
 {
     display: block;
     float: right;
-    width: 67.8%;
-    margin-top: -127px;
 }
 table
 {
-    margin-top: -10px;
     border-spacing: 0px 10px;
+    margin-top: -10px;
     font-size: 20px;
-    padding-left: 30px;
+    padding-left: 60px;
 }
 th, td
 {
@@ -62,9 +74,10 @@ td
 
 #message-button
 {
+    pointer-events: all;
     display: block;
     text-align: center;
-    width: 30%;
+    width: 100%;
     border-radius: 10px;
     padding: 20px;
     font-size: 30px;

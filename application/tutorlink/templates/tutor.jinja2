@@ -1,5 +1,5 @@
 {% set title = "Tutor Profile" %}
-{# {% set css = [""] %} #}
+{% set css = ["tutor.css"] %}
 {# {% set js = [""] %} #}
 {% extends "base.jinja2" %}
 
@@ -9,27 +9,34 @@
 {% endblock %}
 
 {% block body %}
-    <div id="tutor-profile">
+    <div id="tutor-profile" class="bg">
         <img src="{{ url_for('static', filename=(tutor.tutor_photo)) }}" alt="{{ tutor.tutor_name }}'s Photo">
         <span>{{tutor.tutor_name}}</span>
     </div>
     <br>
-    <div id="tutor-media">
+
+    <div id="tutor-media" class="bg">
         <span>CV/Flyer:</span>
-        <a href="{{ url_for('static', filename=(tutor.tutor_cv)) }}" target="_blank">link</a>
+        <a href="{{ url_for('static', filename=(tutor.tutor_cv)) }}" target="_blank">{{ cv_filename(tutor.tutor_cv) }}</a>
         <br>
         <span>Video:</span>
         <a href="{{ tutor.tutor_vid }}" target="_blank">link</a>
+        <br>
     </div>
     <br>
+
+    {# This link will need to be replaced with actual messaging route #}
+    <a id="message-button" class="bg" href="/message/{{ tutor.tutor_id }}" target="_blank">Send Message</a>
+    <br>
+
     <div id="tutor-info">
         <span>Subject:</span>
-        <span>{{ subj_db.query.filter_by(subj_id=tutor.tutor_subj).first().subj_short }}</span>
+        <span class="bg">{{ subj_db.query.filter_by(subj_id=tutor.tutor_subj).first().subj_short }}</span>
         <br>
         <span>Class:</span>
-        <span>{{ tutor.tutor_subj_num }}</span>
+        <span class="bg">{{ tutor.tutor_subj_num }}</span>
         <br>
         <span>Description:</span>
-        <span>{{ tutor.tutor_bio }}</span>
+        <span class="bg">{{ tutor.tutor_bio }}</span>
     </div>
 {% endblock %}

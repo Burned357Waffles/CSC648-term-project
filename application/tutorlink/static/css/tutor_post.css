@@ -1,34 +1,41 @@
-.new-tutors-clip-container {
+.new-tutors-clip-container
+{
     width: 90%;
     margin: 0 auto;
     text-align: center;
 }
 
-.new-tutors-container {
+.new-tutors-container
+{
     width: 100%;
     display: inline-block;
 }
 
-.tutor-row {
+.tutor-row
+{
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
 }
 
-.tutor-name {
+.tutor-name
+{
     font-weight: bold;
 }
 
-.subj {
+.subj
+{
     font-style: italic;
 }
 
-.tutor-post-header-text {
+.tutor-post-header-text
+{
     display: flex;
     flex-direction: column;
 }
 
-.tutor-post-header {
+.tutor-post-header
+{
     height: 20%;
     background-color: #3B3934;
     color: white;
@@ -38,12 +45,14 @@
     transition: background-color 0.3s;
 }
 
-.tutor-post-header:hover {
+.tutor-post-header:hover
+{
     background-color: #fc3;
     color: #303;
 }
 
-.tutor-post-header img {
+.tutor-post-header img
+{
     max-width: 100%;
     max-height: 75%;
     padding-top: 5%;
@@ -52,7 +61,8 @@
     padding-right: 5%;
 }
 
-.tutor-post {
+.tutor-post
+{
     width: 375px;
     height: 350px;
     background-color: #f5f5f5;
@@ -64,7 +74,8 @@
     position: relative;
 }
 
-.send-message-button {
+.send-message-button
+{
     background-color: #ffdc70;
     color: black;
     border: none;
@@ -79,7 +90,8 @@
     width: 80%;
 }
 
-.send-message-button:hover {
+.send-message-button:hover
+{
     background-color: #fc3;
     color: #303;
 }

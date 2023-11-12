@@ -106,4 +106,4 @@ def search_page():
         res = res.all()
 
         # Render search page with result
-        return render_template("search.jinja2", res=res, subj_db=Subject)
+        return render_template("search.jinja2", res=res, subj_db=Subject, search_term=form.search_term.data)

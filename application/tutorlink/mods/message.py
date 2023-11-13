@@ -14,4 +14,4 @@ def message_tutor(tutor_id):
     # TODO : Query specific tutor for db
     tutor = Tutor.query.first()
 
-    return render_template("tutor.jinja2", tutor=tutor, subj_db=Subject)
+    return render_template("message.jinja2", tutor=tutor, subj_db=Subject)

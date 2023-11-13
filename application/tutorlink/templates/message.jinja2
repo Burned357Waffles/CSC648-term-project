@@ -1,0 +1,22 @@
+{% set title = "Message: " ~ tutor.tutor_name %}
+{# {% set css = [""] %} #}
+{# {% set js = [""] %} #}
+{% extends "base.jinja2" %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block body %}
+<div id="tutor-profile" class="bg">
+    <span>User:</span>
+    <img src="{{ url_for('static', filename=(tutor.tutor_photo)) }}" alt="{{ tutor.tutor_name }}'s Photo">
+    <span id="tutor-name">{{tutor.tutor_name}}</span>
+</div>
+<div id="subject-line" class="bg">
+    <span>Subject:</span>
+    <span class="bg">{{ subj_db.query.filter_by(subj_id=tutor.tutor_subj).first().subj_short }}</span>
+    <span class="bg">{{ tutor.tutor_subj_num }}</span>
+</div>
+    <span>Message:</span>
+{% endblock %}

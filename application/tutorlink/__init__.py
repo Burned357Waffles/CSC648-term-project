@@ -36,6 +36,8 @@ import tutorlink.mods.account
 import tutorlink.mods.home
 # Tutor Profile Pages
 import tutorlink.mods.tutor
+# Tutor Messaging Page
+import tutorlink.mods.message
 
 
 # # DB init

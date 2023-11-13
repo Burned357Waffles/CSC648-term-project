@@ -1,10 +1,5 @@
-{% set title = "Tutor_Post_Cards - Tutorlink" %}
-
-<link rel="stylesheet" href="{{ url_for("static", filename=('css/tutor_post.css')) }}" />
-<script defer src="{{ url_for("static", filename=('js/tutor_post.js')) }}"></script>
-
-{% block body %}
-    <div class="tutor-post">
+<div class="tutor-post">
+    <a href="/tutor/{{ tutor.tutor_id }}">
         <div class="tutor-post-header">
             <img src="{{ url_for('static', filename=(tutor.tutor_photo)) }}" alt="{{ tutor.tutor_name }}'s Photo">
 
@@ -13,11 +8,9 @@
                 <div class="subj">{{ subj_db.query.filter_by(subj_id=tutor.tutor_subj).first().subj_short ~ ' ' ~ tutor.tutor_subj_num }}</div>
             </div>
         </div>
+    </a>
 
-        <img src="{{ url_for('static', filename=(tutor.tutor_photo)) }}" alt="{{ tutor.tutor_name }}'s Photo">
-        <div class="send-message-button">Send Message</div>
-
-    </div>
-
-
-{% endblock %}
+    <img src="{{ url_for('static', filename=(tutor.tutor_photo)) }}" alt="{{ tutor.tutor_name }}'s Photo">
+    {# TODO: add link to send message page #}
+    <div class="send-message-button">Send Message</div>
+</div>

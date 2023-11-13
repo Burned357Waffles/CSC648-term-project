@@ -26,7 +26,7 @@
         </div>
     </form>
 
-    <a id="tutor-signup" class="nav-link" href="/tutorsignup">Register as a Tutor</a>
+    <a id="tutor-signup" class="nav-link" href="/tutor/register">Register as a Tutor</a>
 
     <div id="nav-right">
     {% if isLoggedIn %}
@@ -44,9 +44,9 @@
             <a class="nav-link drop-link" href="/logout">Log out</a>
         </div>
     {% else %}
-        <a id="login" class="nav-link" href="/login">Login</a>
+        <a id="login" class="nav-link" href="/acc/login">Login</a>
         <br>
-        <a id="register" class="nav-link" href="/register">Sign up</a>
+        <a id="register" class="nav-link" href="/acc/register">Sign up</a>
     {% endif %}
     </div>
 </nav>

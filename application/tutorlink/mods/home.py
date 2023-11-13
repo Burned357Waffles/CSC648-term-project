@@ -11,7 +11,7 @@ from sqlalchemy import func
 @app.route("/home", methods=['GET'])
 def index():
     # This is for the newly added tutors section. Orders by last added -> first added
-    tutor_list = Tutor.query.order_by(Tutor.tutor_id).all()
+    tutor_list = Tutor.query.order_by(Tutor.tutor_id.desc()).all()
 
     # Get the top 5 subjects from tutors
     top_tutors = db.session.query(Tutor.tutor_subj, func.count(Tutor.tutor_subj).label('count')) \

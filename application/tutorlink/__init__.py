@@ -51,6 +51,20 @@ with app.app_context():
 def hello_world():
     return redirect(url_for("index"))  # Redirect to the list of students
 
+@app.route("/demo")
+def demo_links():
+    ret = """
+    <a href="/" target="_blank">home</a>
+    <br>
+    <a href="/acc/login" target="_blank">login</a>
+    <br>
+    <a href="/acc/register" target="_blank">register</a>
+    <br>
+    <a href="/search" target="_blank">search</a>
+    <br>
+    <a href="/tutor/view/1" target="_blank">tutor profile</a>
+    """
+    return ret
 
 # Run App
 if __name__ == "__main__":

@@ -3,11 +3,13 @@
 # app
 from tutorlink import app
 from tutorlink.db.models import Subject, Tutor
+from tutorlink.db.db import db
 
 # libs
 from flask import render_template, redirect, url_for, request
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, SubmitField
+from sqlalchemy import func
 
 
 # # # Form layouts
@@ -42,12 +44,24 @@ app.jinja_env.globals.update(search_form=new_form)
 # GET -> Empty results page
 @app.route("/home", methods=['GET'])
 def index():
-    subject_list = []
-    # TODO: Create "Top 5 Subjects" algorithm for carousel and optimise
-    for subject in Subject.query.all():
-        subject_list.append({"text": subject.subj_short})
+    # This is for the newly added tutors section. Orders by last added -> first added
+    tutor_list = Tutor.query.order_by(Tutor.tutor_id).all()
 
-    return render_template('home.jinja2', subj_db=Subject, subject_list=subject_list, tutor_list=Tutor.query.join(Subject).all())
+    # Get the top 5 subjects from tutors
+    top_tutors = db.session.query(Tutor.tutor_subj, func.count(Tutor.tutor_subj).label('count')) \
+        .group_by(Tutor.tutor_subj) \
+        .order_by(func.count(Tutor.tutor_subj).desc()) \
+        .limit(5) \
+        .all()
+
+    # Make a list of the short subject name
+    subject_list = []
+    for tutor_subj, _ in top_tutors:
+        subject = Subject.query.filter_by(subj_id=tutor_subj).first()
+        if subject:
+            subject_list.append({"text": subject.subj_short})
+
+    return render_template('home.jinja2', subj_db=Subject, subject_list=subject_list, tutor_list=tutor_list)
 
 
 @app.route("/search", methods=['GET'])

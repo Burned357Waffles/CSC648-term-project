@@ -39,9 +39,6 @@
 }
 .login-box i {
     position: absolute;
-    right: 240px;
-    height: 10%;
-    transform: translateY(-50%);
     font-size: 20px;
 }
 .login-wrapper .register-forgot {

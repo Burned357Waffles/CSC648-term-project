@@ -40,16 +40,6 @@ app.jinja_env.globals.update(search_form=new_form)
 
 # Main search page
 # GET -> Empty results page
-@app.route("/home", methods=['GET'])
-def index():
-    subject_list = []
-    # TODO: Create "Top 5 Subjects" algorithm for carousel and optimise
-    for subject in Subject.query.all():
-        subject_list.append({"text": subject.subj_short})
-
-    return render_template('home.jinja2', subj_db=Subject, subject_list=subject_list, tutor_list=Tutor.query.join(Subject).all())
-
-
 @app.route("/search", methods=['GET'])
 def no_results():
     return redirect(url_for("index"))

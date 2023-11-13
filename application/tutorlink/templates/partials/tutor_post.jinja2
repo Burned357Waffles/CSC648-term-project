@@ -1,0 +1,16 @@
+<div class="tutor-post">
+    <a href="/tutor/{{ tutor.tutor_id }}">
+        <div class="tutor-post-header">
+            <img src="{{ url_for('static', filename=(tutor.tutor_photo)) }}" alt="{{ tutor.tutor_name }}'s Photo">
+
+            <div class="tutor-post-header-text">
+                <div class="tutor-name">{{ tutor.tutor_name }}</div>
+                <div class="subj">{{ subj_db.query.filter_by(subj_id=tutor.tutor_subj).first().subj_short ~ ' ' ~ tutor.tutor_subj_num }}</div>
+            </div>
+        </div>
+    </a>
+
+    <img src="{{ url_for('static', filename=(tutor.tutor_photo)) }}" alt="{{ tutor.tutor_name }}'s Photo">
+    {# TODO: add link to send message page #}
+    <div class="send-message-button">Send Message</div>
+</div>

@@ -3,7 +3,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: repeat(4, 25%);
-    background-color: #bfbfbf;
+    background-color: #666666;
 }
 #page-footer span, #page-footer a
 {
@@ -11,5 +11,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: inherit;
+    color: white;
 }

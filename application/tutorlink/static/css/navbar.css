@@ -1,6 +1,6 @@
 #nav-bar
 {
-  background-color: #404040;
+  background-color: #231161;
   height: 144px;
 }
 .nav-link
@@ -16,7 +16,7 @@
   margin-bottom: 5px;
   border-radius: 8px;
   font-size: 18px;
-  background-color: #bfbfbf;
+  background-color: #ffdc70;
 }
 #warning-label
 {
@@ -74,7 +74,7 @@
   padding-top: 6px;
   padding-bottom: 6px;
   border-radius: 7px;
-  background-color: #bfbfbf;
+  background-color: #3B3934;
 }
 
 #search_subject

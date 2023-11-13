@@ -1,9 +1,10 @@
 from flask import Flask, redirect, url_for
 from tutorlink.db.db import db
 from sys import argv
+from flask_login import LoginManager, login_required
 
 app = Flask(__name__)
-
+login_mgr = LoginManager()
 
 
 # # # ==== Flask Config ==== # # #
@@ -29,8 +30,12 @@ else:
 import tutorlink.mods.about
 # Search Page
 import tutorlink.mods.search
+# User Account Pages
+import tutorlink.mods.account
 # Home Page
 import tutorlink.mods.home
+# Tutor Profile Pages
+import tutorlink.mods.tutor
 
 
 # # DB init
@@ -148,4 +153,3 @@ if app.debug:
         db.session.commit()
 
 # # # END DEBUG
-

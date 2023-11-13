@@ -159,12 +159,12 @@
 {
   text-decoration:underline;
 }
-{
+/* {
   display: block;
   word-wrap: normal;
   word-break: normal;
   overflow: visible;
-}
+} */
 
 #user-dropdown
 {

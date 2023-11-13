@@ -19,18 +19,24 @@
 #tutor-profile
 {
     display: flex;
-    margin-top: 63px;
-    height: 207px;
-    line-height: 207px;
+    box-sizing: border-box;
     width: 100%;
-    font-size: 40px;
+    margin-top: 63px;
+    max-height: 207px;
+    height: 30vh;
+    padding-right: 40px;
 }
 #tutor-name
 {
-    padding-left: 50px;
-    word-wrap: break-word;
+    /*display: inline-flex;*/
+    /*align-items: center;*/
+    /*height: 100%;*/
+    margin: auto 0;
+
     word-break: break-all;
-    overflow: hidden;
+    /*overflow: hidden;*/
+    padding-left: 40px;
+    font-size: 40px;
 }
 
 #tutor-media
@@ -49,12 +55,11 @@
 #tutor-info
 {
     display: block;
-    float: right;
 }
 table
 {
-    border-spacing: 0px 10px;
-    margin-top: -10px;
+    border-spacing: 0px 23px;
+    margin-top: -23px;
     font-size: 20px;
     padding-left: 60px;
 }
@@ -66,6 +71,8 @@ th
 {
     text-align: right;
     vertical-align: top;
+    word-break: break-all;
+    width: 12%;
 }
 td
 {

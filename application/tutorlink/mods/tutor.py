@@ -17,9 +17,10 @@ app.jinja_env.globals.update(cv_filename=file_name_from_cv)
 
 
 # TODO: add a url parameter for specific tutors
+# Test template for for tutor page
 @app.route("/tutor", methods=['GET'])
 def tutor_profile():
-    # TODO: better DB query so we get specific tutor + have their subject already joined with them
-    tutor = (Tutor.query.all())[1]
+    # TODO : Query specific tutor for db
+    tutor = Tutor.query.first()
 
     return render_template("tutor.jinja2", tutor=tutor, subj_db=Subject)

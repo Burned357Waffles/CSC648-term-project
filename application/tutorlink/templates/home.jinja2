@@ -25,20 +25,20 @@
     </div>
 
     <div class="new-tutors-clip-container">
-    <h2 id="new-tutor-title">Browse Newly Added Tutors</h2>
-    <div class="new-tutors-container">
-        <div class="tutor-row">
-            {% for tutor in tutor_list %}
-                {% set tutor=tutor %}
-                {% set subj_db=subj_db %}
-                {% include '/partials/tutor_post.jinja2' %}
-                {% if loop.index % 4 == 0 %}
-                    <div style="clear: both;"></div>
-                {% endif %}
-            {% endfor %}
+        <h2 id="new-tutor-title">Browse Newly Added Tutors</h2>
+        <div class="new-tutors-container">
+            <div class="tutor-row">
+                {% for tutor in tutor_list %}
+                    {% set tutor=tutor %}
+                    {% set subj_db=subj_db %}
+                    {% include '/partials/tutor_post.jinja2' %}
+                    {% if loop.index % 4 == 0 %}
+                        <div style="clear: both;"></div>
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
     </div>
-</div>
 
 
 {% endblock %}

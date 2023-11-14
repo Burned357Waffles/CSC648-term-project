@@ -20,6 +20,7 @@
 }
 #warning-label
 {
+  pointer-events: none;
   display: block;
   position: absolute;
   width: 100%;
@@ -34,13 +35,13 @@
 {
   /*float: left;*/
   margin-left: 10px;
-  padding-top: 10px;
   width: 20.7%;
-  height: 120px;
+  height: auto;
 }
 #tutorlink-logo
 {
   display: inline-block;
+  margin-top: 10px;
   width: 120px;
   height: 120px;
   font-size: 20px;
@@ -56,11 +57,12 @@
   bottom: 19px;
   margin-left: 10px;
   margin-top: 29px;
+  margin-bottom: -10px;
   width: 90px;
 }
 
 
-#search-bar
+#search-bar-wrapper
 {
   pointer-events: none;
   position: absolute;
@@ -68,7 +70,7 @@
   width: 100%;
   text-align: center;
 }
-#search-bar-bg
+#search-bar
 {
   display: inline-block;
   max-width: 645px;

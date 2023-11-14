@@ -6,14 +6,16 @@ from tutorlink.db.models import Subject, Tutor
 # libs
 from flask import render_template, request, redirect, url_for
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import TextAreaField, SubmitField, validators
 
 
 # # # Form layouts
 # Messaging form created now so actual BE integration later will be less painful
 class message_form(FlaskForm):
-    message_body = StringField(
-        "Message Body"
+    message_body = TextAreaField(
+        "Message Body",
+        validators=[validators.length(max=512)],  # so that the message field is limited on user-side
+        render_kw={"placeholder": "Please include your contact info so that the tutor can get back to you . . ."}
     )
     message_submit = SubmitField(
         "Send"

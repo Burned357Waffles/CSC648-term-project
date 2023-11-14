@@ -15,7 +15,8 @@ class message_form(FlaskForm):
     message_body = TextAreaField(
         "Message Body",
         validators=[validators.length(max=512)],  # so that the message field is limited on user-side
-        render_kw={"placeholder": "Please include your contact info so that the tutor can get back to you . . ."}
+        render_kw={"placeholder": "Please include your contact info so that the tutor can get back to you . . .",
+                   "autofocus": "true"}
     )
     message_submit = SubmitField(
         "Send"

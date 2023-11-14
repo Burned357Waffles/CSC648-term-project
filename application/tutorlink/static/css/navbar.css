@@ -1,7 +1,7 @@
 #nav-bar
 {
   background-color: #231161;
-  height: 144px;
+  min-height: 144px;
 }
 .nav-link
 {
@@ -20,8 +20,8 @@
 }
 #warning-label
 {
+  display: block;
   position: absolute;
-  left: 0;
   width: 100%;
   text-align: center;
   top: 15px;
@@ -69,21 +69,23 @@
 #search-bar-bg
 {
   display: inline-block;
-  width: 645px;
+  max-width: 645px;
+  width: 92%;
   height: 60px;
   padding-top: 6px;
   padding-bottom: 6px;
   border-radius: 7px;
-  background-color: #3B3934;
+  background-color: #ffdc70;
 }
 
 #search_subject
 {
   pointer-events: all;
-  width: 130px;
+  max-width: 130px;
+  width: 20vw;
   height: 60px;
   padding: 0 0;
-  padding-left: 10px;
+  padding-left: 9px;
   border-radius: 8px;
   font-size: 18px;
   border-color: white;
@@ -92,7 +94,8 @@
 #search_term
 {
   pointer-events: all;
-  width: 420px;
+  max-width: 420px;
+  width: 49vw;
   height: 56px;
   margin-left: 2px;
   margin-right: 2px;
@@ -159,12 +162,6 @@
 {
   text-decoration:underline;
 }
-/* {
-  display: block;
-  word-wrap: normal;
-  word-break: normal;
-  overflow: visible;
-} */
 
 #user-dropdown
 {

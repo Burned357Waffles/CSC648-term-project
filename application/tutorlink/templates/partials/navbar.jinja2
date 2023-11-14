@@ -1,13 +1,13 @@
 <nav id="nav-bar">
-    <div id="nav-left">
-        <a id="tutorlink-logo" href="/"><img src="/static/image/test/logo.jpg" alt="TutorLink Logo Location"></a>
-        <a id="about-us" class="nav-link" href="/about">About Us</a>
-    </div>
-
     <span id="warning-label">SFSU Software Engineering Project CSC 648-848, Fall 2023. For Demonstration Only.</span>
 
+    <div id="nav-left">
+        <a id="tutorlink-logo" href="/"><img src="/static/image/test/logo.jpg" alt="TutorLink Logo Location"></a>
+        <a id="about-us" class="nav-link" href="{{ url_for("about_list") }}">About Us</a>
+    </div>
+
     {% set form = search_form() %}
-    <form id="search-bar" method="POST" action="/search">
+    <form id="search-bar" method="POST" action="{{ url_for("search_page") }}">
         {{ form.csrf_token }}
 
         <div id="search-bar-bg">
@@ -44,9 +44,9 @@
             <a class="nav-link drop-link" href="/logout">Log out</a>
         </div>
     {% else %}
-        <a id="login" class="nav-link" href="/acc/login">Login</a>
+        <a id="login" class="nav-link" href="{{ url_for("login_page") }}">Login</a>
         <br>
-        <a id="register" class="nav-link" href="/acc/register">Sign up</a>
+        <a id="register" class="nav-link" href="{{ url_for("register_page") }}">Sign up</a>
     {% endif %}
     </div>
 </nav>

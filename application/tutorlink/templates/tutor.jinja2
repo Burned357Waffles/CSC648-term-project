@@ -29,7 +29,7 @@
         <br>
 
         {# This link will need to be replaced with actual messaging route #}
-        <a id="message-button" class="bg" href="/message/{{ tutor.tutor_id }}" target="_blank">Send Message</a>
+        <a id="message-button" class="bg" href="{{ url_for('message_tutor', tutor_id=(tutor.tutor_id)) }}" target="_blank">Send Message</a>
     </div>
 
     <div class="right">

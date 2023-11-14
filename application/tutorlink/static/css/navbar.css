@@ -32,10 +32,10 @@
 
 #nav-left
 {
-  float: left;
+  /*float: left;*/
   margin-left: 10px;
-  margin-top: 10px;
-  width: 25%;
+  padding-top: 10px;
+  width: 20.7%;
   height: 120px;
 }
 #tutorlink-logo
@@ -50,10 +50,12 @@
 }
 #about-us
 {
-  display: block;
-  margin-top: -50px;
-  margin-left: 135px;
+  display: inline-block;
   text-align: center;
+  position: relative;
+  bottom: 19px;
+  margin-left: 10px;
+  margin-top: 29px;
   width: 90px;
 }
 

@@ -1,0 +1,77 @@
+.bg
+{
+    background-color: #f5f5f5;
+}
+
+table
+{
+    display: inline-flex;
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 50px;
+    margin-left: 30px;
+}
+th, td
+{
+    padding: 10px 0px;
+    font-size: 40px;
+}
+th
+{
+    text-align: right;
+    padding-right: 10px;
+}
+
+#tutor-profile
+{
+    display: flex;
+    box-sizing: border-box;
+    max-height: 207px;
+    height: 30vh;
+    padding-right: 40px;
+    width: 60vw;
+    background-color: #ffdc70;
+}
+#tutor-name
+{
+    margin: auto 0;
+    word-break: break-all;
+    padding-left: 40px;
+}
+
+#subject-line
+{
+    padding-left: 15px;
+}
+
+#message-line
+{
+    vertical-align: top;
+}
+#message_body
+{
+    width: 100%;
+    padding: 0 0;
+    border: 0px;
+    height: 30vh;
+    background-color: #f5f5f5;
+}
+#message_submit
+{
+    pointer-events: all;
+    text-align: center;
+    float: right;
+    margin-top: 21vh;
+    margin-right: -22%;
+    width: 20%;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 30px;
+    background-color: #fc3;
+    color: #303;
+}
+#message_submit:hover
+{
+    background-color: #303;
+    color: #fc3;
+}

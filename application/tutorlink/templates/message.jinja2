@@ -1,5 +1,5 @@
 {% set title = "Message: " ~ tutor.tutor_name %}
-{# {% set css = [""] %} #}
+{% set css = ["message.css"] %}
 {# {% set js = [""] %} #}
 {% extends "base.jinja2" %}
 
@@ -8,32 +8,45 @@
 {% endblock %}
 
 {% block body %}
-<div id="tutor-profile" class="bg">
-    <span>User:</span>
-    <img src="{{ url_for('static', filename=(tutor.tutor_photo)) }}" alt="{{ tutor.tutor_name }}'s Photo">
-    <span id="tutor-name">{{tutor.tutor_name}}</span>
-</div>
-<div id="subject-line" class="bg">
-    <span>Subject:</span>
-    <span class="bg">{{ subj_db.query.filter_by(subj_id=tutor.tutor_subj).first().subj_short }}</span>
-    <span class="bg">{{ tutor.tutor_subj_num }}</span>
-</div>
+<table>
+    <tr>
+        <th>User:</th>
+        <td>
+            <div id="tutor-profile" class="bg">
+                <img src="{{ url_for('static', filename=(tutor.tutor_photo)) }}" alt="{{ tutor.tutor_name }}'s Photo">
+                <span id="tutor-name">{{tutor.tutor_name}}</span>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <th>Subject:</th>
+        <td id="subject-line" class="bg">
+            <span>{{ subj_db.query.filter_by(subj_id=tutor.tutor_subj).first().subj_short }}</span>
+            <span>{{ tutor.tutor_subj_num }}</span>
+        </td>
+    </tr>
+    <tr>
+        <th id="message-line">Message:</th>
+        <td>
+            {% set form = message_form() %}
+            <form id="message-form" method="POST">
+                {{ form.csrf_token }}
 
-<br>
-<span>Message:</span>
-{% set form = message_form() %}
-<form id="message-form" method="POST">
-    {% for field in form.data.keys() %}
-    {% if field != "csrf_token" and field != "submit" %}
-        {{ form[field] }}
-        {% if form[field]['errors'] %}
-        <ul class="errors">
-            {% for error in form[field]['errors'] %}
-                <li>{{ error }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-    {% endif %}
-    {% endfor %}
-</form>
+                {% for field in form.data.keys() %}
+                {% if field != "csrf_token" %}
+                    {{ form[field] }}
+
+                    {% if form[field]['errors'] %}
+                        <ul class="errors">
+                            {% for error in form[field]['errors'] %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endif %}
+                {% endfor %}
+            </form>
+        </td>
+    </tr>
+</table>
 {% endblock %}

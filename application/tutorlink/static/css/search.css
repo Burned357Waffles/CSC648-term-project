@@ -1,0 +1,24 @@
+.search-result-header
+{
+
+}
+
+.search-result-footer
+{
+    margin: 10px;
+    text-align: center;
+}
+
+.search-tutors-clip-container
+{
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.search-tutors-container
+{
+    width: 100%;
+    display: inline-block;
+    border: 1px solid black;
+}

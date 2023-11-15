@@ -1,73 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
+{% set title = "Search - Tutorlink" %}
+{% set css = ["search.css", "tutor_post.css"] %}  {# These work, they're just commented out because script tries to load the css/js #}
+{# {% set js = [""] %} #}  {# files despite being empty strings, which causes 404 in background (unnoticeable) #}
+{% extends "base.jinja2" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search - Tutorlink</title>
-</head>
+{% block head %}
+    {{ super() }}
+{% endblock %}
 
-<body>
-    <h1>CSC-648-03 Fall 2023</h1>
-    <h2>Team 02</h2>
+{% block body %}
+    {% if res != None %}
+        <h4 class="search-result-header">
+            {{ res | length }} {{ "result" if res | length == 1 else "results" }} found for "{{ search_term }}"
+        </h4>
 
-    <form method="POST">
-        {{ form.csrf_token }}
-
-        {% for field in form.data.keys() %}
-        {% if field != "csrf_token" and field != "submit" %}
-        <fieldset class="{{ field }}">
-            {{ form[field]['label'] }} {{ form[field] }}
-            {% if form[field]['errors'] %}
-            <ul class="errors">
-                {% for error in form[field]['errors'] %}
-                <li>{{ error }}</li>{% endfor %}
-            </ul>
-            {% endif %}
-        </fieldset>
-        {%endif%}
-        {% endfor %}
-
-        <div class="submit-button">
-            {{ form.submit }}
+        <div class="search-tutors-clip-container">
+            <div class="search-tutors-container">
+                <div class="tutor-row">
+                    {% for tutor in res %}
+                        {% set tutor=tutor %}
+                        {% set subj_db=subj_db %}
+                        {% include '/partials/tutor_post.jinja2' %}
+                        {% if loop.index % 4 == 0 %}
+                            <div style="clear: both;"></div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
         </div>
 
-        {% if res != None%}
-            <p> === Results === </p>
-            {% for i in res %}
-                <table>
-                    <img src="{{ url_for('static', filename=(i.tutor_photo) ) }}" alt="{{i.tutor_name}}'s Photo">
-                    <tr>
-                        <th>Name</th>
-                        <th>{{i.tutor_name}}</th>
-                    </tr>
-                    <tr>
-                        <th>Subject</th>
-                        <th>{{subj_db.query.filter_by(subj_id=i.tutor_subj).first().subj_short}}</th>
-                    </tr>
-                    <tr>
-                        <th>Class #</th>
-                        <th>{{i.tutor_subj_num}}</th>
-                    </tr>
-                    <tr>
-                        <th>Bio</th>
-                        <th>{{i.tutor_bio}}</th>
-                    </tr>
-                    <tr>
-                        <th>CV/Flyer</th>
-                        <th><a href="{{ url_for('static', filename=(i.tutor_cv)) }}" target="_blank">link</a></th>
-                    </tr>
-                    <tr>
-                        <th>Video</th>
-                        <th><a href="{{ i.tutor_vid }}" target="_blank">link</a></th>
-                    </tr>
-                </table>
-            <br>
-            {% endfor %}
-            <p> === End Of Results ===</p>
-        {% endif %}
-    </form>
-
-    <hr>
-    <!-- <h1><a href="/about" target="_blank">About Us</a></h1> -->
-</body>
+        <div class="search-result-footer"> === End Of Results ===</div>
+    {% else %}
+        <div class="search-result-footer"> === No Search Term Entered ===</div>
+    {% endif %}
+{% endblock %}

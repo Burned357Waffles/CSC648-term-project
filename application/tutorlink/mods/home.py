@@ -1,3 +1,6 @@
+# # Handles the home page of the website
+# Brandon W
+
 from tutorlink import app
 from tutorlink.db.models import Subject, Tutor
 from tutorlink.db.db import db
@@ -8,6 +11,7 @@ from sqlalchemy import func
 
 
 # # # Routes
+# Route to handle functionality for the homepage
 @app.route("/home", methods=['GET'])
 def index():
     # This is for the newly added tutors section. Orders by last added -> first added

@@ -1,3 +1,6 @@
+# # Entry Point for Application
+# Jeremy W
+
 from flask import Flask, redirect, url_for
 from tutorlink.db.db import db
 from sys import argv

@@ -3,9 +3,10 @@
         <img src="{{ url_for('static', filename=(tutor.tutor_photo)) }}" alt="{{ tutor.tutor_name }}'s Photo">
         <div class="message-info">
             <div class="message-header">
-                <a class="message-subject">Subject line</a>
+                <a class="message-subject"><h3>Subject line</h3></a>
                 <p class="message-date">Date</p>
             </div>
+            From: {{ tutor.tutor_name }}
         </div>
     </div>
 </div>

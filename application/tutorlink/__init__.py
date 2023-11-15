@@ -36,7 +36,8 @@ import tutorlink.mods.account
 import tutorlink.mods.home
 # Tutor Profile Pages
 import tutorlink.mods.tutor
-
+# Dashboard page
+import tutorlink.mods.dashboard
 
 # # DB init
 with app.app_context():

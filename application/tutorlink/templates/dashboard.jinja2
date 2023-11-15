@@ -40,6 +40,7 @@
                 {# Content for Sent tab #}
                 {% for tutor in sent[:2] %}
                     {% set tutor=tutor %}
+                    {% set word="To" %}
                     {% include '/partials/dashboard_message.jinja2' %}
                 {% endfor %}
             </div>
@@ -48,6 +49,7 @@
                 {# Content for Received tab #}
                 {% for tutor in received[:3] %}
                     {% set tutor=tutor %}
+                    {% set word="From" %}
                     {% include '/partials/dashboard_message.jinja2' %}
                 {% endfor %}
             </div>

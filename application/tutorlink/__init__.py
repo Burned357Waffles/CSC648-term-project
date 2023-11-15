@@ -66,6 +66,8 @@ def demo_links():
     <a href="/search" target="_blank">search</a>
     <br>
     <a href="/tutor/view/1" target="_blank">tutor profile</a>
+    <br>
+    <a href="https://github.com/CSC-648-SFSU/csc648-03-fa23-team02/tree/main" target="_blank">github</a>
     """
     return ret
 

@@ -30,7 +30,7 @@ def register_page():
             return "Error : Empty Field"
 
         # Verify SFSU Email
-        if not "@sfsu.edu" in form.email.data:
+        if not form.email.data.lower().endswith("sfsu.edu"):
             return "Error : Creating an account requires SFSU Email"
         
         # Verify PW requirements
@@ -57,7 +57,7 @@ def register_page():
         db.session.add(new_acc)
         db.session.commit()
 
-        # Redirect to login page for user loggin
+        # Redirect to login page for user login
         # Possible TODO autologin and redirect to home page
 
         # Return to index for redirect to home page

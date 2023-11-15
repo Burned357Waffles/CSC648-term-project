@@ -7,7 +7,7 @@ from tutorlink.db.db import db
 # libs
 from flask import render_template, redirect, url_for
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, SelectField
 
 # # Account Registration Page
 class register_form(FlaskForm):
@@ -20,6 +20,12 @@ class login_form(FlaskForm):
     email = StringField("Email")
     password = StringField("Password")
     submit = SubmitField("Login")
+
+class tutor_app_form(FlaskForm):
+    first = StringField("First Name")
+    last = StringField("Last Name")
+    subjects = SelectField("Subjects", choices=[(1, 'Subject 1'), (2, 'Subject 2'), (3, 'Subject 3'), (4, 'Subject 4')])
+    submit = SubmitField("Apply")
 
 @app.route("/acc/register", methods=['POST','GET'])
 def register_page():
@@ -79,6 +85,11 @@ def register_page():
 def login_page():
     form = login_form()
     return render_template('login_template.jinja2', form=form)
+
+@app.route('/acc/apply')
+def tutor_app_page():
+    form = tutor_app_form()
+    return render_template('tutor_app_template.jinja2', form=form)
 
 # # Debug Routes
 if app.debug:

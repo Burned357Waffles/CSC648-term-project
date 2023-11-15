@@ -1,5 +1,5 @@
 {% set title = "Search - Tutorlink" %}
-{% set css = ["dashboard.css", "dashboard_message.css"] %}
+{% set css = ["dashboard.css", "dashboard_message.css", "dashboard_post.css"] %}
 {% set js = ["dashboard.js"] %}
 {% extends "base.jinja2" %}
 
@@ -30,9 +30,9 @@
         <div class="dashboard-body">
             <div class="tab-content" id="my_posts" style="display: block;">
                 {# Content for My Posts tab #}
-                {% for tutor in my_posts %}
-                    {% set tutor=tutor %}
-                    {% include '/partials/dashboard_message.jinja2' %}
+                {% for post in my_posts %}
+                    {% set post=post %}
+                    {% include '/partials/dashboard_post.jinja2' %}
                 {% endfor %}
             </div>
 

@@ -5,22 +5,36 @@
 
 {% block head %}
     {{ super() }}
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 {% endblock %}
 
 {% block body %}
     <h1 id="page-title">Find Tutors For Your SFSU Courses</h1>
 
-    <script>
-        var subject_list = {{ subject_list  | tojson | safe }};
-    </script>
     <div class="carousel-clip-container">
         <h2 id="carousel-title">Browse our Top Subjects</h2>
-        <div class="carousel-container">
-            {% for subject in subject_list %}
-                <div class="rectangle">
-                    {{ subject.text }}
-                </div>
-            {% endfor %}
+        <div id="subjectCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                {% for subject in subject_list %}
+                    <div class="carousel-item {% if loop.first %}active{% endif %}">
+                        <div class="rectangle">
+                            {{ subject.text }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <a class="carousel-control-prev" href="#subjectCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#subjectCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
     </div>
 
@@ -39,6 +53,5 @@
             </div>
         </div>
     </div>
-
 
 {% endblock %}

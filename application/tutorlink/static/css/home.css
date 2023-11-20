@@ -1,67 +1,89 @@
-#page-title
-{
+#page-title {
     text-align: center;
 }
+
 #carousel-title,
-#new-tutor-title
-{
+#new-tutor-title {
     color: #231161;
     text-align: center;
 }
 
-.carousel-clip-container
-{
+.carousel-clip-container {
     overflow: hidden;
-    width: 35%;
+    width: 75%;
     margin: 0 auto;
+    padding-top: 3%;
     padding-bottom: 5%;
 }
 
-.carousel-container
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-.rectangle
-{
-    width: 200px;
-    height: 100px;
+.rectangle {
     background-color: #fc3;
     text-align: center;
     line-height: 100px;
     color: black;
     cursor: pointer;
-    margin: 15px;
-    transform: scale(1);
-    opacity: 1;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    z-index: 1;
-    display: none;
+    margin: 0 auto;
+    font-size: larger;
 }
 
- /* side rects */
-.rectangle:first-child
-{
-    opacity: 0.75;
-    display: inline-block;
-    transform: scale(0.9);
-    background: linear-gradient(to right, rgba(255, 204, 51, 0) 0%, #ffcc33 100%);
+.slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.rectangle:nth-child(3)
-{
-    opacity: 0.75;
-    display: inline-block;
-    transform: scale(0.9);
-    background: linear-gradient(to left, rgba(255, 204, 51, 0) 0%, #ffcc33 100%);
+.slick-list {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
-/* center rect */
-.rectangle:nth-child(2)
-{
-    display: inline-block;
-    transform: scale(1.2);
+.slick-list:focus {
+  outline: none;
+}
+
+.slick-track {
+  display: flex;
+  justify-content: center;
+}
+
+.slick-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  margin: 0 10px;
+}
+
+.slick-slide.slick-active {
+  display: block;
+}
+
+.slick-prev,
+.slick-next {
+  font-size: 24px;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.slick-prev {
+  left: 10px;
+}
+
+.slick-next {
+  right: 10px;
 }

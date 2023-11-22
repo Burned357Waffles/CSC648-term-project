@@ -1,7 +1,7 @@
 # # Handles account management related functions
 # Jeremy W, Lars S
 
-from tutorlink import app
+from tutorlink import app, login_manager
 from tutorlink.db.models import User
 from tutorlink.db.db import db
 
@@ -9,6 +9,7 @@ from tutorlink.db.db import db
 from flask import render_template, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
+from flask_login import login_required, logout_user, login_user
 
 # # Account Registration Page
 class register_form(FlaskForm):
@@ -22,6 +23,9 @@ class login_form(FlaskForm):
     password = StringField("Password")
     submit = SubmitField("Login")
 
+# Register account to DB
+# POST -> Submit Account Registration
+# GET -> Get form for creating account
 @app.route("/acc/register", methods=['POST','GET'])
 def register_page():
     # Create form for user reg
@@ -55,9 +59,10 @@ def register_page():
         # Create new user account object
         new_acc = User(
             user_name=form.username.data,
-            user_pw=form.password.data,
             user_email=form.email.data
         )
+        # Hash and store password
+        new_acc.set_password(form.password.data)
 
         # Push new user account to db
         db.session.add(new_acc)
@@ -67,7 +72,7 @@ def register_page():
         # Possible TODO autologin and redirect to home page
 
         # Return to index for redirect to home page
-        return redirect(url_for("index"))
+        return redirect(url_for("login_page"))
 
 
     # Return for for user creation
@@ -76,13 +81,54 @@ def register_page():
 
 
 # # Account Login page
+# GET -> Get Login page
+#     -> Redirect to home if logged in
+# Post -> Login
 @app.route("/acc/login", methods=['POST','GET'])
 def login_page():
     form = login_form()
+
+    # Post -> User attempting to login
+    if form.validate_on_submit():
+        # Find user account
+        login_acc = User.query.filter_by(user_email=form.email.data).first()
+
+        # Validate login info
+        if login_acc and login_acc.check_password(form.password.data):
+            # Login user then redirect to index
+            login_user(login_acc)
+            return(redirect(url_for("index")))
+        
+        # Return case for failed login
+        # TODO : Flash message of error and return login page
+        return("Login Error")
+
+    # Return login page
     return render_template('login_template.jinja2', form=form)
+
+@app.route("/acc/logout")
+@login_required
+def logout():
+    """User log-out logic."""
+    logout_user()
+    return redirect(url_for('login_page'))
+
+# Login API
+# User loader for login
+@login_manager.user_loader
+def user_loader(user_id):
+    if user_id is not None:
+        return User.query.filter_by(user_id=user_id).first()
+    return None 
+
 
 # # Debug Routes
 if app.debug:
+    @app.route('/acc/debug/login')
+    @login_required
+    def acc_debug_login():
+        return("You are logged in!")
+
     @app.route("/acc/debug")
     def acc_debug():
         res = User.query.all()

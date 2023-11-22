@@ -13,7 +13,7 @@ from sqlalchemy import func
 # # # Routes
 # Route to handle functionality for the homepage
 @app.route("/home", methods=['GET'])
-def index():
+def home():
     # This is for the newly added tutors section. Orders by last added -> first added
     tutor_list = Tutor.query.order_by(Tutor.tutor_id.desc()).all()
 

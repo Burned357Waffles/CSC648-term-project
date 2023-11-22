@@ -1,0 +1,58 @@
+{% set title = "Search - Tutorlink" %}
+{% set css = ["dashboard.css", "dashboard_message.css", "dashboard_post.css"] %}
+{% set js = ["dashboard.js"] %}
+{% extends "base.jinja2" %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block body %}
+    <div class="page-header">
+        <div class="header-content">
+            <h1>Dashboard</h1>
+            <h2>Welcome [user]</h2>
+        </div>
+    </div>
+
+    <div class="dashboard-container">
+        <div class="dashboard-tabs">
+            <input type="radio" id="tab1" name="tabs" checked>
+            <label class="tab-label my-posts" for="tab1" onclick="showTab('my_posts')">My Posts</label>
+
+            <input type="radio" id="tab2" name="tabs">
+            <label class="tab-label sent" for="tab2" onclick="showTab('sent')">Sent</label>
+
+            <input type="radio" id="tab3" name="tabs">
+            <label class="tab-label received" for="tab3" onclick="showTab('received')">Received</label>
+        </div>
+
+        <div class="dashboard-body">
+            <div class="tab-content" id="my_posts" style="display: block;">
+                {# Content for My Posts tab #}
+                {% for post in my_posts %}
+                    {% set post=post %}
+                    {% include '/partials/dashboard_post.jinja2' %}
+                {% endfor %}
+            </div>
+
+            <div class="tab-content" id="sent" style="display: none;">
+                {# Content for Sent tab #}
+                {% for tutor in sent[:2] %}
+                    {% set tutor=tutor %}
+                    {% set word="To" %}
+                    {% include '/partials/dashboard_message.jinja2' %}
+                {% endfor %}
+            </div>
+
+            <div class="tab-content" id="received" style="display: none;">
+                {# Content for Received tab #}
+                {% for tutor in received[:3] %}
+                    {% set tutor=tutor %}
+                    {% set word="From" %}
+                    {% include '/partials/dashboard_message.jinja2' %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,3 +1,6 @@
+# # Entry Point for Application
+# Jeremy W
+
 from flask import Flask, redirect, url_for
 from tutorlink.db.db import db
 from sys import argv
@@ -38,7 +41,8 @@ import tutorlink.mods.home
 import tutorlink.mods.tutor
 # Tutor Messaging Page
 import tutorlink.mods.message
-
+# Dashboard page
+import tutorlink.mods.dashboard
 
 # # DB init
 with app.app_context():
@@ -65,6 +69,8 @@ def demo_links():
     <a href="/search" target="_blank">search</a>
     <br>
     <a href="/tutor/view/1" target="_blank">tutor profile</a>
+    <br>
+    <a href="https://github.com/CSC-648-SFSU/csc648-03-fa23-team02/tree/main" target="_blank">github</a>
     """
     return ret
 

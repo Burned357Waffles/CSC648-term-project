@@ -1,5 +1,6 @@
 # # Handles account management related functions
-# Jeremy W
+# Jeremy W, Lars S
+
 from tutorlink import app
 from tutorlink.db.models import User
 from tutorlink.db.db import db

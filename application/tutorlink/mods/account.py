@@ -1,5 +1,6 @@
 # # Handles account management related functions
-# Jeremy W
+# Jeremy W, Lars S
+
 from tutorlink import app
 from tutorlink.db.models import User
 from tutorlink.db.db import db
@@ -14,7 +15,12 @@ class register_form(FlaskForm):
     username = StringField("Username")
     password = StringField("Password")
     email = StringField("Email")
-    submit = SubmitField("Create Account")
+    submit = SubmitField("Sign Up")
+
+class login_form(FlaskForm):
+    email = StringField("Email")
+    password = StringField("Password")
+    submit = SubmitField("Login")
 
 @app.route("/acc/register", methods=['POST','GET'])
 def register_page():
@@ -65,14 +71,15 @@ def register_page():
 
 
     # Return for for user creation
-    return render_template("default_form.jinja2", form=form)
+    return render_template("register_template.jinja2", form=form)
 
 
 
 # # Account Login page
 @app.route("/acc/login", methods=['POST','GET'])
 def login_page():
-    return "login page"
+    form = login_form()
+    return render_template('login_template.jinja2', form=form)
 
 # # Debug Routes
 if app.debug:
@@ -83,5 +90,4 @@ if app.debug:
         for i in res:
             ret = ret + i.usr2str()
         return(ret)
-
 

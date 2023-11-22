@@ -1,40 +1,48 @@
 # # Handles searching/browsing related pages
-# Jeremy W
-# app
+# Jeremy W, Lars S, Abel S, Brandon W
+# App State
 from tutorlink import app
 from tutorlink.db.models import Subject, Tutor
 
-# libs
-from flask import render_template
+# Libs
+from flask import render_template, redirect, url_for, request
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, SubmitField
 
+
 # # # Form layouts
 class search_form(FlaskForm):
+    search_subject = SelectField("Subject")
     search_term = StringField(
         "Search Term"
     )
-    search_subject = SelectField("Subject")
     search_submit = SubmitField(
         "Search"
     )
 
-# # # Routes
-
-# Main search page
-# GET -> Search form
-# POST -> View results
-@app.route("/search", methods=['POST','GET'])
-def search_page():
-    # Create form
+# Creates form with dropdown options pre-filled
+def new_form():
     form = search_form()
 
     # Populate subjects to DB
     # Possible TODO, optimize this
-    subj = ["Subject"]
+    subj = ["All Subjects"]
     for i in Subject.query.all():
         subj.append(i.subj_short)
     form.search_subject.choices = subj
+    return form
+
+# Makes form available for navbar to generate
+app.jinja_env.globals.update(search_form=new_form)
+
+
+# # # Routes
+# GET -> Redirect to homepage for base search bar
+# POST -> View results
+@app.route("/search", methods=['GET','POST'])
+def search_page():
+    # Create form
+    form = new_form()
 
     # Form submit | Returns search results
     if form.validate_on_submit():
@@ -44,7 +52,7 @@ def search_page():
         res = Tutor.query.join(Subject)
 
         # Add subject to query if applicable
-        if form.search_subject.data != "Subject":
+        if form.search_subject.data != "All Subjects":
             # Get the subject id
             # subj = Subject.query.filter_by(subj_short=form.search_subject.data).first()
             # append subject restriction to query
@@ -64,10 +72,24 @@ def search_page():
         res = res.all()
 
         # Render search page with result
-        return render_template("search.jinja2", form=form, res=res, subj_db=Subject)
+        return render_template("search.jinja2", res=res, subj_db=Subject, search_term=form.search_term.data)
+    
+    return redirect(url_for("index"))
 
-    # Render just search page
-    return render_template("search.jinja2", form=form, res=None, subj_db=Subject)
+# Allows for pre-filled subject when searching via navbar
+@app.route("/search/<string:subject>", methods=['GET'])
+def subject_search(subject):
+    # Get list of tutor
+    # TODO optimize?
+    # Filter By Subject if needed
+    res = Tutor.query.join(Subject)
 
+    # Add subject to query from URL
+    res = res.filter(Subject.subj_short == subject)
 
+    # Preform Query
+    res = res.all()
+
+    # Render search page with result
+    return render_template("search.jinja2", res=res, subj_db=Subject)
 

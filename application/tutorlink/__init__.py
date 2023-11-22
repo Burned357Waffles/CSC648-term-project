@@ -1,3 +1,6 @@
+# # Entry Point for Application
+# Jeremy W
+
 from flask import Flask, redirect, url_for
 from tutorlink.db.db import db
 from sys import argv
@@ -32,7 +35,12 @@ import tutorlink.mods.about
 import tutorlink.mods.search
 # User Account Pages
 import tutorlink.mods.account
-
+# Home Page
+import tutorlink.mods.home
+# Tutor Profile Pages
+import tutorlink.mods.tutor
+# Dashboard page
+import tutorlink.mods.dashboard
 
 # # DB init
 with app.app_context():
@@ -44,9 +52,25 @@ with app.app_context():
 # Should be only route in __init__.py
 # Should only ever be a redirect
 @app.route("/")
-def index():
-    return redirect(url_for("search_page"))  # Redirect to the list of students
+def hello_world():
+    return redirect(url_for("index"))  # Redirect to the list of students
 
+@app.route("/demo")
+def demo_links():
+    ret = """
+    <a href="/" target="_blank">home</a>
+    <br>
+    <a href="/acc/login" target="_blank">login</a>
+    <br>
+    <a href="/acc/register" target="_blank">register</a>
+    <br>
+    <a href="/search" target="_blank">search</a>
+    <br>
+    <a href="/tutor/view/1" target="_blank">tutor profile</a>
+    <br>
+    <a href="https://github.com/CSC-648-SFSU/csc648-03-fa23-team02/tree/main" target="_blank">github</a>
+    """
+    return ret
 
 # Run App
 if __name__ == "__main__":
@@ -74,6 +98,18 @@ if app.debug:
             Subject(
                 subj_short="ENGR",
                 subj_long="Engineering"
+            ),
+            Subject(
+                subj_short="ASTR",
+                subj_long="Astronomy"
+            ),
+            Subject(
+                subj_short="BIO",
+                subj_long="Biology"
+            ),
+            Subject(
+                subj_short="MATH",
+                subj_long="Mathematics"
             )
         ]
         for i in subjs:
@@ -137,4 +173,3 @@ if app.debug:
         db.session.commit()
 
 # # # END DEBUG
-

@@ -1,4 +1,5 @@
-"""Database models."""
+# # Database models
+# Jeremy W
 from tutorlink.db.db import db
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -211,5 +212,4 @@ class Tutor_Request(db.Model):
 
     def __repr__(self):
         return "<Tutor Request {}>".format(self.tutor_name)
-
 

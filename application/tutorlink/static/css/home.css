@@ -1,0 +1,67 @@
+#page-title
+{
+    text-align: center;
+}
+#carousel-title,
+#new-tutor-title
+{
+    color: #231161;
+    text-align: center;
+}
+
+.carousel-clip-container
+{
+    overflow: hidden;
+    width: 35%;
+    margin: 0 auto;
+    padding-bottom: 5%;
+}
+
+.carousel-container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.rectangle
+{
+    width: 200px;
+    height: 100px;
+    background-color: #fc3;
+    text-align: center;
+    line-height: 100px;
+    color: black;
+    cursor: pointer;
+    margin: 15px;
+    transform: scale(1);
+    opacity: 1;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 1;
+    display: none;
+}
+
+ /* side rects */
+.rectangle:first-child
+{
+    opacity: 0.75;
+    display: inline-block;
+    transform: scale(0.9);
+    background: linear-gradient(to right, rgba(255, 204, 51, 0) 0%, #ffcc33 100%);
+}
+
+.rectangle:nth-child(3)
+{
+    opacity: 0.75;
+    display: inline-block;
+    transform: scale(0.9);
+    background: linear-gradient(to left, rgba(255, 204, 51, 0) 0%, #ffcc33 100%);
+}
+
+/* center rect */
+.rectangle:nth-child(2)
+{
+    display: inline-block;
+    transform: scale(1.2);
+}

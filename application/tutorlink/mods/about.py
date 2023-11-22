@@ -1,6 +1,5 @@
-# # # About Me Module
-# Handles all pages relative to the about me section
-# # #
+# # Handles all pages relative to the about me section
+# Jeremy W, Ankita M
 from tutorlink import app
 from flask import render_template
 

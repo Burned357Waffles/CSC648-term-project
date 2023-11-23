@@ -1,10 +1,10 @@
 # # Handles searching/browsing related pages
-# Jeremy W
-# app
+# Jeremy W, Lars S, Abel S, Brandon W
+# App State
 from tutorlink import app
 from tutorlink.db.models import Subject, Tutor
 
-# libs
+# Libs
 from flask import render_template, redirect, url_for, request
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, SubmitField
@@ -37,33 +37,9 @@ app.jinja_env.globals.update(search_form=new_form)
 
 
 # # # Routes
-
-# Main search page
-# GET -> Empty results page
-@app.route("/search", methods=['GET'])
-def no_results():
-    return redirect(url_for("index"))
-
-
-@app.route("/search/<string:subject>", methods=['GET'])
-def subject_search(subject):
-    # Get list of tutor
-    # TODO optimize?
-    # Filter By Subject if needed
-    res = Tutor.query.join(Subject)
-
-    # Add subject to query from URL
-    res = res.filter(Subject.subj_short == subject)
-
-    # Preform Query
-    res = res.all()
-
-    # Render search page with result
-    return render_template("search.jinja2", res=res, subj_db=Subject)
-
-
+# GET -> Redirect to homepage for base search bar
 # POST -> View results
-@app.route("/search", methods=['POST'])
+@app.route("/search", methods=['GET','POST'])
 def search_page():
     # Create form
     form = new_form()
@@ -97,3 +73,23 @@ def search_page():
 
         # Render search page with result
         return render_template("search.jinja2", res=res, subj_db=Subject, search_term=form.search_term.data)
+    
+    return redirect(url_for("index"))
+
+# Allows for pre-filled subject when searching via navbar
+@app.route("/search/<string:subject>", methods=['GET'])
+def subject_search(subject):
+    # Get list of tutor
+    # TODO optimize?
+    # Filter By Subject if needed
+    res = Tutor.query.join(Subject)
+
+    # Add subject to query from URL
+    res = res.filter(Subject.subj_short == subject)
+
+    # Preform Query
+    res = res.all()
+
+    # Render search page with result
+    return render_template("search.jinja2", res=res, subj_db=Subject)
+

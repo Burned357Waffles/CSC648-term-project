@@ -43,12 +43,20 @@
 }
 
  /* side rects */
-.rectangle:first-child,
+.rectangle:first-child
+{
+    opacity: 0.75;
+    display: inline-block;
+    transform: scale(0.9);
+    background: linear-gradient(to right, rgba(255, 204, 51, 0) 0%, #ffcc33 100%);
+}
+
 .rectangle:nth-child(3)
 {
     opacity: 0.75;
     display: inline-block;
     transform: scale(0.9);
+    background: linear-gradient(to left, rgba(255, 204, 51, 0) 0%, #ffcc33 100%);
 }
 
 /* center rect */

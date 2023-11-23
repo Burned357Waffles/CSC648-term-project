@@ -1,4 +1,5 @@
-"""Database models."""
+# # Database models
+# Jeremy W
 from tutorlink.db.db import db
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -33,15 +34,21 @@ class User(UserMixin, db.Model):
     # # # Util Functions
     # Generates hash and sets password in db
     def set_password(self, password):
-        self.user_pw(generate_password_hash(password))
+        self.user_pw = generate_password_hash(password)
     
     # Check password against stored hash
     def check_password(self, password):
         return check_password_hash(self.user_pw, password)
     
+    # Login id
+    def get_id(self):
+        return self.user_id
+
+    # Simple print
     def __repr__(self):
         return "<User {}>".format(self.user_name)
     
+    # Full data printing
     def usr2str(self):
         return f"===\nid:{self.user_id}\nun:{self.user_name}\npw:{self.user_pw}\nemail:{self.user_email}\n"
 

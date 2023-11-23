@@ -166,6 +166,46 @@ if app.debug:
                 tutor_vid="https://youtu.be/dQw4w9WgXcQ?si=tCj8boDIu7EYF342",
                 tutor_subj=1,
                 tutor_subj_num="4321"
+            ),
+            Tutor(
+                tutor_user="fakeuser",
+                tutor_name="Ulfric Stormcloak",
+                tutor_bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                tutor_cv="image/test/li.pdf",
+                tutor_photo="image/test/def_pfp.jpg",
+                tutor_vid="https://youtu.be/dQw4w9WgXcQ?si=tCj8boDIu7EYF342",
+                tutor_subj=5,
+                tutor_subj_num="4201"
+            ),
+            Tutor(
+                tutor_user="fakeuser",
+                tutor_name="Tiber Septim",
+                tutor_bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                tutor_cv="image/test/li.pdf",
+                tutor_photo="image/test/def_pfp.jpg",
+                tutor_vid="https://youtu.be/dQw4w9WgXcQ?si=tCj8boDIu7EYF342",
+                tutor_subj=4,
+                tutor_subj_num="2828"
+            ),
+            Tutor(
+                tutor_user="fakeuser",
+                tutor_name="Gideon Ofnir",
+                tutor_bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                tutor_cv="image/test/li.pdf",
+                tutor_photo="image/test/def_pfp.jpg",
+                tutor_vid="https://youtu.be/dQw4w9WgXcQ?si=tCj8boDIu7EYF342",
+                tutor_subj=6,
+                tutor_subj_num="101"
+            ),
+            Tutor(
+                tutor_user="fakeuser",
+                tutor_name="Miles Davis",
+                tutor_bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                tutor_cv="image/test/li.pdf",
+                tutor_photo="image/test/def_pfp.jpg",
+                tutor_vid="https://youtu.be/dQw4w9WgXcQ?si=tCj8boDIu7EYF342",
+                tutor_subj=6,
+                tutor_subj_num="1296"
             )
         ]
         for i in tutors:

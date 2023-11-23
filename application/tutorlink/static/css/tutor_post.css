@@ -1,21 +1,14 @@
 .new-tutors-clip-container
 {
-    width: 90%;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.new-tutors-container
-{
-    width: 100%;
-    display: inline-block;
+  display: flex;
+  justify-content: center;
 }
 
 .tutor-row
 {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 .tutor-name
@@ -32,6 +25,30 @@
 {
     display: flex;
     flex-direction: column;
+}
+
+.tutor-container
+{
+    max-width: 1640px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+.tutor-post
+{
+    width: 370px;
+    height: 350px;
+    background-color: #f5f5f5;
+    box-sizing: border-box;
+    text-align: center;
+    color: black;
+    cursor: pointer;
+    margin: 15px;
+    position: relative;
 }
 
 .tutor-post-header
@@ -56,19 +73,6 @@
     max-width: 100%;
     max-height: 75%;
     padding: 5%;
-}
-
-.tutor-post
-{
-    width: 375px;
-    height: 350px;
-    background-color: #f5f5f5;
-    box-sizing: border-box;
-    text-align: center;
-    color: black;
-    cursor: pointer;
-    margin: 15px;
-    position: relative;
 }
 
 .tutor-post img
@@ -96,4 +100,9 @@
 {
     background-color: #fc3;
     color: #303;
+}
+
+.clearfix
+{
+    clear: both;
 }

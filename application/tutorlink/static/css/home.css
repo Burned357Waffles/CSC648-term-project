@@ -2,88 +2,45 @@
     text-align: center;
 }
 
-#carousel-title,
-#new-tutor-title {
+#subject-cards-title,
+#new-tutor-title
+{
     color: #231161;
     text-align: center;
-}
-
-.carousel-clip-container {
-    overflow: hidden;
-    width: 75%;
     margin: 0 auto;
-    padding-top: 3%;
-    padding-bottom: 5%;
 }
 
-.rectangle {
+.subject-cards-clip-container
+{
+    overflow: hidden;
+    margin: 0 auto;
+    padding-bottom: 5%;
+    max-width: 1620px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.subject-cards
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.subject-card
+{
+    width: calc(33.33% - 30px);
     background-color: #fc3;
     text-align: center;
     line-height: 100px;
     color: black;
     cursor: pointer;
-    margin: 0 auto;
+    margin: 15px;
     font-size: larger;
+    box-sizing: border-box;
 }
 
-.slick-slider {
-  position: relative;
-  display: block;
-  box-sizing: border-box;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-touch-callout: none;
-  -khtml-user-select: none;
-  -ms-touch-action: pan-y;
-  touch-action: pan-y;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.slick-list {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-}
-
-.slick-list:focus {
-  outline: none;
-}
-
-.slick-track {
-  display: flex;
-  justify-content: center;
-}
-
-.slick-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 500px;
-  margin: 0 10px;
-}
-
-.slick-slide.slick-active {
-  display: block;
-}
-
-.slick-prev,
-.slick-next {
-  font-size: 24px;
-  line-height: 1;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1;
-}
-
-.slick-prev {
-  left: 10px;
-}
-
-.slick-next {
-  right: 10px;
+.clearfix
+{
+    clear: both;
 }

@@ -8,7 +8,7 @@ from tutorlink.db.db import db
 # libs
 from flask import render_template, redirect, url_for
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, SelectField
 from flask_login import login_required, logout_user, login_user
 
 # # Account Registration Page
@@ -22,6 +22,13 @@ class login_form(FlaskForm):
     email = StringField("Email")
     password = StringField("Password")
     submit = SubmitField("Login")
+
+class tutor_app_form(FlaskForm):
+    first = StringField("First Name")
+    last = StringField("Last Name")
+    subjects = SelectField("Subjects", choices=[(1, 'Subject 1'), (2, 'Subject 2'), (3, 'Subject 3'), (4, 'Subject 4')])
+    submit = SubmitField("Apply")
+
 
 # Register account to DB
 # POST -> Submit Account Registration
@@ -106,6 +113,15 @@ def login_page():
     # Return login page
     return render_template('login_template.jinja2', form=form)
 
+  
+# Tutor Application Route
+@app.route('/acc/apply')
+def tutor_app_page():
+    form = tutor_app_form()
+    return render_template('tutor_app_template.jinja2', form=form)
+  
+  
+# Logout API
 @app.route("/acc/logout")
 @login_required
 def logout():
@@ -119,8 +135,7 @@ def logout():
 def user_loader(user_id):
     if user_id is not None:
         return User.query.filter_by(user_id=user_id).first()
-    return None 
-
+    return None
 
 # # Debug Routes
 if app.debug:

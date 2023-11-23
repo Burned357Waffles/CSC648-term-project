@@ -1,0 +1,69 @@
+{% set title = "Tutor Application"%}
+{% set css = ["apply.css"]%}
+{% extends "base.jinja2"%}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"/>
+{% endblock %}
+
+{% block body %}
+<div class="app-body">
+<div class="app-wrapper">
+    <h1>Tutor Application</h1>
+    <form method="POST">
+        {{ form.csrf_token }}
+        <div class="app-box">
+            <input type="text" name="first" placeholder="First Name" required>
+            {% if form.first.errors %}
+                <ul class="errors">
+                    {% for error in form.first.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div class="app-box">
+            <input type="text" name="last" placeholder="Last Name" required>
+            {% if form.first.errors %}
+                <ul class="errors">
+                    {% for error in form.first.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div class="subject-class-wrapper">
+            {{ form.subjects(class="subjects-select") }}
+            <input type="text" name="class" placeholder="Class" required>
+        </div>
+        <div class="app-description">
+            <input type="text" name="description" placeholder="Description" required>
+        </div>
+        <div class="app-file-upload">
+            <a href=""><b>Upload Resume</b></a>
+            <a href=""><b>Upload Video</b></a>
+            <a href=""><b>Upload Picture</b></a>
+        </div>
+        <div>
+            <button class="btn" type="submit">Apply</button>
+        </div>
+        <div class="requires-approval">
+            *Requires approval
+        </div>
+    </form>
+</div>
+
+    <div class="messages">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="messages">
+                    {% for category, message in messages %}
+                        <li class="message-{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+    </div>
+{% endblock %}

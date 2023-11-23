@@ -4,11 +4,10 @@
 from flask import Flask, redirect, url_for
 from tutorlink.db.db import db
 from sys import argv
-from flask_login import LoginManager, login_required
+from flask_login import LoginManager
 
 app = Flask(__name__)
-login_mgr = LoginManager()
-
+login_manager = LoginManager()
 
 # # # ==== Flask Config ==== # # #
 app.config["NAME"] = "Team 02's TutorLink"
@@ -44,18 +43,18 @@ import tutorlink.mods.message
 # Dashboard page
 import tutorlink.mods.dashboard
 
-# # DB init
+# # DB and login init
 with app.app_context():
     db.init_app(app)
     db.create_all()
-
+    login_manager.init_app(app)
 
 # # # ==== Index ==== # # #
 # Should be only route in __init__.py
 # Should only ever be a redirect
 @app.route("/")
-def hello_world():
-    return redirect(url_for("index"))  # Redirect to the list of students
+def index():
+    return redirect(url_for("home"))  # Redirect to the list of students
 
 @app.route("/demo")
 def demo_links():
@@ -86,7 +85,14 @@ if __name__ == "__main__":
 # NOTE : Might create bugs between deployment env and local testing
 if app.debug:
     with app.app_context():
-        from tutorlink.db.models import Subject, Tutor
+        from tutorlink.db.models import Subject, Tutor, User
+        # # Populate debug user
+        test_usr = User(user_name="test_user",
+                        user_email="test_user@sfsu.edu")
+        test_usr.set_password("yolo420")
+        db.session.add(test_usr)
+        db.session.commit()
+
         # # Populate subjects manually for testing
         subjs = [
             Subject(

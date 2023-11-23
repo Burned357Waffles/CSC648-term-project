@@ -1,10 +1,10 @@
-$(document).ready(function() {
-  $('.subject-card').on('click', function() {
-    const subjectText = $(this).text().trim();
+document.addEventListener('DOMContentLoaded', function() {
+  var subjectCards = document.querySelectorAll('.subject-card');
 
-    // Redirect to the search page for the subject clicked
-    window.location.href = '/search/' + encodeURIComponent(subjectText);
+  subjectCards.forEach(function(subjectCard) {
+    subjectCard.addEventListener('click', function() {
+      var subjectText = this.textContent.trim();
+      window.location.href = '/search/' + encodeURIComponent(subjectText);
+    });
   });
 });
-
-

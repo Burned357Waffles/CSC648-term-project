@@ -144,16 +144,18 @@
 {
   pointer-events: none;
   display: inline-block;
-  position:absolute;
-  top: 12px;
-  right: 12px;
+  position: absolute;
+  margin-top: -64px;
+  right: 15px;
   text-align: right;
-  width: 25%;
+  width: 42%;
 }
 #login, #register
 {
   text-align: center;
   width: 66px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 #username-plate
 {

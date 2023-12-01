@@ -131,12 +131,14 @@
 
 #tutor-signup
 {
-  display: block;
-  position: absolute;
-  top: 75px;
-  right: 21%;
+  display: inline-block;
+  float: right;
+  margin-top: -59px;
+  margin-right: 23vw;
+  /*margin-right: 13vw;*/
   width: 158px;
-  padding-left: 10px;
+  padding-right: 10px;
+  overflow: clip;
 }
 
 /*holds user/account related buttons*/
@@ -148,7 +150,7 @@
   margin-top: -64px;
   right: 15px;
   text-align: right;
-  width: 42%;
+  width: auto;
 }
 #login, #register
 {

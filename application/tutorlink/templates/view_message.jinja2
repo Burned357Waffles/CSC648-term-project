@@ -1,4 +1,4 @@
-{% set title = "Message From: " ~ tutor.tutor_name %}
+{% set title = "Message From: " ~ "PLACEHOLDER" %}
 {#{% set css = [""] %}#}
 {# {% set js = [""] %} #}
 {% extends "base.jinja2" %}
@@ -8,5 +8,9 @@
 {% endblock %}
 
 {% block body %}
-
+    Sender: {{ student.user_name }}
+    <br>
+    Receiver: {{ tutor.tutor_name }}
+    <br>
+    Text: {{ message.msg_text }}
 {% endblock %}

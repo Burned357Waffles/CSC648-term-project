@@ -1,7 +1,7 @@
 # # Handles display a tutor profile
 # app
 from tutorlink import app
-from tutorlink.db.models import Subject, Tutor, Message
+from tutorlink.db.models import Subject, Tutor, Message, User
 
 # libs
 from flask import render_template, request, redirect, url_for
@@ -46,5 +46,11 @@ def view_message(msg_id):
     # TODO: check if the user is allowed to access the specified message
     message = Message.query.first()
 
-    return render_template("view_message.jinja2", message=message)
+    student_id = message.msg_student
+    student = User.query.filter(User.user_id == student_id).first()
+
+    tutor_id = message.msg_listing
+    tutor = Tutor.query.filter(Tutor.tutor_id == tutor_id).first()
+
+    return render_template("view_message.jinja2", message=message, tutor=tutor, student=student)
 

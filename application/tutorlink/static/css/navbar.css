@@ -19,6 +19,12 @@
   font-size: 18px;
   background-color: #ffdc70;
 }
+.nav-link:hover
+{
+    text-decoration: underline;
+    background-color: #303;
+    color: #fc3;
+}
 #warning-label
 {
   pointer-events: none;

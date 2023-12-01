@@ -46,11 +46,18 @@ def view_message(msg_id):
     # TODO: check if the user is allowed to access the specified message
     message = Message.query.first()
 
-    student_id = message.msg_student
-    student = User.query.filter(User.user_id == student_id).first()
+    student_user_id = message.msg_student
+    student_user = User.query.filter(User.user_id == student_user_id).first()
 
-    tutor_id = message.msg_listing
-    tutor = Tutor.query.filter(Tutor.tutor_id == tutor_id).first()
+    tutor_user_id = message.msg_tutor
+    tutor_user = User.query.filter(User.user_id == tutor_user_id).first()
 
-    return render_template("view_message.jinja2", message=message, tutor=tutor, student=student)
+    tutor_listing = message.msg_listing
+    tutor = Tutor.query.filter(Tutor.tutor_id == tutor_listing).first()
+
+    subject = Subject.query.filter_by(subj_id=tutor.tutor_subj).first().subj_short + ' ' + tutor.tutor_subj_num
+
+    # TODO: check if user is the sender or the receiver
+    return render_template("view_message.jinja2", sender=student_user, receiver=tutor_user,
+                           tutor=tutor, subject=subject, message=message.msg_text)
 

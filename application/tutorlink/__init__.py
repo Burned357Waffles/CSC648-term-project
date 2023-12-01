@@ -1,11 +1,13 @@
+# # Entry Point for Application
+# Jeremy W
+
 from flask import Flask, redirect, url_for
 from tutorlink.db.db import db
 from sys import argv
-from flask_login import LoginManager, login_required
+from flask_login import LoginManager
 
 app = Flask(__name__)
-login_mgr = LoginManager()
-
+login_manager = LoginManager()
 
 # # # ==== Flask Config ==== # # #
 app.config["NAME"] = "Team 02's TutorLink"
@@ -36,20 +38,23 @@ import tutorlink.mods.account
 import tutorlink.mods.home
 # Tutor Profile Pages
 import tutorlink.mods.tutor
+# Tutor Messaging Page
+import tutorlink.mods.message
+# Dashboard page
+import tutorlink.mods.dashboard
 
-
-# # DB init
+# # DB and login init
 with app.app_context():
     db.init_app(app)
     db.create_all()
-
+    login_manager.init_app(app)
 
 # # # ==== Index ==== # # #
 # Should be only route in __init__.py
 # Should only ever be a redirect
 @app.route("/")
-def hello_world():
-    return redirect(url_for("index"))  # Redirect to the list of students
+def index():
+    return redirect(url_for("home"))  # Redirect to the list of students
 
 @app.route("/demo")
 def demo_links():
@@ -63,6 +68,8 @@ def demo_links():
     <a href="/search" target="_blank">search</a>
     <br>
     <a href="/tutor/view/1" target="_blank">tutor profile</a>
+    <br>
+    <a href="https://github.com/CSC-648-SFSU/csc648-03-fa23-team02/tree/main" target="_blank">github</a>
     """
     return ret
 
@@ -78,7 +85,14 @@ if __name__ == "__main__":
 # NOTE : Might create bugs between deployment env and local testing
 if app.debug:
     with app.app_context():
-        from tutorlink.db.models import Subject, Tutor
+        from tutorlink.db.models import Subject, Tutor, User
+        # # Populate debug user
+        test_usr = User(user_name="test_user",
+                        user_email="test_user@sfsu.edu")
+        test_usr.set_password("yolo420")
+        db.session.add(test_usr)
+        db.session.commit()
+
         # # Populate subjects manually for testing
         subjs = [
             Subject(
@@ -160,6 +174,46 @@ if app.debug:
                 tutor_vid="https://youtu.be/dQw4w9WgXcQ?si=tCj8boDIu7EYF342",
                 tutor_subj=1,
                 tutor_subj_num="4321"
+            ),
+            Tutor(
+                tutor_user="fakeuser",
+                tutor_name="Ulfric Stormcloak",
+                tutor_bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                tutor_cv="image/test/li.pdf",
+                tutor_photo="image/test/def_pfp.jpg",
+                tutor_vid="https://youtu.be/dQw4w9WgXcQ?si=tCj8boDIu7EYF342",
+                tutor_subj=5,
+                tutor_subj_num="4201"
+            ),
+            Tutor(
+                tutor_user="fakeuser",
+                tutor_name="Tiber Septim",
+                tutor_bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                tutor_cv="image/test/li.pdf",
+                tutor_photo="image/test/def_pfp.jpg",
+                tutor_vid="https://youtu.be/dQw4w9WgXcQ?si=tCj8boDIu7EYF342",
+                tutor_subj=4,
+                tutor_subj_num="2828"
+            ),
+            Tutor(
+                tutor_user="fakeuser",
+                tutor_name="Gideon Ofnir",
+                tutor_bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                tutor_cv="image/test/li.pdf",
+                tutor_photo="image/test/def_pfp.jpg",
+                tutor_vid="https://youtu.be/dQw4w9WgXcQ?si=tCj8boDIu7EYF342",
+                tutor_subj=6,
+                tutor_subj_num="101"
+            ),
+            Tutor(
+                tutor_user="fakeuser",
+                tutor_name="Miles Davis",
+                tutor_bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                tutor_cv="image/test/li.pdf",
+                tutor_photo="image/test/def_pfp.jpg",
+                tutor_vid="https://youtu.be/dQw4w9WgXcQ?si=tCj8boDIu7EYF342",
+                tutor_subj=6,
+                tutor_subj_num="1296"
             )
         ]
         for i in tutors:

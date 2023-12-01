@@ -87,7 +87,9 @@ def tutor_app_page():
         
         # Picture upload
         # No file uploaded case
-        if (form.pic_file and form.pic_file.data.filename == '' and not '.jpg' in form.pic_file.data.filename):
+        if form.pic_file.data == None:
+            tutor.tutor_photo = None
+        elif not '.jpg' in form.pic_file.data.filename:
             tutor.tutor_photo = None
         # Photo provided
         else:
@@ -96,7 +98,10 @@ def tutor_app_page():
         
         # CV/Flyer upload
         # No file uploaded case
-        if (form.cv_file and form.cv_file.data.filename == '' and not '.pdf' in form.cv_file.data.filename):
+        if form.cv_file.data == None:
+            tutor.tutor_cv = None
+        elif not '.pdf' in form.cv_file.data.filename:
+            # TODO FLASH ERROR FOR INCORRECT FILE TYPE
             tutor.tutor_cv = None
         # Photo provided
         else:

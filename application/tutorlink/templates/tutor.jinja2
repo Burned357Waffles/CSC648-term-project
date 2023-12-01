@@ -23,7 +23,11 @@
     <div class="left">
         <div id="tutor-media" class="bg">
             <span>CV/Flyer:</span>
-            <a class="file" href="{{ url_for('static', filename=(tutor.tutor_cv)) }}" target="_blank">{{ cv_filename(tutor.tutor_cv) }}</a>
+            {% if tutor.tutor_cv != None %}
+            <a class="file" href="{{ url_for('static', filename=('tutors/' +tutor.tutor_cv + '/cv.pdf')) }}" target="_blank">{{ cv_filename(tutor.tutor_cv) }}</a>
+            {% else %}
+            None Provided
+            {% endif %}
             <br>
             <br>
             <span>Video:</span>

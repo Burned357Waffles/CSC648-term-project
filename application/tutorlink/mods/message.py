@@ -1,7 +1,7 @@
 # # Handles display a tutor profile
 # app
 from tutorlink import app
-from tutorlink.db.models import Subject, Tutor
+from tutorlink.db.models import Subject, Tutor, Message
 
 # libs
 from flask import render_template, request, redirect, url_for
@@ -39,3 +39,12 @@ def message_tutor(tutor_id):
     # TODO: Redirect user to Dashboard with flash message showing success state of message sending
     if request.method == 'POST':
         return redirect(url_for("index"))
+
+# Allows a user to view the messages they have sent or received
+@app.route("/message/view/<int:msg_id>", methods=['GET'])
+def view_message(msg_id):
+    # TODO: check if the user is allowed to access the specified message
+    message = Message.query.first()
+
+    return render_template("view_message.jinja2", message=message)
+

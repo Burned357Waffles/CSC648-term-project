@@ -26,10 +26,9 @@ class message_form(FlaskForm):
 
 
 # Used to get the message that was just created
-# TODO: maybe make this use the tutor's post id instead, would make query more specific
-def latest_message(user_id, tutor_user):
+def latest_message(user_id, tutor_id):
     query = Message.query.filter(Message.msg_student == user_id)
-    query = query.filter(Message.msg_tutor == tutor_user)
+    query = query.filter(Message.msg_listing == tutor_id)
     msgs = query.all()
     return msgs[len(msgs) - 1]
 
@@ -46,10 +45,10 @@ def message_tutor(tutor_id):
     # Create form
     form = message_form()
 
-    # Form submit | Returns message sending status
+    # Form submit | Returns page with sent message
     if form.validate_on_submit():
         # Redirect to login page if user not currently signed in
-        if not hasattr(current_user, 'user_id'):
+        if not current_user.is_authenticated:
             # TODO: preserve contents of message for lazy registration
             return redirect(url_for("login_page"))
 
@@ -65,12 +64,8 @@ def message_tutor(tutor_id):
         db.session.add(new_msg)
         db.session.commit()
 
-        # # TODO: Redirect user to Dashboard with flash message showing success state of message sending
-        # return redirect(url_for("dashboard"))
-
-        # TODO: Or decide to keep use of this alternative
         # Redirect user to message they just sent/created
-        msg_id = latest_message(current_user.user_id, tutor.tutor_user).msg_id
+        msg_id = latest_message(current_user.user_id, tutor.tutor_id).msg_id
         return redirect(url_for("view_message", msg_id=msg_id))
 
     # Return form for message creation
@@ -81,7 +76,7 @@ def message_tutor(tutor_id):
 @app.route("/message/view/<int:msg_id>", methods=['GET'])
 def view_message(msg_id):
     # Redirect to login page if user not currently signed in
-    if not hasattr(current_user, 'user_id'):
+    if not current_user.is_authenticated:
         return redirect(url_for("login_page"))
 
     # Check message exists

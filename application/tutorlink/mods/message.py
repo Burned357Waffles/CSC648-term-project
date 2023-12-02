@@ -1,6 +1,7 @@
 # # Handles display a tutor profile
 # app
 from tutorlink import app
+from tutorlink.db.db import db
 from tutorlink.db.models import Subject, Tutor, Message, User
 
 # libs
@@ -43,7 +44,17 @@ def message_tutor(tutor_id):
             # TODO: preserve contents of message for lazy registration
             return redirect(url_for("login_page"))
 
-        # TODO: store message in DB
+        # Create new message object
+        new_msg = Message(
+            msg_tutor=tutor.tutor_user,
+            msg_student=current_user.user_id,
+            msg_listing=tutor.tutor_id,
+            msg_text=form.message_body.data
+        )
+
+        # Push new message to db
+        db.session.add(new_msg)
+        db.session.commit()
 
         # TODO: Redirect user to Dashboard with flash message showing success state of message sending
         return redirect(url_for("dashboard"))

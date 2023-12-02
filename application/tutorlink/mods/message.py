@@ -25,6 +25,15 @@ class message_form(FlaskForm):
     )
 
 
+# Used to get the message that was just created
+# TODO: maybe make this use the tutor's post id instead, would make query more specific
+def latest_message(user_id, tutor_user):
+    query = Message.query.filter(Message.msg_student == user_id)
+    query = query.filter(Message.msg_tutor == tutor_user)
+    msgs = query.all()
+    return msgs[len(msgs) - 1]
+
+
 # Test template for messaging page
 @app.route("/message/tutor/<int:tutor_id>", methods=['GET', 'POST'])
 def message_tutor(tutor_id):
@@ -56,11 +65,17 @@ def message_tutor(tutor_id):
         db.session.add(new_msg)
         db.session.commit()
 
-        # TODO: Redirect user to Dashboard with flash message showing success state of message sending
-        return redirect(url_for("dashboard"))
+        # # TODO: Redirect user to Dashboard with flash message showing success state of message sending
+        # return redirect(url_for("dashboard"))
+
+        # TODO: Or decide to keep use of this alternative
+        # Redirect user to message they just sent/created
+        msg_id = latest_message(current_user.user_id, tutor.tutor_user).msg_id
+        return redirect(url_for("view_message", msg_id=msg_id))
 
     # Return form for message creation
     return render_template("send_message.jinja2", tutor=tutor, subj_db=Subject, form=form)
+
 
 # Allows a user to view the messages they have sent or received
 @app.route("/message/view/<int:msg_id>", methods=['GET'])

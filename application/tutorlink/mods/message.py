@@ -82,15 +82,18 @@ def view_message(msg_id):
         # Note: same security issue as above
         return redirect(url_for("dashboard"))
 
-    student_user_id = message.msg_student
-    student_user = User.query.filter(User.user_id == student_user_id).first()
+    # Query DB to get info about the messaging parties
+    student_user = User.query.filter(User.user_id == message.msg_student).first()
+    tutor_post = Tutor.query.filter(Tutor.tutor_id == message.msg_listing).first()
+    subject = Subject.query.filter_by(subj_id=tutor_post.tutor_subj).first().subj_short + ' ' + tutor_post.tutor_subj_num
 
-    tutor_listing = message.msg_listing
-    tutor = Tutor.query.filter(Tutor.tutor_id == tutor_listing).first()
+    # Check if user is the sender or the receiver (for tab titling purposes)
+    sender = None
+    if current_user.user_id == student_user.user_id:
+        sender = True
+    elif current_user.user_id == tutor_post.tutor_user:
+        sender = False
 
-    subject = Subject.query.filter_by(subj_id=tutor.tutor_subj).first().subj_short + ' ' + tutor.tutor_subj_num
-
-    # TODO: check if user is the sender or the receiver
-    return render_template("view_message.jinja2", student=student_user, tutor=tutor,
-                           subject=subject, message=message.msg_text)
-
+    # Return page with message details
+    return render_template("view_message.jinja2", student=student_user, tutor=tutor_post,
+                           subject=subject, message=message.msg_text, sender=sender)

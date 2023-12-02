@@ -22,22 +22,23 @@ class message_form(FlaskForm):
         "Send"
     )
 
-# Makes form available for send_message.jinja2 to generate
-app.jinja_env.globals.update(message_form=message_form)
 
-
-# TODO: add a url parameter for specific tutors
 # Test template for messaging page
 @app.route("/message/tutor/<int:tutor_id>", methods=['GET', 'POST'])
 def message_tutor(tutor_id):
     tutor = Tutor.query.filter(Tutor.tutor_id == tutor_id).first()
 
-    if request.method == 'GET':
-        return render_template("send_message.jinja2", tutor=tutor, subj_db=Subject)
+    # TODO: Flash Message telling user that tutor does not exist
+    if tutor is None:
+        return redirect(url_for("index"))
+
+    form = message_form()
 
     # TODO: Redirect user to Dashboard with flash message showing success state of message sending
-    if request.method == 'POST':
-        return redirect(url_for("index"))
+    if form.validate_on_submit():
+        return redirect(url_for("dashboard"))
+
+    return render_template("send_message.jinja2", tutor=tutor, subj_db=Subject, form=form)
 
 # Allows a user to view the messages they have sent or received
 @app.route("/message/view/<int:msg_id>", methods=['GET'])

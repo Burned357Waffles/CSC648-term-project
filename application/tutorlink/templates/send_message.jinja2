@@ -28,7 +28,6 @@
     <tr>
         <th id="message-line">Message:</th>
         <td>
-            {% set form = message_form() %}
             <form id="message-form" method="POST">
                 {{ form.csrf_token }}
 

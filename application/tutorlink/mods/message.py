@@ -7,6 +7,7 @@ from tutorlink.db.models import Subject, Tutor, Message, User
 from flask import render_template, request, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import TextAreaField, SubmitField, validators
+from flask_login import current_user
 
 
 # # # Form layouts
@@ -26,18 +27,28 @@ class message_form(FlaskForm):
 # Test template for messaging page
 @app.route("/message/tutor/<int:tutor_id>", methods=['GET', 'POST'])
 def message_tutor(tutor_id):
+    # Check tutor exists
     tutor = Tutor.query.filter(Tutor.tutor_id == tutor_id).first()
-
-    # TODO: Flash Message telling user that tutor does not exist
     if tutor is None:
+        # TODO: Flash Message telling user that tutor does not exist
         return redirect(url_for("index"))
 
+    # Create form
     form = message_form()
 
-    # TODO: Redirect user to Dashboard with flash message showing success state of message sending
+    # Form submit | Returns message sending status
     if form.validate_on_submit():
+        # Redirect to login page if user not currently signed in
+        if not hasattr(current_user, 'user_id'):
+            # TODO: preserve contents of message for lazy registration
+            return redirect(url_for("login_page"))
+
+        # TODO: store message in DB
+
+        # TODO: Redirect user to Dashboard with flash message showing success state of message sending
         return redirect(url_for("dashboard"))
 
+    # Return form for message creation
     return render_template("send_message.jinja2", tutor=tutor, subj_db=Subject, form=form)
 
 # Allows a user to view the messages they have sent or received

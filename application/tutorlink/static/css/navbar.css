@@ -17,7 +17,7 @@
   margin-bottom: 5px;
   border-radius: 8px;
   font-size: 18px;
-  background-color: #ffdc70;
+  background-color: #fc3;
 }
 .nav-link:hover
 {
@@ -52,9 +52,13 @@
   width: 120px;
   height: 120px;
   font-size: 20px;
-  color: black;
-  background-color: white;
+  color: white;
+  background-color: inherit;
   align-self: center;
+}
+#tutorlink-logo:hover
+{
+  /*background-color: #303;*/
 }
 #about-us
 {

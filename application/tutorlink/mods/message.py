@@ -49,8 +49,8 @@ def view_message(msg_id):
     student_user_id = message.msg_student
     student_user = User.query.filter(User.user_id == student_user_id).first()
 
-    tutor_user_id = message.msg_tutor
-    tutor_user = User.query.filter(User.user_id == tutor_user_id).first()
+    # tutor_user_id = message.msg_tutor
+    # tutor_user = User.query.filter(User.user_id == tutor_user_id).first()
 
     tutor_listing = message.msg_listing
     tutor = Tutor.query.filter(Tutor.tutor_id == tutor_listing).first()
@@ -58,6 +58,6 @@ def view_message(msg_id):
     subject = Subject.query.filter_by(subj_id=tutor.tutor_subj).first().subj_short + ' ' + tutor.tutor_subj_num
 
     # TODO: check if user is the sender or the receiver
-    return render_template("view_message.jinja2", sender=student_user, receiver=tutor_user,
-                           tutor=tutor, subject=subject, message=message.msg_text)
+    return render_template("view_message.jinja2", student=student_user, tutor=tutor,
+                           subject=subject, message=message.msg_text)
 

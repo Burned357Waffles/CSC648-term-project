@@ -1,0 +1,24 @@
+table
+{
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 50px;
+    margin-left: -20px;
+    border-spacing: 0 8px;
+}
+th, td
+{
+    padding: 5px;
+    font-size: 30px;
+}
+th
+{
+    vertical-align: top;
+    text-align: right;
+    padding-right: 10px;
+}
+td
+{
+    width: 90vw;
+    background-color: #f5f5f5;
+}

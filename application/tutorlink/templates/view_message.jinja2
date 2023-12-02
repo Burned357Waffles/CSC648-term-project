@@ -1,5 +1,5 @@
 {% set title = "Message From: " ~ "PLACEHOLDER" %}
-{#{% set css = [""] %}#}
+{% set css = ["view_message.css"] %}
 {# {% set js = [""] %} #}
 {% extends "base.jinja2" %}
 
@@ -8,13 +8,22 @@
 {% endblock %}
 
 {% block body %}
-    Sender: {{ sender.user_name }}
-    <br>
-    Receiver: {{ receiver.user_name }}
-    <br>
-    Tutor: {{ tutor.tutor_name }}
-    <br>
-    Subject: {{ subject }}
-    <br>
-    Text: {{ message }}
+    <table>
+    <tr>
+        <th>From:</th>
+        <td>{{ student.user_name }}</td>
+    </tr>
+    <tr>
+        <th>To:</th>
+        <td>{{ tutor.tutor_name }}</td>
+    </tr>
+    <tr>
+        <th>Subject:</th>
+        <td>{{ subject }}</td>
+    </tr>
+    <tr>
+        <th>Message:</th>
+        <td>{{ message }}</td>
+    </tr>
+    </table>
 {% endblock %}

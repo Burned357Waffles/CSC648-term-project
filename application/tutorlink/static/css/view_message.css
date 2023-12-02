@@ -1,9 +1,18 @@
+#return-link
+{
+    display: block;
+    margin-left: -10px;
+    margin-top: 50px;
+    font-size: 25px;
+}
+
 table
 {
     box-sizing: border-box;
     width: 100%;
-    margin-top: 50px;
-    margin-left: -20px;
+    margin-left: -10px;
+    margin-bottom: 20px;
+    margin-top: 40px;
     border-spacing: 0 8px;
 }
 th, td

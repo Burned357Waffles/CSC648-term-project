@@ -65,14 +65,25 @@ def message_tutor(tutor_id):
 # Allows a user to view the messages they have sent or received
 @app.route("/message/view/<int:msg_id>", methods=['GET'])
 def view_message(msg_id):
-    # TODO: check if the user is allowed to access the specified message
-    message = Message.query.first()
+    # Redirect to login page if user not currently signed in
+    if not hasattr(current_user, 'user_id'):
+        return redirect(url_for("login_page"))
+
+    # Check message exists
+    message = Message.query.filter(Message.msg_id == msg_id).first()
+    if message is None:
+        # TODO: Flash Message telling user that message does not exist
+        # Note: Flash Message could be bad from security view? idk, but maybe just redirect only
+        return redirect(url_for("dashboard"))
+
+    # Check user is allowed to access the specified message
+    if (message.msg_tutor != current_user.user_id) and (message.msg_student != current_user.user_id):
+        # TODO: Flash Message telling user they are not allowed to view message
+        # Note: same security issue as above
+        return redirect(url_for("dashboard"))
 
     student_user_id = message.msg_student
     student_user = User.query.filter(User.user_id == student_user_id).first()
-
-    # tutor_user_id = message.msg_tutor
-    # tutor_user = User.query.filter(User.user_id == tutor_user_id).first()
 
     tutor_listing = message.msg_listing
     tutor = Tutor.query.filter(Tutor.tutor_id == tutor_listing).first()

@@ -21,7 +21,6 @@ app.jinja_env.globals.update(cv_filename=file_name_from_cv)
 # Test template for for tutor page
 @app.route("/tutor/view/<int:tutor_id>", methods=['GET'])
 def tutor_profile(tutor_id):
-    # TODO : Query specific tutor for db
-    tutor = Tutor.query.first()
+    tutor = Tutor.query.filter(Tutor.tutor_id == tutor_id).first()
 
     return render_template("tutor.jinja2", tutor=tutor, subj_db=Subject)

@@ -30,8 +30,7 @@ app.jinja_env.globals.update(message_form=message_form)
 # Test template for messaging page
 @app.route("/message/tutor/<int:tutor_id>", methods=['GET', 'POST'])
 def message_tutor(tutor_id):
-    # TODO : Query specific tutor for db
-    tutor = Tutor.query.first()
+    tutor = Tutor.query.filter(Tutor.tutor_id == tutor_id).first()
 
     if request.method == 'GET':
         return render_template("send_message.jinja2", tutor=tutor, subj_db=Subject)

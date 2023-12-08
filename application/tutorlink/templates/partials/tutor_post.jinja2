@@ -1,5 +1,5 @@
 <div class="tutor-post">
-    <a href="/tutor/view/{{ tutor.tutor_id }}">
+    <a href="/tutor/view/{{ tutor.tutor_id }}" target="_blank">
         <div class="tutor-post-header">
             {% if tutor.tutor_photo != None %}
             <img src="{{ url_for('static', filename=('tutors/'+ tutor.tutor_photo + '/photo.jpg')) }}" alt="{{ tutor.tutor_name }}'s Photo">

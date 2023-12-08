@@ -85,7 +85,7 @@ if __name__ == "__main__":
 # NOTE : Might create bugs between deployment env and local testing
 if app.debug:
     with app.app_context():
-        from tutorlink.db.models import Subject, Tutor, User
+        from tutorlink.db.models import Subject, Tutor, User, Message
         # # Populate debug user
         test_usr = User(user_name="test_user",
                         user_email="test_user@sfsu.edu")
@@ -130,27 +130,27 @@ if app.debug:
                 tutor_name="Daedalus Nullium",
                 tutor_bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                 tutor_cv="image/test/li.pdf",
-                tutor_photo="image/test/def_pfp.jpg",
+                tutor_photo=None,
                 tutor_vid="https://youtu.be/dQw4w9WgXcQ?si=tCj8boDIu7EYF342",
                 tutor_subj=1,
                 tutor_subj_num="420"
             ),
             Tutor(
                 tutor_user="fakeuser",
-                tutor_name="Shifty Wifty",
+                tutor_name="Test Tutor Please Ignore",
                 tutor_bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                 tutor_cv="image/test/li.pdf",
-                tutor_photo="image/test/def_pfp.jpg",
+                tutor_photo=None,
                 tutor_vid="https://youtu.be/dQw4w9WgXcQ?si=tCj8boDIu7EYF342",
                 tutor_subj=3,
                 tutor_subj_num="13"
             ),
             Tutor(
                 tutor_user="fakeuser",
-                tutor_name="Lyrical Lexigraphy",
+                tutor_name="Name McNammerson",
                 tutor_bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                 tutor_cv="image/test/li.pdf",
-                tutor_photo="image/test/def_pfp.jpg",
+                tutor_photo=None,
                 tutor_vid="https://youtu.be/dQw4w9WgXcQ?si=tCj8boDIu7EYF342",
                 tutor_subj=2,
                 tutor_subj_num="060406200728"
@@ -160,17 +160,17 @@ if app.debug:
                 tutor_name="Chad McMann",
                 tutor_bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                 tutor_cv="image/test/li.pdf",
-                tutor_photo="image/test/def_pfp.jpg",
+                tutor_photo=None,
                 tutor_vid="https://youtu.be/dQw4w9WgXcQ?si=tCj8boDIu7EYF342",
                 tutor_subj=2,
                 tutor_subj_num="1234"
             ),
             Tutor(
                 tutor_user="fakeuser",
-                tutor_name="Lyra Venpyra",
+                tutor_name="Dr Proffesor Tutor Person",
                 tutor_bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                 tutor_cv="image/test/li.pdf",
-                tutor_photo="image/test/def_pfp.jpg",
+                tutor_photo=None,
                 tutor_vid="https://youtu.be/dQw4w9WgXcQ?si=tCj8boDIu7EYF342",
                 tutor_subj=1,
                 tutor_subj_num="4321"
@@ -218,6 +218,18 @@ if app.debug:
         ]
         for i in tutors:
             db.session.add(i)
+        db.session.commit()
+
+        # # Populate Messages
+        test_usr = User.query.first()
+        test_tutor = Tutor.query.first()
+        test_msg = Message(
+            msg_tutor=test_usr.user_id,
+            msg_student=test_usr.user_id,
+            msg_listing=test_tutor.tutor_id,
+            msg_text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        )
+        db.session.add(test_msg)
         db.session.commit()
 
 # # # END DEBUG

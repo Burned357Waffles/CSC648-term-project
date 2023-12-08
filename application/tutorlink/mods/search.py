@@ -46,8 +46,7 @@ def search_page():
 
     # Form submit | Returns search results
     if form.validate_on_submit():
-        # Get list of tutor
-        # TODO optimize?
+        # Get list of tutors
         # Filter By Subject if needed
         res = Tutor.query.join(Subject)
 
@@ -80,7 +79,6 @@ def search_page():
 @app.route("/search/<string:subject>", methods=['GET'])
 def subject_search(subject):
     # Get list of tutor
-    # TODO optimize?
     # Filter By Subject if needed
     res = Tutor.query.join(Subject)
 

@@ -14,18 +14,8 @@
     <form method="POST">
         {{ form.csrf_token }}
         <div class="app-box">
-            <input type="text" name="first" placeholder="First Name" required>
-            {% if form.first.errors %}
-                <ul class="errors">
-                    {% for error in form.first.errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        </div>
-        <div class="app-box">
-            <input type="text" name="last" placeholder="Last Name" required>
-            {% if form.first.errors %}
+            {{ form.name }}
+            {% if form.name.errors %}
                 <ul class="errors">
                     {% for error in form.first.errors %}
                         <li>{{ error }}</li>
@@ -35,18 +25,26 @@
         </div>
         <div class="subject-class-wrapper">
             {{ form.subjects(class="subjects-select") }}
-            <input type="text" name="class" placeholder="Class" required>
+            {{ form.subject_num }}
         </div>
         <div class="app-description">
-            <input type="text" name="description" placeholder="Description" required>
+            {{ form.bio }}
         </div>
         <div class="app-file-upload">
-            <a href=""><b>Upload Resume</b></a>
-            <a href=""><b>Upload Video</b></a>
-            <a href=""><b>Upload Picture</b></a>
+            <div class="app-box">
+                {{ form.video }}
+            </div>
+            <div class="file-upload-app">
+            <b>Upload CV</b>
+                {{ form.cv_file }}
+            </div>
+            <div class="file-upload-app">
+            <b>Upload Picture</b>
+                {{ form.pic_file }}
+            </div>
         </div>
         <div>
-            <button class="btn" type="submit">Apply</button>
+            {{ form.submit }}
         </div>
         <div class="requires-approval">
             *Requires approval

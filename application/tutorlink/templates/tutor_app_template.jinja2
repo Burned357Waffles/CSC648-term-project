@@ -11,27 +11,44 @@
 <div class="app-body">
 <div class="app-wrapper">
     <h1>Tutor Application</h1>
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST">
         {{ form.csrf_token }}
-
-        {% for field in form.data.keys() %}
-        {% if field != "csrf_token" and field != "submit" %}
-        <fieldset class="{{ field }}">
-            {{ form[field]['label'] }} {{ form[field] }}
-            {% if form[field]['errors'] %}
-            <ul class="errors">
-                {% for error in form[field]['errors'] %}
-                <li>{{ error }}</li>{% endfor %}
-            </ul>
+        <div class="app-box">
+            {{ form.name }}
+            {% if form.name.errors %}
+                <ul class="errors">
+                    {% for error in form.first.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
             {% endif %}
-        </fieldset>
-        {%endif%}
-        {% endfor %}
-
-        <div class="submit-button">
+        </div>
+        <div class="subject-class-wrapper">
+            {{ form.subjects(class="subjects-select") }}
+            {{ form.subject_num }}
+        </div>
+        <div class="app-description">
+            {{ form.bio }}
+        </div>
+        <div class="app-file-upload">
+            <div class="app-box">
+                {{ form.video }}
+            </div>
+            <div class="file-upload-app">
+            <b>Upload CV</b>
+                {{ form.cv_file }}
+            </div>
+            <div class="file-upload-app">
+            <b>Upload Picture</b>
+                {{ form.pic_file }}
+            </div>
+        </div>
+        <div>
             {{ form.submit }}
         </div>
-
+        <div class="requires-approval">
+            *Requires approval
+        </div>
     </form>
 </div>
 

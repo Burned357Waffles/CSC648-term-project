@@ -17,14 +17,14 @@ from uuid import uuid4
 from os import makedirs, path
 
 class tutor_app_form(FlaskForm):
-    name = StringField("Full Name")
-    bio = TextAreaField("Bio")
+    name = StringField("Full Name", render_kw={"placeholder": "Full Name"})
+    bio = TextAreaField("Bio", render_kw={"placeholder": "Bio"})
     subjects = SelectField("Subjects", choices=[])
-    subject_num = StringField("Subject Number")
-    video = StringField("Video Link (YouTube)")
-    cv_file = FileField("Upload CV/Flyer (.pdf)")
-    pic_file = FileField("Upload Photo (.jpg)")
-    submit = SubmitField("Apply")
+    subject_num = StringField("Subject Number", render_kw={"placeholder": "Class"})
+    video = StringField("Video Link (YouTube)", render_kw={"placeholder": "Video Link"})
+    cv_file = FileField("Upload CV/Flyer (.pdf)", render_kw={"class": "app-file"})
+    pic_file = FileField("Upload Photo (.jpg)", render_kw={"class": "app-file"})
+    submit = SubmitField("Apply", render_kw={"class": "btn"})
 
 
 # Tutor Application Route

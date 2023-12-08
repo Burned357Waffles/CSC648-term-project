@@ -10,7 +10,11 @@
 
 {% block body %}
 <div id="tutor-profile" class="bg">
-    <img src="{{ url_for('static', filename=(tutor.tutor_photo)) }}" alt="{{ tutor.tutor_name }}'s Photo">
+    {% if tutor.tutor_photo != None %}
+    <img src="{{ url_for('static', filename=('tutors/'+ tutor.tutor_photo + '/photo.jpg')) }}" alt="{{ tutor.tutor_name }}'s Photo">
+    {% else %}
+    <img src="{{ url_for('static', filename='image/test/def_pfp.jpg') }}" alt="{{ tutor.tutor_name }}'s Photo">
+    {% endif %}
     <span id="tutor-name">{{tutor.tutor_name}}</span>
 </div>
 <br>
@@ -19,7 +23,11 @@
     <div class="left">
         <div id="tutor-media" class="bg">
             <span>CV/Flyer:</span>
-            <a class="file" href="{{ url_for('static', filename=(tutor.tutor_cv)) }}" target="_blank">{{ cv_filename(tutor.tutor_cv) }}</a>
+            {% if tutor.tutor_cv != None %}
+            <a class="file" href="{{ url_for('static', filename=('tutors/' +tutor.tutor_cv + '/cv.pdf')) }}" target="_blank">{{ cv_filename(tutor.tutor_cv) }}</a>
+            {% else %}
+            None Provided
+            {% endif %}
             <br>
             <br>
             <span>Video:</span>

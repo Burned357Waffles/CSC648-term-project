@@ -1,7 +1,12 @@
 <div class="tutor-post">
     <a href="/tutor/view/{{ tutor.tutor_id }}">
         <div class="tutor-post-header">
-            <img src="{{ url_for('static', filename=(tutor.tutor_photo)) }}" alt="{{ tutor.tutor_name }}'s Photo">
+            {% if tutor.tutor_photo != None %}
+            <img src="{{ url_for('static', filename=('tutors/'+ tutor.tutor_photo + '/photo.jpg')) }}" alt="{{ tutor.tutor_name }}'s Photo">
+            {% else %}
+            <img src="{{ url_for('static', filename=('image/test/def_pfp.jpg')) }}" alt="{{ tutor.tutor_name }}'s Photo">
+            {% endif %}
+
 
             <div class="tutor-post-header-text">
                 <div class="tutor-name">{{ tutor.tutor_name }}</div>
@@ -10,7 +15,11 @@
         </div>
     </a>
 
-    <img src="{{ url_for('static', filename=(tutor.tutor_photo)) }}" alt="{{ tutor.tutor_name }}'s Photo">
+    {% if tutor.tutor_photo != None %}
+    <img src="{{ url_for('static', filename=('tutors/'+ tutor.tutor_photo + '/photo.jpg')) }}" alt="{{ tutor.tutor_name }}'s Photo">
+    {% else %}
+    <img src="{{ url_for('static', filename=('image/test/def_pfp.jpg')) }}" alt="{{ tutor.tutor_name }}'s Photo">
+    {% endif %}
     {# TODO: add link to send message page #}
     <div class="send-message-button">Send Message</div>
 </div>

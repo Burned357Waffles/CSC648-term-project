@@ -5,7 +5,7 @@ from tutorlink.db.db import db
 from tutorlink.db.models import Subject, Tutor, Message, User
 
 # libs
-from flask import render_template, request, redirect, url_for
+from flask import render_template, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import TextAreaField, SubmitField, validators
 from flask_login import current_user

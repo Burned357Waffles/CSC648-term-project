@@ -38,7 +38,7 @@
 
             <div class="tab-content" id="sent" style="display: none;">
                 {# Content for Sent tab #}
-                {% for tutor in sent[:2] %}
+                {% for tutor in sent %}
                     {% set tutor=tutor %}
                     {% set word="To" %}
                     {% include '/partials/dashboard_message.jinja2' %}
@@ -47,7 +47,7 @@
 
             <div class="tab-content" id="received" style="display: none;">
                 {# Content for Received tab #}
-                {% for tutor in received[:3] %}
+                {% for tutor in received %}
                     {% set tutor=tutor %}
                     {% set word="From" %}
                     {% include '/partials/dashboard_message.jinja2' %}

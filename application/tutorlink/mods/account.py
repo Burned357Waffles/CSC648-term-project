@@ -9,7 +9,7 @@ from tutorlink.db.db import db
 from flask import render_template, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
-from flask_login import login_required, logout_user, login_user
+from flask_login import login_required, logout_user, login_user, current_user
 
 # # Account Registration Page
 class register_form(FlaskForm):
@@ -122,6 +122,18 @@ def user_loader(user_id):
     if user_id is not None:
         return User.query.filter_by(user_id=user_id).first()
     return None
+
+
+# Gets user id of current user
+def get_curr_user():
+    if current_user.is_authenticated:
+        return current_user.user_name
+    return None
+
+
+# Makes user checking function available for navbar to use
+app.jinja_env.globals.update(get_curr_user=get_curr_user)
+
 
 # # Debug Routes
 if app.debug:

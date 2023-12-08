@@ -1,9 +1,7 @@
 {% if sender %}
     {% set title = "Message To: " ~ tutor.tutor_name %}
-{% elif receiver %}
-    {% set title = "Message From: " ~ student.user_name %}
 {% else %}
-    {% set title = "Message: " ~ subject %}
+    {% set title = "Message From: " ~ student.user_name %}
 {% endif %}
 {% set css = ["view_message.css"] %}
 {# {% set js = [""] %} #}

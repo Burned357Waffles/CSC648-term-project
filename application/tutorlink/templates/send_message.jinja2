@@ -10,12 +10,14 @@
 {% block body %}
 <table>
     <tr>
-        <th>User:</th>
+        <th>Tutor:</th>
         <td>
+{#            <a href="{{ url_for('tutor_profile', tutor_id=(tutor.tutor_id)) }}">#}
             <div id="tutor-profile" class="bg">
                 <img src="{{ url_for('static', filename=(tutor.tutor_photo)) }}" alt="{{ tutor.tutor_name }}'s Photo">
                 <span id="tutor-name">{{tutor.tutor_name}}</span>
             </div>
+{#            </a>#}
         </td>
     </tr>
     <tr>
@@ -28,7 +30,6 @@
     <tr>
         <th id="message-line">Message:</th>
         <td>
-            {% set form = message_form() %}
             <form id="message-form" method="POST">
                 {{ form.csrf_token }}
 

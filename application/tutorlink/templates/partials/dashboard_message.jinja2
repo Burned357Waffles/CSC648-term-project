@@ -13,10 +13,10 @@
                 <p class="message-date">Date</p>
             </div>
 
-            {% if word == "To" %}
-            {{ word }}: {{ tutor.tutor_name }}
-            {% elif word == "From" %}
-            {{ word }}: {{ user }}
+            {% if sender %}
+            From: {{ sender }}
+            {% else %}
+            To: {{ tutor.tutor_name }}
             {% endif %}
         </div>
     </div>

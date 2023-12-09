@@ -1,5 +1,5 @@
 from tutorlink import app
-from tutorlink.db.models import Subject, Tutor, Message
+from tutorlink.db.models import Subject, Tutor, Message, User
 
 # libs
 from flask import render_template, redirect, url_for
@@ -24,4 +24,4 @@ def dashboard():
     received = received.order_by(Message.msg_id.desc()).all()
 
     return render_template('dashboard.jinja2', user=user, my_posts=my_posts, sent=sent,
-                           received=received, tutor_db=Tutor, subj_db=Subject)
+                           received=received, tutor_db=Tutor, subj_db=Subject, user_db=User)

@@ -43,14 +43,13 @@
 
             <div class="tab-content" id="sent" style="display: none;">
                 {# Content for Sent tab #}
-                {% if my_posts | length == 0 %}
+                {% if sent | length == 0 %}
                     <h3>No sent messages.</h3>
                 {% else %}
                 {% for msg in sent %}
                     {% set msg_id = msg.msg_id %}
                     {% set tutor = tutor_db.query.filter(tutor_db.tutor_id == msg.msg_listing).first() %}
                     {% set subject = subj_db.query.filter_by(subj_id=tutor.tutor_subj).first().subj_short + ' ' + tutor.tutor_subj_num %}
-                    {% set word="To" %}
                     {% include '/partials/dashboard_message.jinja2' %}
                 {% endfor %}
                 {% endif %}
@@ -58,15 +57,14 @@
 
             <div class="tab-content" id="received" style="display: none;">
                 {# Content for Received tab #}
-                {% if my_posts | length == 0 %}
+                {% if received | length == 0 %}
                     <h3>No received messages.</h3>
                 {% else %}
                 {% for msg in received %}
                     {% set msg_id = msg.msg_id %}
                     {% set tutor = tutor_db.query.filter(tutor_db.tutor_id == msg.msg_listing).first() %}
                     {% set subject = subj_db.query.filter_by(subj_id=tutor.tutor_subj).first().subj_short + ' ' + tutor.tutor_subj_num %}
-                    {% set word="From" %}
-                    {% set user = user %}
+                    {% set sender = user_db.query.filter(user_db.user_id == msg.msg_student).first().user_name %}
                     {% include '/partials/dashboard_message.jinja2' %}
                 {% endfor %}
                 {% endif %}

@@ -41,6 +41,7 @@
                 {% for msg in sent %}
                     {% set msg_id = msg.msg_id %}
                     {% set tutor = tutor_db.query.filter(tutor_db.tutor_id == msg.msg_listing).first() %}
+                    {% set subject = subj_db.query.filter_by(subj_id=tutor.tutor_subj).first().subj_short + ' ' + tutor.tutor_subj_num %}
                     {% set word="To" %}
                     {% include '/partials/dashboard_message.jinja2' %}
                 {% endfor %}
@@ -51,6 +52,7 @@
                 {% for msg in received %}
                     {% set msg_id = msg.msg_id %}
                     {% set tutor = tutor_db.query.filter(tutor_db.tutor_id == msg.msg_listing).first() %}
+                    {% set subject = subj_db.query.filter_by(subj_id=tutor.tutor_subj).first().subj_short + ' ' + tutor.tutor_subj_num %}
                     {% set word="From" %}
                     {% include '/partials/dashboard_message.jinja2' %}
                 {% endfor %}

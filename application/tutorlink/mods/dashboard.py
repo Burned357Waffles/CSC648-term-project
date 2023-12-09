@@ -13,8 +13,11 @@ def dashboard():
     if not current_user.is_authenticated:
         return redirect(url_for("login_page"))
 
+    # Query database for user info to populate dashboard tabs with
     my_posts = Tutor.query.filter(Tutor.tutor_user == current_user.user_id).all()
+    sent = Message.query.filter(Message.msg_student == current_user.user_id).all()
+    received = Message.query.filter(Message.msg_tutor == current_user.user_id).all()
 
     # TODO: change my_posts, sent, and received to be the correct data
-    return render_template('dashboard.jinja2', my_posts=my_posts, sent=Tutor.query.all(),
-                           received=Tutor.query.all(), subj_db=Subject)
+    return render_template('dashboard.jinja2', my_posts=my_posts, sent=sent,
+                           received=received, tutor_db=Tutor, subj_db=Subject)

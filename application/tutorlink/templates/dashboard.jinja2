@@ -38,8 +38,9 @@
 
             <div class="tab-content" id="sent" style="display: none;">
                 {# Content for Sent tab #}
-                {% for tutor in sent %}
-                    {% set tutor=tutor %}
+                {% for msg in sent %}
+                    {% set msg_id = msg.msg_id %}
+                    {% set tutor = tutor_db.query.filter(tutor_db.tutor_id == msg.msg_listing).first() %}
                     {% set word="To" %}
                     {% include '/partials/dashboard_message.jinja2' %}
                 {% endfor %}
@@ -47,8 +48,9 @@
 
             <div class="tab-content" id="received" style="display: none;">
                 {# Content for Received tab #}
-                {% for tutor in received %}
-                    {% set tutor=tutor %}
+                {% for msg in received %}
+                    {% set msg_id = msg.msg_id %}
+                    {% set tutor = tutor_db.query.filter(tutor_db.tutor_id == msg.msg_listing).first() %}
                     {% set word="From" %}
                     {% include '/partials/dashboard_message.jinja2' %}
                 {% endfor %}

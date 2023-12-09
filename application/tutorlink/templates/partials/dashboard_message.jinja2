@@ -1,3 +1,4 @@
+<a href="{{ url_for('view_message', msg_id=msg_id) }}" target="_blank">
 <div class="message">
     <div class="message-content">
         <img src="{{ url_for('static', filename=(tutor.tutor_photo)) }}" alt="{{ tutor.tutor_name }}'s Photo">
@@ -10,3 +11,4 @@
         </div>
     </div>
 </div>
+</a>

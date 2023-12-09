@@ -66,6 +66,7 @@
                     {% set tutor = tutor_db.query.filter(tutor_db.tutor_id == msg.msg_listing).first() %}
                     {% set subject = subj_db.query.filter_by(subj_id=tutor.tutor_subj).first().subj_short + ' ' + tutor.tutor_subj_num %}
                     {% set word="From" %}
+                    {% set user = user %}
                     {% include '/partials/dashboard_message.jinja2' %}
                 {% endfor %}
                 {% endif %}

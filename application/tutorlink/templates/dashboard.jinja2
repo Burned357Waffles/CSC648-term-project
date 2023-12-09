@@ -31,14 +31,21 @@
         <div class="dashboard-body">
             <div class="tab-content" id="my_posts" style="display: block;">
                 {# Content for My Posts tab #}
+                {% if my_posts | length == 0 %}
+                    <h3>You do not have any approved tutor applications at this time.</h3>
+                {% else %}
                 {% for post in my_posts %}
                     {% set post=post %}
                     {% include '/partials/dashboard_post.jinja2' %}
                 {% endfor %}
+                {% endif %}
             </div>
 
             <div class="tab-content" id="sent" style="display: none;">
                 {# Content for Sent tab #}
+                {% if my_posts | length == 0 %}
+                    <h3>No sent messages.</h3>
+                {% else %}
                 {% for msg in sent %}
                     {% set msg_id = msg.msg_id %}
                     {% set tutor = tutor_db.query.filter(tutor_db.tutor_id == msg.msg_listing).first() %}
@@ -46,10 +53,14 @@
                     {% set word="To" %}
                     {% include '/partials/dashboard_message.jinja2' %}
                 {% endfor %}
+                {% endif %}
             </div>
 
             <div class="tab-content" id="received" style="display: none;">
                 {# Content for Received tab #}
+                {% if my_posts | length == 0 %}
+                    <h3>No received messages.</h3>
+                {% else %}
                 {% for msg in received %}
                     {% set msg_id = msg.msg_id %}
                     {% set tutor = tutor_db.query.filter(tutor_db.tutor_id == msg.msg_listing).first() %}
@@ -57,6 +68,7 @@
                     {% set word="From" %}
                     {% include '/partials/dashboard_message.jinja2' %}
                 {% endfor %}
+                {% endif %}
             </div>
         </div>
     </div>

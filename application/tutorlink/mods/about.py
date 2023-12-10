@@ -55,7 +55,7 @@ def about_list():
 def about_page(student):
     # Render individual student page based on link
     if student in students_info:
-        return render_template("about_template.html", student=students_info[student])
+        return render_template("about_template.jinja2", student=students_info[student])
     # Case for not found url
     else:
         return "Student not found"

@@ -1,5 +1,5 @@
 {% set title = "About - Tutorlink" %}
-{#{% set css = [""] %}#}
+{% set css = ["about_list.css"] %}
 {#{% set js = [""] %}#}
 {% extends "base.jinja2" %}
 
@@ -17,7 +17,9 @@
 
     <ul>
         {% for student in students %}
-            <li><a href="/about/{{ student }}"><h3>{{ student }}</h3></a></li>
+            <li>
+                <a href="/about/{{ student }}" class="about-student">{{ student }}</a>
+            </li>
         {% endfor %}
     </ul>
 {% endblock %}

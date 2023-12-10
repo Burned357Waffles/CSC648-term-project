@@ -18,7 +18,7 @@ from os import makedirs, path
 
 class tutor_app_form(FlaskForm):
     name = StringField("Full Name", render_kw={"placeholder": "Full Name"})
-    bio = TextAreaField("Bio", render_kw={"placeholder": "Bio"})
+    bio = TextAreaField("Bio", render_kw={"placeholder": "Your bio..."})
     subjects = SelectField("Subjects", choices=[])
     subject_num = StringField("Subject Number", render_kw={"placeholder": "Class"})
     video = StringField("Video Link (YouTube)", render_kw={"placeholder": "Video Link"})

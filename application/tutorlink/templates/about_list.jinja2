@@ -18,7 +18,7 @@
     <ul>
         {% for student in students %}
             <li>
-                <a href="/about/{{ student }}" class="about-student">{{ student }}</a>
+                <a href="{{ url_for("about_page", student=student) }}" class="about-student">{{ student }}</a>
             </li>
         {% endfor %}
     </ul>

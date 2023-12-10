@@ -47,7 +47,7 @@ students_info = {
 # About me index (list of students)
 @app.route("/about")
 def about_list():
-    return render_template("about_list.html", students=list(students_info.keys()))  # Render the list of students template
+    return render_template("about_list.jinja2", students=list(students_info.keys()))  # Render the list of students template
 
 
 # Load template for individual about me pages

@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+{% set title = "About - Tutorlink" %}
+{#{% set css = [""] %}#}
+{#{% set js = [""] %}#}
+{% extends "base.jinja2" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Page - Team 02's Tutorio</title>
-</head>
+{% block head %}
+    {{ super() }}
+{% endblock %}
 
-<body>
+{% block body %}
     <center>
         <h1>Software Engineering class SFSU</h1>
         <h2>Fall, 2023</h2>
@@ -20,6 +20,4 @@
             <li><a href="/about/{{ student }}"><h3>{{ student }}</h3></a></li>
         {% endfor %}
     </ul>
-</body>
-
-</html>
+{% endblock %}

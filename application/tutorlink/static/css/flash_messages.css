@@ -1,0 +1,33 @@
+.alert {
+    width: 300px;
+    height: auto;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(82, 43, 43, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    top: 20%;
+}
+
+.alert button {
+    position: absolute;
+    border: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    top: -2%;
+    right: -2%;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.alert-warning {
+    padding: 20px;
+}

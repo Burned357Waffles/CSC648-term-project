@@ -1,13 +1,26 @@
 {% set title = "Login"%}
-{% set css = ["login.css"]%}
+{% set css = ["login.css", "flash_messages.css"]%}
 {% extends "base.jinja2"%}
 
 {% block head %}
     {{ super() }}
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"/>
 {% endblock %}
+
 {% block body %}
+
     <div class="login-body">
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-warning" id="flash-message-popup">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
+            </div> 
+        {%endfor %}
+    <script>
+    document.querySelector('.close').addEventListener('click', function() {
+        document.getElementById('flash-message-popup').style.display = 'none';
+    });
+    </script>
     <div class="login-wrapper">
             <h1>Login</h1>
             <form method="POST">
@@ -44,16 +57,7 @@
             </form>
             
     </div>
-    <div class="messages">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <ul class="messages">
-                    {% for category, message in messages %}
-                        <li class="message-{{ category }}">{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
+
     </div>
-    </div>
+
 {% endblock %}

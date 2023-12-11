@@ -10,7 +10,7 @@ from flask import render_template, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from flask_login import login_required, logout_user, login_user
-
+from flask import flash
 # # Account Registration Page
 class register_form(FlaskForm):
     username = StringField("Username")
@@ -101,7 +101,8 @@ def login_page():
         
         # Return case for failed login
         # TODO : Flash message of error and return login page
-        return("Login Error")
+        flash('Invalid username/password combination')
+#        return("Login Error")
 
     # Return login page
     return render_template('login_template.jinja2', form=form)

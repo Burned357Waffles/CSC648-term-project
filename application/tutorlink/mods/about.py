@@ -47,7 +47,7 @@ students_info = {
 # About me index (list of students)
 @app.route("/about")
 def about_list():
-    return render_template("about_list.html", students=list(students_info.keys()))  # Render the list of students template
+    return render_template("about_list.jinja2", students=list(students_info.keys()))  # Render the list of students template
 
 
 # Load template for individual about me pages
@@ -55,7 +55,7 @@ def about_list():
 def about_page(student):
     # Render individual student page based on link
     if student in students_info:
-        return render_template("about_template.html", student=students_info[student])
+        return render_template("about_template.jinja2", student=students_info[student])
     # Case for not found url
     else:
         return "Student not found"

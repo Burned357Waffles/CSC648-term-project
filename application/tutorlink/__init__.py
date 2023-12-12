@@ -54,23 +54,7 @@ with app.app_context():
 # Should only ever be a redirect
 @app.route("/")
 def index():
-    res = """
-<head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XVJKD5HB24"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-XVJKD5HB24');
-    </script>
-</head>
-"""
-    res = res + f"<meta http-equiv=\"Refresh\" content=\"0; url='{url_for('home')}'\" />"
-
-
-    return res  # Redirect to the list of students
+    return redirect(url_for('home'))  # Redirect to the list of students
 
 @app.route("/demo")
 def demo_links():

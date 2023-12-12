@@ -15,11 +15,7 @@
         </div>
 
 
-    {% if tutor.tutor_photo != None %}
-    <img src="{{ url_for('static', filename=('tutors/'+ tutor.tutor_photo + '/photo.jpg')) }}" alt="{{ tutor.tutor_name }}'s Photo">
-    {% else %}
-    <img src="{{ url_for('static', filename=('image/test/def_pfp.jpg')) }}" alt="{{ tutor.tutor_name }}'s Photo">
-    {% endif %}
+    <p>{{ tutor.tutor_bio }}</p>
     </a>
 
     {# TODO: add link to send message page #}

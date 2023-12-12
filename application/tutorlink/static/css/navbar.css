@@ -212,6 +212,9 @@
 }
 #user-dropdown.is-visible
 {
+  position: absolute;
+  margin-left: 70px;
+  margin-top: 2px;
   display: block;
 }
 #user-dropdown.not-visible

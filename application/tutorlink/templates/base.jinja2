@@ -3,6 +3,16 @@
 
 {# Pages needs to set their data prior to extending this template #}
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XVJKD5HB24"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-XVJKD5HB24');
+    </script>
+
     {# Page needs to set the title #}
     <title>{{title}}</title>
     <meta charset="UTF-8">

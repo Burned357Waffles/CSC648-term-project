@@ -66,10 +66,8 @@
   text-align: center;
   position: relative;
   bottom: 19px;
-  margin-left: 10px;
-  margin-top: 29px;
-  margin-bottom: -10px;
   width: 90px;
+  margin: 29px 50px -10px 10px;
 }
 
 /*Search Bar positioning and appearance*/

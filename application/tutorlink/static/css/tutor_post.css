@@ -75,9 +75,11 @@
     padding: 5%;
 }
 
-.tutor-post img
+.tutor-post p
 {
-    padding: 5%;
+    padding: 5px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .send-message-button

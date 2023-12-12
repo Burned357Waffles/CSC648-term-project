@@ -5,7 +5,7 @@ from tutorlink.db.db import db
 from tutorlink.db.models import Subject, Tutor, Message, User
 
 # libs
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, flash
 from flask_wtf import FlaskForm
 from wtforms import TextAreaField, SubmitField, validators
 from flask_login import current_user
@@ -40,6 +40,7 @@ def message_tutor(tutor_id):
     tutor = Tutor.query.filter(Tutor.tutor_id == tutor_id).first()
     if tutor is None:
         # TODO: Flash Message telling user that tutor does not exist
+        flash("Tutor does not exist")
         return redirect(url_for("index"))
 
     # Create form
@@ -49,6 +50,7 @@ def message_tutor(tutor_id):
     if form.validate_on_submit():
         # Redirect to login page if user not currently signed in
         if not current_user.is_authenticated:
+            flash("Login to send your message")
             # TODO: preserve contents of message for lazy registration
             return redirect(url_for("login_page"))
 
@@ -65,6 +67,7 @@ def message_tutor(tutor_id):
         db.session.commit()
 
         # Redirect user to message they just sent/created
+        flash("Message sent")
         msg_id = latest_message(current_user.user_id, tutor.tutor_id).msg_id
         return redirect(url_for("view_message", msg_id=msg_id))
 

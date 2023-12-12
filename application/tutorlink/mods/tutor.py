@@ -6,7 +6,7 @@ from tutorlink.db.db import db
 from tutorlink.db.models import Subject, Tutor, Tutor_Request
 
 # flask-libs
-from flask import redirect, render_template, url_for, request
+from flask import redirect, render_template, url_for, flash
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField
 from wtforms import StringField, SubmitField, SelectField, TextAreaField
@@ -128,14 +128,15 @@ def file_name_from_cv(tutor_cv):
 # Makes function available for tutor.jinja2 to call
 app.jinja_env.globals.update(cv_filename=file_name_from_cv)
 
-# TODO: add a url parameter for specific tutors
-# Test template for for tutor page
+
+# Returns page for specific tutor
 @app.route("/tutor/view/<int:tutor_id>", methods=['GET'])
 def tutor_profile(tutor_id):
     # Query for tutor to view
     tutor = Tutor.query.filter_by(tutor_id=tutor_id).first()
     # Redirect to index if not found
     if not tutor:
+        flash("Tutor does not exist")
         return redirect(url_for('index'))
     # Display result
     return render_template("tutor.jinja2", tutor=tutor, subj_db=Subject)

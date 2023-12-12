@@ -1,6 +1,7 @@
 /*Sets up some base elements of navbar*/
 #nav-bar
 {
+  pointer-events: none;
   background-color: #231161;
   min-height: 144px;
 }
@@ -36,6 +37,7 @@
 }
 
 .nav-container {
+  pointer-events: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -74,6 +76,18 @@
 }
 
 /*Search Bar positioning and appearance*/
+#tutorlink-logo-hidden
+{
+  pointer-events: all;
+  display: none;
+  margin-top: 10px;
+  width: 120px;
+  height: 120px;
+  font-size: 20px;
+  color: white;
+  background-color: inherit;
+  align-self: center;
+}
 #search-bar-wrapper
 {
   pointer-events: none;
@@ -81,14 +95,17 @@
   display: flex;
   justify-content: center;
   margin-top: 40px;
+  margin-bottom: 10px;
 }
 #search-bar
 {
   display: flex;
   align-items: center;
   max-width: 645px;
+  height: 70px;
   width: 100%;
   padding: 6px;
+  margin-top: 30px;
   border-radius: 7px;
   background-color: #ffdc70;
 }
@@ -135,6 +152,20 @@
   background-color: #bfbfbf;
 }
 
+/*holds user/account related buttons and tutor signup*/
+#nav-right
+{
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 90px;
+}
+#about-us-right
+{
+  display: none;
+  text-align: center;
+  width: 90px;
+}
 
 #tutor-signup
 {
@@ -142,15 +173,7 @@
   width: 158px;
   margin-left: 50px;
   margin-right: 6vw;
-}
-
-/*holds user/account related buttons*/
-#nav-right
-{
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 90px;
+  overflow: hidden;
 }
 #login, #register
 {
@@ -196,8 +219,55 @@
   display: none;
 }
 
-@media screen and (max-width: 900px) {
-  /* Hide the "About Us" link */
+@media screen and (max-width: 650px)
+{
+  #tutorlink-logo,
+  #about-us
+  {
+    display: none;
+  }
+
+  #tutorlink-logo-hidden
+  {
+    display: none;
+  }
+
+  .nav-container
+  {
+    flex-direction: column;
+  }
+
+  #search-bar-wrapper
+  {
+    margin-top: 80px;
+  }
+
+  #tutor-signup
+  {
+    float: none;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+
+  #nav-right
+  {
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+
+  #about-us-right
+  {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 1250px) and (min-width: 650px)
+{
+  #tutorlink-logo-hidden
+  {
+    display: block;
+  }
+
   #tutorlink-logo,
   #about-us
   {
@@ -218,11 +288,17 @@
   {
     float: none;
     margin-right: 5px;
+    margin-left: 5px;
   }
 
   #nav-right
   {
     margin-top: 10px;
     margin-bottom: 5px;
+  }
+
+  #about-us-right
+  {
+    display: block;
   }
 }

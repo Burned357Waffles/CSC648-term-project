@@ -11,6 +11,7 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileField
 from wtforms import StringField, SubmitField, SelectField, TextAreaField
 from flask_login import current_user
+from flash import flash
 # libs
 import re
 from uuid import uuid4

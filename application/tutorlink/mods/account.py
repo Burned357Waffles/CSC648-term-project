@@ -41,7 +41,7 @@ def register_page():
 
         # Verify SFSU Email
         if not form.email.data.lower().endswith("sfsu.edu"):
-            return "Error : Creating an account requires SFSU Email"
+            flash("Error : Creating an account requires SFSU Email")
         
         # Verify PW requirements
         # TODO : This
@@ -49,12 +49,12 @@ def register_page():
         # Verify account doesn't already exist
         existing_user = User.query.filter_by(user_name=form.username.data).all()
         if len(existing_user) != 0:
-            return("Error: User already exists")
+            flash("Error: User already exists")
         
         # Verify email isn't already used
         existing_user = User.query.filter_by(user_email=form.email.data).all()
         if len(existing_user) != 0:
-            return("Error: Email already in use")
+            flash("Error: Email already in use")
 
         # Create new user account object
         new_acc = User(

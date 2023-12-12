@@ -5,16 +5,17 @@ from tutorlink import app
 from tutorlink.db.models import Subject, Tutor
 
 # Libs
-from flask import render_template, redirect, url_for, request
+from flask import render_template, redirect, url_for, flash
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField, SubmitField
+from wtforms import StringField, SelectField, SubmitField, validators
 
 
 # # # Form layouts
 class search_form(FlaskForm):
     search_subject = SelectField("Subject")
     search_term = StringField(
-        "Search Term"
+        "Search Term",
+        validators=[validators.length(max=40)]
     )
     search_submit = SubmitField(
         "Search"
@@ -72,6 +73,8 @@ def search_page():
 
         # Render search page with result
         return render_template("search.jinja2", res=res, subj_db=Subject, search_term=form.search_term.data)
+    elif len(form.search_term.data) > 40:
+        flash(f"Entered search term is too long ({len(form.search_term.data)} > 40)")
     
     return redirect(url_for("index"))
 

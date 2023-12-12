@@ -8,10 +8,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ url_for("static", filename=("resources/favicon.ico")) }}" sizes="70x70" type="image/ico">
+
     <link rel="stylesheet" href="{{ url_for("static", filename=("css/style.css")) }}" />
     <link rel="stylesheet" href="{{ url_for("static", filename=("css/navbar.css")) }}" />
     <link rel="stylesheet" href="{{ url_for("static", filename=("css/footer.css")) }}" />
+    <link rel="stylesheet" href="{{ url_for("static", filename=("css/flash_messages.css")) }}" />
+
     <script defer src="{{ url_for("static", filename=('js/navbar.js')) }}"></script>
+    <script defer src="{{ url_for("static", filename=('js/flash_messages.js')) }}"></script>
 
     {# Adds css/js files set by the page #}
     {% block head %}
@@ -36,6 +40,7 @@
         {% include 'partials/navbar.jinja2' %}
 
         <main>
+            {% include 'partials/flash_messages.jinja2' %}
             {% block body required %}
             {# pages shall place content here #}
             {% endblock %}

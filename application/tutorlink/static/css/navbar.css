@@ -136,31 +136,36 @@
   background-color: #bfbfbf;
 }
 
-
-#tutor-signup
-{
-  display: inline-block;
-  float: right;
-  margin-top: -59px;
-  margin-right: 23vw;
-  /*margin-right: 13vw;*/
-  width: 158px;
-  padding-right: 10px;
-  overflow: clip;
-}
-
-/*holds user/account related buttons*/
+/*holds user/account related buttons and tutor registration*/
 #nav-right
 {
   pointer-events: none;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
   position: absolute;
   margin-top: -64px;
   right: 15px;
   text-align: right;
   width: auto;
 }
-#login, #register
+#tutor-signup
+{
+  display: inline-block;
+  margin-right: 100px;
+  /*margin-right: 13vw;*/
+  width: 158px;
+  padding-right: 10px;
+  overflow: clip;
+}
+#login
+{
+  text-align: center;
+  width: 66px;
+  margin-left: 150px;
+  margin-right: 5px;
+}
+#register
 {
   text-align: center;
   width: 66px;
@@ -202,4 +207,15 @@
 #user-dropdown.not-visible
 {
   display: none;
+}
+
+@media screen and (max-width: 900px) {
+  #tutorlink-logo {
+    display: none;
+  }
+  #about-us,
+  #nav-right
+  {
+    margin-top: 163px;
+  }
 }

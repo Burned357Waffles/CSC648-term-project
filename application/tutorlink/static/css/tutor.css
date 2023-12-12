@@ -83,10 +83,11 @@ td
 
 #message-button
 {
+    float: right;
     pointer-events: all;
     display: block;
     text-align: center;
-    width: 100%;
+    width: auto;
     border-radius: 10px;
     padding: 20px;
     font-size: 30px;

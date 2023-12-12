@@ -73,7 +73,11 @@ def tutor_app_page():
         tutor.tutor_user = current_user.user_id
 
         # File upload
-        static_path = "tutorlink/static/tutors/"
+        static_path = ""
+        if app.debug:
+            static_path = "tutorlink/static/tutors/"
+        else: 
+            static_path = "/var/www/application/tutorlink/static/tutors/"
         # Gen UUID for profile folder for file upload
         file_dir = str(uuid4())
 

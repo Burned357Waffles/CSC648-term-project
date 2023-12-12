@@ -45,6 +45,7 @@ def tutor_app_page():
 
         # Redirect to login page if not logged in
         if not current_user.is_authenticated:
+            flash("You must be signed-in to apply as Tutor")
             return redirect(url_for('login_page'))
 
         # Assume validation in debug mode
@@ -68,8 +69,6 @@ def tutor_app_page():
         tutor.tutor_subj_num = form.subject_num.data
 
         # Get current user for user value
-        if(not current_user.is_authenticated):
-            return redirect(url_for('register_page'))
         tutor.tutor_user = current_user.user_id
 
         # File upload
@@ -105,7 +104,7 @@ def tutor_app_page():
         if form.cv_file.data == None:
             tutor.tutor_cv = None
         elif not '.pdf' in form.cv_file.data.filename:
-            # TODO FLASH ERROR FOR INCORRECT FILE TYPE
+            flash("Incorrect File Type (should be .pdf)")
             tutor.tutor_cv = None
         # Photo provided
         else:
@@ -118,7 +117,8 @@ def tutor_app_page():
 
         # redirect to tutor page if in debug
         if(app.debug):
-            return redirect(url_for('tutor_profile', tutor_id=tutor.tutor_id))   
+            return redirect(url_for('tutor_profile', tutor_id=tutor.tutor_id))
+        flash("Tutor Application Submitted")
         return redirect(url_for("index"))  
     
     # Return Registration form

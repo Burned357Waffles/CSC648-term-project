@@ -80,19 +80,18 @@ def message_tutor(tutor_id):
 def view_message(msg_id):
     # Redirect to login page if user not currently signed in
     if not current_user.is_authenticated:
+        flash("Login to view message")
         return redirect(url_for("login_page"))
 
     # Check message exists
     message = Message.query.filter(Message.msg_id == msg_id).first()
     if message is None:
-        # TODO: Flash Message telling user that message does not exist
-        # Note: Flash Message could be bad from security view? idk, but maybe just redirect only
+        flash("Message does not exist")
         return redirect(url_for("dashboard"))
 
     # Check user is allowed to access the specified message
     if (message.msg_tutor != current_user.user_id) and (message.msg_student != current_user.user_id):
-        # TODO: Flash Message telling user they are not allowed to view message
-        # Note: same security issue as above
+        flash("Message does not exist")
         return redirect(url_for("dashboard"))
 
     # Query DB to get info about the messaging parties

@@ -77,6 +77,7 @@ def register_page():
         # Possible TODO autologin and redirect to home page
 
         # Return to index for redirect to home page
+        flash("Account Created Successfully")
         return redirect(url_for("login_page"))
 
     # Return form for user creation
@@ -118,6 +119,7 @@ def login_page():
 def logout():
     """User log-out logic."""
     logout_user()
+    flash("Logged Out")
     return redirect(url_for('login_page'))
 
 # Login API

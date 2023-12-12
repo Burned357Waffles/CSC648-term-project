@@ -14,7 +14,12 @@
         <td>
 {#            <a href="{{ url_for('tutor_profile', tutor_id=(tutor.tutor_id)) }}">#}
             <div id="tutor-profile" class="bg">
+                {% if tutor.tutor_photo != None %}
                 <img src="{{ url_for('static', filename=(tutor.tutor_photo)) }}" alt="{{ tutor.tutor_name }}'s Photo">
+                {% else %}
+                <img src="{{ url_for('static', filename='image/test/def_pfp.jpg') }}" alt="{{ tutor.tutor_name }}'s Photo">
+                {% endif %}
+
                 <span id="tutor-name">{{tutor.tutor_name}}</span>
             </div>
 {#            </a>#}

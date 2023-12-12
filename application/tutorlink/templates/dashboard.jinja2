@@ -1,4 +1,4 @@
-{% set title = "Search - Tutorlink" %}
+{% set title = "Dashboard" %}
 {% set css = ["dashboard.css", "dashboard_message.css", "dashboard_post.css"] %}
 {% set js = ["dashboard.js"] %}
 {% extends "base.jinja2" %}
@@ -11,7 +11,8 @@
     <div class="page-header">
         <div class="header-content">
             <h1>Dashboard</h1>
-            <h2>Welcome [user]</h2>
+            {# TODO: replace {{ user }} with get_curr_user() from account.py in 'feature/navbar-rework' branch #}
+            <h2>Welcome {{ user }}</h2>
         </div>
     </div>
 
@@ -30,28 +31,43 @@
         <div class="dashboard-body">
             <div class="tab-content" id="my_posts" style="display: block;">
                 {# Content for My Posts tab #}
+                {% if my_posts | length == 0 %}
+                    <h3>You do not have any approved tutor applications at this time.</h3>
+                {% else %}
                 {% for post in my_posts %}
                     {% set post=post %}
                     {% include '/partials/dashboard_post.jinja2' %}
                 {% endfor %}
+                {% endif %}
             </div>
 
             <div class="tab-content" id="sent" style="display: none;">
                 {# Content for Sent tab #}
-                {% for tutor in sent[:2] %}
-                    {% set tutor=tutor %}
-                    {% set word="To" %}
+                {% if sent | length == 0 %}
+                    <h3>No sent messages.</h3>
+                {% else %}
+                {% for msg in sent %}
+                    {% set msg_id = msg.msg_id %}
+                    {% set tutor = tutor_db.query.filter(tutor_db.tutor_id == msg.msg_listing).first() %}
+                    {% set subject = subj_db.query.filter_by(subj_id=tutor.tutor_subj).first().subj_short + ' ' + tutor.tutor_subj_num %}
                     {% include '/partials/dashboard_message.jinja2' %}
                 {% endfor %}
+                {% endif %}
             </div>
 
             <div class="tab-content" id="received" style="display: none;">
                 {# Content for Received tab #}
-                {% for tutor in received[:3] %}
-                    {% set tutor=tutor %}
-                    {% set word="From" %}
+                {% if received | length == 0 %}
+                    <h3>No received messages.</h3>
+                {% else %}
+                {% for msg in received %}
+                    {% set msg_id = msg.msg_id %}
+                    {% set tutor = tutor_db.query.filter(tutor_db.tutor_id == msg.msg_listing).first() %}
+                    {% set subject = subj_db.query.filter_by(subj_id=tutor.tutor_subj).first().subj_short + ' ' + tutor.tutor_subj_num %}
+                    {% set sender = user_db.query.filter(user_db.user_id == msg.msg_student).first().user_name %}
                     {% include '/partials/dashboard_message.jinja2' %}
                 {% endfor %}
+                {% endif %}
             </div>
         </div>
     </div>

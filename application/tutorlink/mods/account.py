@@ -6,7 +6,7 @@ from tutorlink.db.models import User
 from tutorlink.db.db import db
 
 # libs
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from flask_login import login_required, logout_user, login_user
@@ -37,11 +37,14 @@ def register_page():
     if form.validate_on_submit():
         # Verify empty fields
         if form.email.data == "" or form.password.data == "" or form.username.data == "":
-            return "Error : Empty Field"
+            flash("Error : Empty Field")
+            # TODO: return form back to user with their details pre-filled
+            return render_template("register_template.jinja2", form=form)
 
         # Verify SFSU Email
         if not form.email.data.lower().endswith("sfsu.edu"):
-            return "Error : Creating an account requires SFSU Email"
+            flash("Error : Creating an account requires SFSU Email")
+            return render_template("register_template.jinja2", form=form)
         
         # Verify PW requirements
         # TODO : This
@@ -49,12 +52,14 @@ def register_page():
         # Verify account doesn't already exist
         existing_user = User.query.filter_by(user_name=form.username.data).all()
         if len(existing_user) != 0:
-            return("Error: User already exists")
+            flash("Error: User already exists")
+            return render_template("register_template.jinja2", form=form)
         
         # Verify email isn't already used
         existing_user = User.query.filter_by(user_email=form.email.data).all()
         if len(existing_user) != 0:
-            return("Error: Email already in use")
+            flash("Error: Email already in use")
+            return render_template("register_template.jinja2", form=form)
 
         # Create new user account object
         new_acc = User(
@@ -74,8 +79,7 @@ def register_page():
         # Return to index for redirect to home page
         return redirect(url_for("login_page"))
 
-
-    # Return for for user creation
+    # Return form for user creation
     return render_template("register_template.jinja2", form=form)
 
 

@@ -34,3 +34,8 @@
 .alert-warning {
     padding: 20px;
 }
+
+.alert span
+{
+    padding-right: 10px;
+}

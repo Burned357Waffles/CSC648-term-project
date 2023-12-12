@@ -9,6 +9,7 @@ from tutorlink.db.db import db
 from flask import render_template, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
+from flask import flash
 from flask_login import login_required, logout_user, login_user, current_user
 
 # # Account Registration Page
@@ -101,7 +102,8 @@ def login_page():
         
         # Return case for failed login
         # TODO : Flash message of error and return login page
-        return("Login Error")
+        flash('Invalid username/password combination')
+#        return("Login Error")
 
     # Return login page
     return render_template('login_template.jinja2', form=form)

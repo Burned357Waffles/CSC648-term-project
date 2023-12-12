@@ -54,7 +54,7 @@ with app.app_context():
 # Should only ever be a redirect
 @app.route("/")
 def index():
-    return redirect(url_for("home"))  # Redirect to the list of students
+    return redirect(url_for('home'))  # Redirect to the list of students
 
 @app.route("/demo")
 def demo_links():

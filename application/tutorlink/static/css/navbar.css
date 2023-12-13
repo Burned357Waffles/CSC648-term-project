@@ -53,6 +53,7 @@
 }
 #tutorlink-logo
 {
+  pointer-events: all;
   display: inline-block;
   margin-top: 10px;
   width: 120px;
@@ -65,6 +66,8 @@
 #tutorlink-logo:hover
 {
   /*background-color: #303;*/
+  /*border: 2px solid white;*/
+  /*box-sizing: border-box;*/
 }
 #about-us
 {

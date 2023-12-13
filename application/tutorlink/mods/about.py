@@ -1,7 +1,7 @@
 # # Handles all pages relative to the about me section
 # Jeremy W, Ankita M
 from tutorlink import app
-from flask import render_template
+from flask import render_template, flash
 
 
 # Dictionary to store information about 6 students
@@ -58,6 +58,6 @@ def about_page(student):
         return render_template("about_template.jinja2", student=students_info[student])
     # Case for not found url
     else:
-        return "Student not found"
-
+        flash("Student not found")
+        return render_template("about_list.jinja2", students=list(students_info.keys()))
 

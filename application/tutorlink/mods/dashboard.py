@@ -2,7 +2,7 @@ from tutorlink import app
 from tutorlink.db.models import Subject, Tutor, Message, User
 
 # libs
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, flash
 from flask_login import current_user
 
 
@@ -11,6 +11,7 @@ from flask_login import current_user
 def dashboard():
     # Redirect to login page if user not currently signed in
     if not current_user.is_authenticated:
+        flash("You must be logged in to view your Dashboard")
         return redirect(url_for("login_page"))
 
     # Query database for user info to populate dashboard tabs with

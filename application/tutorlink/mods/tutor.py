@@ -6,7 +6,7 @@ from tutorlink.db.db import db
 from tutorlink.db.models import Subject, Tutor, Tutor_Request
 
 # flask-libs
-from flask import redirect, render_template, url_for, request
+from flask import redirect, render_template, url_for, flash
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField
 from wtforms import StringField, SubmitField, SelectField, TextAreaField
@@ -45,6 +45,7 @@ def tutor_app_page():
 
         # Redirect to login page if not logged in
         if not current_user.is_authenticated:
+            flash("You must be signed-in to apply as Tutor")
             return redirect(url_for('login_page'))
 
         # Assume validation in debug mode
@@ -68,8 +69,6 @@ def tutor_app_page():
         tutor.tutor_subj_num = form.subject_num.data
 
         # Get current user for user value
-        if(not current_user.is_authenticated):
-            return redirect(url_for('register_page'))
         tutor.tutor_user = current_user.user_id
 
         # File upload
@@ -105,7 +104,7 @@ def tutor_app_page():
         if form.cv_file.data == None:
             tutor.tutor_cv = None
         elif not '.pdf' in form.cv_file.data.filename:
-            # TODO FLASH ERROR FOR INCORRECT FILE TYPE
+            flash("Incorrect File Type (should be .pdf)")
             tutor.tutor_cv = None
         # Photo provided
         else:
@@ -118,7 +117,8 @@ def tutor_app_page():
 
         # redirect to tutor page if in debug
         if(app.debug):
-            return redirect(url_for('tutor_profile', tutor_id=tutor.tutor_id))   
+            return redirect(url_for('tutor_profile', tutor_id=tutor.tutor_id))
+        flash("Tutor Application Submitted")
         return redirect(url_for("index"))  
     
     # Return Registration form
@@ -132,14 +132,15 @@ def file_name_from_cv(tutor_cv):
 # Makes function available for tutor.jinja2 to call
 app.jinja_env.globals.update(cv_filename=file_name_from_cv)
 
-# TODO: add a url parameter for specific tutors
-# Test template for for tutor page
+
+# Returns page for specific tutor
 @app.route("/tutor/view/<int:tutor_id>", methods=['GET'])
 def tutor_profile(tutor_id):
     # Query for tutor to view
     tutor = Tutor.query.filter_by(tutor_id=tutor_id).first()
     # Redirect to index if not found
     if not tutor:
+        flash("Tutor does not exist")
         return redirect(url_for('index'))
     # Display result
     return render_template("tutor.jinja2", tutor=tutor, subj_db=Subject)

@@ -46,9 +46,8 @@
 <body>
     <div id="page-content">
         {% include 'partials/navbar.jinja2' %}
-
+        {% include 'partials/flash_messages.jinja2' %}
         <main>
-            {% include 'partials/flash_messages.jinja2' %}
             {% block body required %}
             {# pages shall place content here #}
             {% endblock %}

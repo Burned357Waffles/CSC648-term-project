@@ -5,7 +5,7 @@ from tutorlink.db.db import db
 from tutorlink.db.models import Subject, Tutor, Message, User
 
 # libs
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, flash
 from flask_wtf import FlaskForm
 from wtforms import TextAreaField, SubmitField, validators
 from flask_login import current_user
@@ -40,6 +40,7 @@ def message_tutor(tutor_id):
     tutor = Tutor.query.filter(Tutor.tutor_id == tutor_id).first()
     if tutor is None:
         # TODO: Flash Message telling user that tutor does not exist
+        flash("Tutor does not exist")
         return redirect(url_for("index"))
 
     # Create form
@@ -49,6 +50,7 @@ def message_tutor(tutor_id):
     if form.validate_on_submit():
         # Redirect to login page if user not currently signed in
         if not current_user.is_authenticated:
+            flash("Login to send your message")
             # TODO: preserve contents of message for lazy registration
             return redirect(url_for("login_page"))
 
@@ -65,6 +67,7 @@ def message_tutor(tutor_id):
         db.session.commit()
 
         # Redirect user to message they just sent/created
+        flash("Message sent")
         msg_id = latest_message(current_user.user_id, tutor.tutor_id).msg_id
         return redirect(url_for("view_message", msg_id=msg_id))
 
@@ -77,19 +80,18 @@ def message_tutor(tutor_id):
 def view_message(msg_id):
     # Redirect to login page if user not currently signed in
     if not current_user.is_authenticated:
+        flash("Login to view message")
         return redirect(url_for("login_page"))
 
     # Check message exists
     message = Message.query.filter(Message.msg_id == msg_id).first()
     if message is None:
-        # TODO: Flash Message telling user that message does not exist
-        # Note: Flash Message could be bad from security view? idk, but maybe just redirect only
+        flash("Message does not exist")
         return redirect(url_for("dashboard"))
 
     # Check user is allowed to access the specified message
     if (message.msg_tutor != current_user.user_id) and (message.msg_student != current_user.user_id):
-        # TODO: Flash Message telling user they are not allowed to view message
-        # Note: same security issue as above
+        flash("Message does not exist")
         return redirect(url_for("dashboard"))
 
     # Query DB to get info about the messaging parties

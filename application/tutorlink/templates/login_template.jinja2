@@ -1,5 +1,5 @@
 {% set title = "Login"%}
-{% set css = ["login.css", "flash_messages.css"]%}
+{% set css = ["login.css"]%}
 {% extends "base.jinja2"%}
 
 {% block head %}
@@ -10,17 +10,7 @@
 {% block body %}
 
     <div class="login-body">
-        {% for message in get_flashed_messages() %}
-            <div class="alert alert-warning" id="flash-message-popup">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                {{ message }}
-            </div> 
-        {%endfor %}
-    <script>
-    document.querySelector('.close').addEventListener('click', function() {
-        document.getElementById('flash-message-popup').style.display = 'none';
-    });
-    </script>
+
     <div class="login-wrapper">
             <h1>Login</h1>
             <form method="POST">
@@ -55,7 +45,7 @@
                     <button class="btn" type="submit">Login</button>
                 </div>
             </form>
-            
+
     </div>
 
     </div>

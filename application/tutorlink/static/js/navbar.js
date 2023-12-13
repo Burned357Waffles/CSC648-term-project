@@ -1,6 +1,34 @@
 let name_plate = document.getElementById('username-plate');
 let dropdown = document.getElementById('user-dropdown');
 
+function open_dropdown()
+{
+    dropdown.classList.remove('not-visible');
+    dropdown.classList.add('is-visible');
+    name_plate.innerText = name_plate.innerText.substring(0, name_plate.innerText.length-1)
+    name_plate.innerText += "▲";
+}
+
+function close_dropdown()
+{
+    dropdown.classList.remove('is-visible');
+    dropdown.classList.add('not-visible');
+    name_plate.innerText = name_plate.innerText.substring(0, name_plate.innerText.length-1)
+    name_plate.innerText += "▼";
+}
+
+function toggle_dropdown()
+{
+    if(dropdown.classList.contains('not-visible'))
+    {
+        open_dropdown();
+    }
+    else
+    {
+        close_dropdown();
+    }
+}
+
 document.addEventListener('click', (evt) =>
 {
     let clickTarget = evt.target;
@@ -8,22 +36,11 @@ document.addEventListener('click', (evt) =>
     //user clicks on their "welcome, <user>" button
     if(clickTarget === name_plate)
     {
-        //condition is so clicking again closes
-        if(dropdown.classList.contains('not-visible'))
-        {
-            dropdown.classList.remove('not-visible');
-            dropdown.classList.add('is-visible');
-        }
-        else
-        {
-            dropdown.classList.remove('is-visible');
-            dropdown.classList.add('not-visible');
-        }
+        toggle_dropdown();
     }
-    //condition is for preventing accidental closure if user clicks on the gaps
+    //condition is to prevent accidental closure if user clicks on gap rather than button
     else if(clickTarget !== dropdown)
     {
-        dropdown.classList.remove('is-visible');
-        dropdown.classList.add('not-visible');
+        close_dropdown();
     }
 });

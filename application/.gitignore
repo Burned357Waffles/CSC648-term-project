@@ -1,5 +1,8 @@
 # Non-template changes
+# IDE stuff
 .idea/
+# Tutor Profiles
+static/tutors/*
 
 # # # # # # # # # # # # # # # # # # # # #
 # Byte-compiled / optimized / DLL files

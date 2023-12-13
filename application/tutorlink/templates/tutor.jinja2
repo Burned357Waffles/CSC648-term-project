@@ -10,7 +10,11 @@
 
 {% block body %}
 <div id="tutor-profile" class="bg">
-    <img src="{{ url_for('static', filename=(tutor.tutor_photo)) }}" alt="{{ tutor.tutor_name }}'s Photo">
+    {% if tutor.tutor_photo != None %}
+    <img src="{{ url_for('static', filename=('tutors/'+ tutor.tutor_photo + '/photo.jpg')) }}" alt="{{ tutor.tutor_name }}'s Photo">
+    {% else %}
+    <img src="{{ url_for('static', filename='image/test/def_pfp.jpg') }}" alt="{{ tutor.tutor_name }}'s Photo">
+    {% endif %}
     <span id="tutor-name">{{tutor.tutor_name}}</span>
 </div>
 <br>
@@ -19,17 +23,17 @@
     <div class="left">
         <div id="tutor-media" class="bg">
             <span>CV/Flyer:</span>
-            <a class="file" href="{{ url_for('static', filename=(tutor.tutor_cv)) }}" target="_blank">{{ cv_filename(tutor.tutor_cv) }}</a>
+            {% if tutor.tutor_cv != None %}
+            <a class="file" href="{{ url_for('static', filename=('tutors/' +tutor.tutor_cv + '/cv.pdf')) }}" target="_blank">{{ cv_filename(tutor.tutor_cv) }}</a>
+            {% else %}
+            <span class="file"> None Provided </span>
+            {% endif %}
             <br>
             <br>
             <span>Video:</span>
             <a class="file" href="{{ tutor.tutor_vid }}" target="_blank">YouTube Link</a>
             <br>
         </div>
-        <br>
-
-        {# This link will need to be replaced with actual messaging route #}
-        <a id="message-button" class="bg" href="/message/{{ tutor.tutor_id }}" target="_blank">Send Message</a>
     </div>
 
     <div class="right">
@@ -49,6 +53,9 @@
                 </tr>
             </table>
         </div>
+
+        {# Link to messaging page, should be opening in new page #}
+        <a id="message-button" class="bg" href="{{ url_for('message_tutor', tutor_id=(tutor.tutor_id)) }}" target="_blank">Send Message</a>
     </div>
 </div>
 {% endblock %}

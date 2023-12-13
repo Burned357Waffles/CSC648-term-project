@@ -13,15 +13,15 @@
             {{ res | length }} {{ "result" if res | length == 1 else "results" }} found for "{{ search_term }}"
         </h4>
 
-        <div class="search-tutors-clip-container">
-            <div class="search-tutors-container">
+         <div class="new-tutors-clip-container">
+            <div class="search-tutors-container tutor-container">
                 <div class="tutor-row">
                     {% for tutor in res %}
                         {% set tutor=tutor %}
                         {% set subj_db=subj_db %}
                         {% include '/partials/tutor_post.jinja2' %}
                         {% if loop.index % 4 == 0 %}
-                            <div style="clear: both;"></div>
+                            <div class="clearfix"></div>
                         {% endif %}
                     {% endfor %}
                 </div>
